@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>travelstats</groupId>
     <artifactId>travelstats</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.0</version>
     <name>travelstats</name>
     <properties>
@@ -34,4 +34,20 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+          <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.8.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
