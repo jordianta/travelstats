@@ -1,0 +1,36 @@
+[
+    {
+        "distance": 241,
+        "destination": "Menorca",
+        "destinationCode": 4487,
+        "destinationIata": "MAH",
+        "origin": "Barcelona",
+        "date": "15-8-1996",
+        "originLng": 2.083333,
+        "originCode": 577,
+        "id": 1,
+        "destinationLat": 39.86667,
+        "carrierCode": 566,
+        "carrier": "Iberia",
+        "destinationLng": 4.25,
+        "originIata": "BCN",
+        "originLat": 41.3
+    },
+    {
+        "distance": 241,
+        "destination": "Barcelona",
+        "destinationCode": 577,
+        "destinationIata": "BCN",
+        "origin": "Menorca",
+        "date": "22-8-1996",
+        "originLng": 4.25,
+        "originCode": 4487,
+        "id": 2,
+        "destinationLat": 41.3,
+        "carrierCode": 566,
+        "carrier": "Iberia",
+        "destinationLng": 2.083333,
+        "originIata": "MAH",
+        "originLat": 39.86667
+    }
+]

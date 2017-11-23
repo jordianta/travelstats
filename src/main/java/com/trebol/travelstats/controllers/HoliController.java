@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-@RestController
+@RestController("/foo")
 public class HoliController {
 
     @RequestMapping("/holi2")

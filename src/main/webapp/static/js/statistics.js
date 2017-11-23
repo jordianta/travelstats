@@ -10,7 +10,7 @@ function loadFlightsStatsByYear() {
 	var serverResponse = $.ajax({
 						dataType: "json",
 						//url: "http://localhost:8080/engine/booking/v2/searchBookings;user=qa;password=prueba;locale=es_ES;buyerEmail=sqa@edreams.com",
-						url: "static/json/flightsStatsByYear.json",
+						url: "/stats/flights/year/",
 						async: false//,
 						//success: function(data) {
 							//return data.response;
@@ -25,7 +25,7 @@ function loadFlightsStatsByCarrier() {
 	var serverResponse = $.ajax({
 						dataType: "json",
 						//url: "http://localhost:8080/engine/booking/v2/searchBookings;user=qa;password=prueba;locale=es_ES;buyerEmail=sqa@edreams.com",
-						url: "static/json/flightsStatsByCarrier.json",
+						url: "/stats/flights/carrier/",
 						async: false//,
 						//success: function(data) {
 							//return data.response;
