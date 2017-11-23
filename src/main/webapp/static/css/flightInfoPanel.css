@@ -1,0 +1,109 @@
+#flightImageContainer{
+    width: 100%;
+    position: absolute;
+    top: -40px;
+}
+
+#map-footer {
+    width: 100%;
+    position: fixed;
+    bottom: 15px;
+    left: 0px;
+    overflow: visible;
+}
+
+.flightInfoPanel {
+    /*margin: 0px auto 0 auto;*/
+	position:absolute;
+    display: table;
+    color: #1F84ED;/*#333;*/
+	padding-left:35%;
+/* 	padding-right:5%; */
+    vertical-align: middle;
+}
+
+.flightInfoPanel .panel {
+    display: table-row;
+	border-color:#F845A2;
+	border: 5px;
+}
+
+.flightInfoPanel .panel .first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    padding-left: 24px;
+}
+
+.flightInfoPanel .panel .last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    padding-right: 24px;
+}
+
+.flightInfoPanel .panel div {
+    background-color: white;/*#ffc900;*/
+    line-height: 38px;
+    padding-top: 5px;
+    padding-bottom:0px;
+    display: table-cell;
+}
+
+.flightInfoPanel .city {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.flightInfoPanel .date {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.flightInfoPanel .carrier {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.flightInfoPanel .distance {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.flightInfoPanel .to {
+    font-size: 12px;
+    color: #666;
+    padding:  0 12px;
+	vertical-align:middle;
+}
+
+.flightInfoPanel .travellers {
+    font-size: 12px;
+}
+
+.flightInfoPanel .separator > div{
+    width: 1px;
+    background: #F845A2;/*white;*/
+    position: relative;
+    height: 30px;
+    display: block;
+    padding: 0;
+    margin: 0;
+    top: 7px;
+}
+
+.flightInfoPanel .separator{
+    padding: 0 10px;
+}
+
+.flightInfoPanel .code {
+    font-size: 10px;
+    padding-left: 12px;
+	vertical-align:middle;
+}

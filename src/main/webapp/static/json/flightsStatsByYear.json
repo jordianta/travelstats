@@ -1,0 +1,16 @@
+[
+{"year": 1996, "flights": 2, "distance":482},
+{"year": 2000, "flights": 2, "distance": 2382},
+{"year": 2005, "flights": 5, "distance": 3542},
+{"year": 2006, "flights": 4, "distance": 3936},
+{"year": 2007, "flights": 10, "distance": 17066},
+{"year": 2008, "flights": 6, "distance": 8541},
+{"year": 2009, "flights": 12, "distance": 37458},
+{"year": 2010, "flights": 19, "distance": 48803},
+{"year": 2011, "flights": 11, "distance": 28603},
+{"year": 2012, "flights": 7, "distance": 17275},
+{"year": 2013, "flights": 10, "distance": 27363},
+{"year": 2014, "flights": 17, "distance": 53898},
+{"year": 2015, "flights": 17, "distance": 39546},
+{"year": 2016, "flights": 7, "distance": 26841}
+]

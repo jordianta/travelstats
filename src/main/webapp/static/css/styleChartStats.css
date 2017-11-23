@@ -1,0 +1,43 @@
+.flightsSummaryColumn {
+	text-align: right;	
+}
+
+#flightsSummaryDiv {
+    width: 75%;
+    height: 100%;
+    top: 50%;
+    overflow:hidden;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding-right: 5%;
+	padding-left: 5%
+}
+
+#flightsSummary {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	cellspacing: 0;
+	width: 100%;
+}
+
+#flightsSummary th{
+	color: #0073EA;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#yearFlightsChart, #yearDistanceChart, #yearAverageChart, #carrierFlightsChart, #carrierDistanceChart, #carrierAverageChart {
+    width: 75%;
+	height:100%;
+	padding-right: 5%;
+	padding-left: 5%;
+}
+
+#tabs {
+	position:relative;
+	margin:1%;
+	top: 30px;
+	/*height: 100%*/
+}

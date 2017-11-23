@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>Statistics</title>
+    <link rel="stylesheet" type="text/css" href="static/css/genericStyle.css">
+    <link rel="stylesheet" type="text/css" href="static/css/styleChartStats.css">
+	<link rel="stylesheet" type="text/css" href="static/js/jquery-ui-1.11.4.custom/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="static/css/menuStyle.css">
+	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="static/css/datatables/jquery.dataTables.css">
+
+	<script type="text/javascript" src="static/js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="static/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="static/js/datatables/jquery.dataTables.js"></script>	
+	<script type="text/javascript" src="static/js/Chart.js"></script>	
+	<script type="text/javascript" src="static/js/statistics.js"></script>
+	<script type="text/javascript" src="static/js/chartsOptions.js"></script>
+	<script type="text/javascript" src="static/js/utils.js"></script>
+	<script type="text/javascript" src="static/js/menu.js"></script>
+
+  </head>  
+  
+<body>
+<div id="header"> 
+	<div class="icon-menu"> <i class="fa fa-bars"></i> Menu </div>
+</div>
+
+<div id="padre"> 
+
+	<jsp:include page="snippets/menu.jsp"/>
+
+	<div id="main">
+
+		<div id="tabs">
+			<ul>
+				<li><a href="#tabs-1">Flights Summary</a></li>
+				<li><a href="#tabs-2">Flights by Year</a></li>
+				<li><a href="#tabs-3">Distance by Year</a></li>
+				<li><a href="#tabs-4">Average by Year</a></li>
+				<li><a href="#tabs-5">Flights by Carrier</a></li>
+				<li><a href="#tabs-6">Distance by Carrier</a></li>
+				<li><a href="#tabs-7">Average by Carrier</a></li>
+			</ul>
+			<div id="tabs-1">
+				<div id="flightsSummaryDiv">
+					<table id="flightsSummary" class="display">
+						<thead>
+							<tr>
+								<th>Year</th>
+								<th>Flights</th>
+								<th>Distance</th>
+								<th>Average</th>
+							</tr>
+						</thead>
+					</table>	
+				</div>
+			</div>
+			<div id="tabs-2">
+				<div class="flightsCharts">
+					<canvas id="yearFlightsChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-3">
+				<div class="flightsCharts">
+					<canvas id="yearDistanceChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-4">
+				<div class="flightsCharts">
+					<canvas id="yearAverageChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-5">
+				<div class="flightsCharts">
+					<canvas id="carrierFlightsChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-6">
+				<div class="flightsCharts">
+					<canvas id="carrierDistanceChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-7">
+				<div class="flightsCharts">
+					<canvas id="carrierAverageChart"> </canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    initializeAll();
+</script>
+</body>
+	
+</html>
