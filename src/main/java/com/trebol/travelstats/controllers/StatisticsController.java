@@ -6,11 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/stats")
@@ -33,11 +33,11 @@ public class StatisticsController {
     private String loadFileAsString(final String fileName) {
         try {
             final URL resource = getResource(fileName);
-            if (resource != null) {
-                return new String(Files.readAllBytes(Paths.get(resource.toURI())));
+            try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resource.openStream()))) {
+                return buffer.lines().collect(Collectors.joining("\n"));
             }
 
-        } catch (URISyntaxException | IOException e) {
+        } catch (IOException e) {
             LOG.error("Error reading {}", fileName, e);
         }
         return "";
