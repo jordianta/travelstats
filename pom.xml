@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>travelstats</groupId>
     <artifactId>travelstats</artifactId>
-   <version>1.0</version>
+    <version>1.0</version>
     <name>travelstats</name>
     <packaging>war</packaging>
     <properties>
@@ -25,12 +25,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <!-- <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>-->
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
