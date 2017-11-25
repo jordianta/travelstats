@@ -1,17 +1,11 @@
-package com.trebol.travelstats.controllers;
+package com.trebol.travelstats.services;
 
-import com.trebol.travelstats.services.FlightsService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
 
-@RunWith(SpringRunner.class)
-public class FlightsControllerTest {
+public class FlightsServiceImplTest {
 
     private static final String FLIGHTS_EXPECTED = "[\n" +
             "    {\n" +
@@ -50,23 +44,16 @@ public class FlightsControllerTest {
             "    }\n" +
             "]";
 
-    @Mock
     private FlightsService flightsService;
-
-    private FlightsController flightsController;
 
     @Before
     public void setUp() throws Exception {
-        flightsController = new FlightsController(flightsService);
+        flightsService = new FlightsServiceImpl();
     }
 
     @Test
     public void getAllFlights() throws Exception {
-        // given
-        when(flightsService.getAllFlights()).thenReturn(FLIGHTS_EXPECTED);
-
-        // when then
-        assertEquals(FLIGHTS_EXPECTED, flightsController.getAllFlights());
+        assertEquals(FLIGHTS_EXPECTED, flightsService.getAllFlights());
     }
 
 }
