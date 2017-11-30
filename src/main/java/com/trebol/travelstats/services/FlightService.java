@@ -1,6 +1,6 @@
 package com.trebol.travelstats.services;
 
-public interface FlightsService {
+public interface FlightService {
 
     String getAllFlights();
 

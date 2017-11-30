@@ -31,7 +31,6 @@ public class StatisticsControllerTest {
     @Before
     public void setUp() throws Exception {
         statisticsController = new StatisticsController(statisticsService);
-        when(statisticsService.getFlightsByCarrier()).thenReturn(STATS_BY_CARRIER_EXPECTED);
     }
 
     @Test

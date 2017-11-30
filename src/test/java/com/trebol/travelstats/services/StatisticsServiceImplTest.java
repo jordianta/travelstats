@@ -1,9 +1,11 @@
 package com.trebol.travelstats.services;
 
+import com.trebol.travelstats.repositories.AirportRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class StatisticsServiceImplTest {
 
@@ -18,6 +20,10 @@ public class StatisticsServiceImplTest {
             "]";
 
     private StatisticsService statisticsService;
+
+    @Mock
+    private AirportRepository airportRepository;
+
 
     @Before
     public void setUp() throws Exception {

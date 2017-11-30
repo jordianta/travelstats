@@ -1,7 +1,6 @@
 package com.trebol.travelstats.integration;
 
-import com.trebol.travelstats.controllers.FlightsController;
-import com.trebol.travelstats.controllers.StatisticsController;
+import com.trebol.travelstats.controllers.FlightController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(FlightsController.class)
+@WebMvcTest(FlightController.class)
 public class FlightsIntegrationTest {
 
     private static final String ROOT_PATH = "/flights";

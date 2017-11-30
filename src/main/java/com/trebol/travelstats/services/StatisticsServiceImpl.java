@@ -18,9 +18,6 @@ public class StatisticsServiceImpl implements StatisticsService {
     private static final String FLIGHTS_STATS_BY_CARRIER_FILE_NAME = "json/flightsStatsByCarrier.json";
     private static final String FLIGHTS_STATS_BY_YEAR_FILE_NAME = "json/flightsStatsByYear.json";
 
-    public StatisticsServiceImpl() {
-    }
-
     @Override
     public String getFlightsByCarrier() {
         return loadFileAsString(FLIGHTS_STATS_BY_CARRIER_FILE_NAME);

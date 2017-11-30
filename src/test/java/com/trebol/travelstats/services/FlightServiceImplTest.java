@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class FlightsServiceImplTest {
+public class FlightServiceImplTest {
 
     private static final String FLIGHTS_EXPECTED = "[\n" +
             "    {\n" +
@@ -44,16 +44,16 @@ public class FlightsServiceImplTest {
             "    }\n" +
             "]";
 
-    private FlightsService flightsService;
+    private FlightService flightService;
 
     @Before
     public void setUp() throws Exception {
-        flightsService = new FlightsServiceImpl();
+        flightService = new FlightServiceImpl();
     }
 
     @Test
     public void getAllFlights() throws Exception {
-        assertEquals(FLIGHTS_EXPECTED, flightsService.getAllFlights());
+        assertEquals(FLIGHTS_EXPECTED, flightService.getAllFlights());
     }
 
 }

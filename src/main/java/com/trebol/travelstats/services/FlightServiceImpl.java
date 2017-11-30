@@ -11,12 +11,12 @@ import java.net.URL;
 import java.util.stream.Collectors;
 
 @Service
-public class FlightsServiceImpl implements FlightsService {
+public class FlightServiceImpl implements FlightService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FlightsServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FlightServiceImpl.class);
     private static final String FLIGHTS_FILE_NAME = "json/flights.json";
 
-    public FlightsServiceImpl() {
+    public FlightServiceImpl() {
     }
 
     @Override
