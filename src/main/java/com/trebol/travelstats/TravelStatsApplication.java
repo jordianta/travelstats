@@ -39,10 +39,10 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
     @Primary
     public DataSource getDataSource() {
 
-        final String url = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
-            System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/" + DATABASE_NAME;
-        final String username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-        final String password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+        final String url = "jdbc:mysql://" + System.getenv("MYSQL_SERVICE_HOST") + ":" +
+            System.getenv("MYSQL_SERVICE_PORT") + "/" + DATABASE_NAME;
+        final String username = System.getenv("MYSQL_USER");
+        final String password = System.getenv("MYSQL_PASSWORD");
 
         LOG.info("url: " + url);
         LOG.info("username: " + username);
