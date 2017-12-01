@@ -39,10 +39,9 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
     @Primary
     public DataSource getDataSource() {
 
-        final String url = "jdbc:mysql://" + System.getenv("MYSQL_SERVICE_HOST") + ":" +
-            System.getenv("MYSQL_SERVICE_PORT") + "/" + DATABASE_NAME;
-        final String username = System.getenv("MYSQL_USER");
-        final String password = System.getenv("MYSQL_PASSWORD");
+        final String url = "jdbc:mysql://10.130.34.1:3306/travelstats";
+        final String username = "userDJ2";
+        final String password = "sV223KDtaIPDeJ2G";
 
         LOG.info("url: " + url);
         LOG.info("username: " + username);
