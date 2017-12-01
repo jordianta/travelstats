@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Primary;
 @SpringBootApplication
 public class TravelStatsApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TravelStatsApplication.class);
     private static final String DATABASE_NAME = "travelstats";
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
