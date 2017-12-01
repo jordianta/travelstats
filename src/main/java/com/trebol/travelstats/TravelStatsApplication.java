@@ -3,17 +3,15 @@ package com.trebol.travelstats;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 
 
 @Configuration
@@ -22,9 +20,10 @@ import org.springframework.context.annotation.Primary;
 @SpringBootApplication
 public class TravelStatsApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TravelStatsApplication.class);
-    private static final String DATABASE_NAME = "travelstats";
+    private static final String URL = "jdbc:mysql://10.131.32.66:3306/travelstats";
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    private static final String USERNAME = "userDJ2";
+    private static final String PASSWORD = "sV223KDtaIPDeJ2G";
 
     public static void main(String[] args) {
         SpringApplication.run(TravelStatsApplication.class, args);
@@ -34,26 +33,17 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(TravelStatsApplication.class);
     }
-    
-    /*@Bean
+
+    @Bean
     @Primary
     public DataSource getDataSource() {
 
-        final String url = "jdbc:mysql://10.131.32.66:3306/travelstats";
-        final String username = "userDJ2";
-        final String password = "sV223KDtaIPDeJ2G";
-
-        LOG.info("url: " + url);
-        LOG.info("username: " + username);
-        LOG.info("password: " + password);
-        LOG.info("driverClassName: " + DRIVER_CLASS_NAME);
-
         return DataSourceBuilder
-            .create()
-            .url(url)
-            .username(username)
-            .password(password)
-            .driverClassName(DRIVER_CLASS_NAME)
-            .build();
-    }*/
+                .create()
+                .url(URL)
+                .username(USERNAME)
+                .password(PASSWORD)
+                .driverClassName(DRIVER_CLASS_NAME)
+                .build();
+    }
 }
