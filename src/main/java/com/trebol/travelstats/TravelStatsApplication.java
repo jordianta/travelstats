@@ -35,7 +35,7 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
         return application.sources(TravelStatsApplication.class);
     }
     
-    @Bean
+    /*@Bean
     @Primary
     public DataSource getDataSource() {
 
@@ -55,5 +55,5 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
             .password(password)
             .driverClassName(DRIVER_CLASS_NAME)
             .build();
-    }
+    }*/
 }
