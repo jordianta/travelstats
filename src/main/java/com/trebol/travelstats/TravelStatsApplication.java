@@ -39,7 +39,7 @@ public class TravelStatsApplication extends SpringBootServletInitializer {
     @Primary
     public DataSource getDataSource() {
 
-        final String url = "jdbc:mysql://10.130.34.1:3306/travelstats";
+        final String url = "jdbc:mysql://10.131.32.66:3306/travelstats";
         final String username = "userDJ2";
         final String password = "sV223KDtaIPDeJ2G";
 
