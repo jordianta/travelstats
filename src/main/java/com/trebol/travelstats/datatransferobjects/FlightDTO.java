@@ -1,7 +1,6 @@
 package com.trebol.travelstats.datatransferobjects;
 
 import java.sql.Time;
-import java.util.Date;
 
 public class FlightDTO {
 
