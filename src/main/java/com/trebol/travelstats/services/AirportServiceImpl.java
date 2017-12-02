@@ -1,13 +1,13 @@
 package com.trebol.travelstats.services;
 
-import com.google.gson.Gson;
-import com.trebol.travelstats.domainobjects.Airport;
+import com.trebol.travelstats.datatransferobjects.AirportDTO;
+import com.trebol.travelstats.mappers.AirportMapper;
 import com.trebol.travelstats.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AirportServiceImpl implements AirportService {
@@ -15,20 +15,18 @@ public class AirportServiceImpl implements AirportService {
     @Autowired
     private AirportRepository airportRepository;
     @Autowired
-    private Gson gson;
+    private AirportMapper airportMapper;
 
-    public AirportServiceImpl(final AirportRepository airportRepository, final Gson gson) {
+    public AirportServiceImpl(final AirportRepository airportRepository, final AirportMapper airportMapper) {
         this.airportRepository = airportRepository;
-        this.gson = gson;
+        this.airportMapper = airportMapper;
     }
 
     @Override
-    public String getAllAirports() {
-        final List<Airport> airports = airportRepository.findAll();
-
-        if (airports == null) {
-            return gson.toJson(Collections.emptyList());
-        }
-        return gson.toJson(airports);
+    public List<AirportDTO> getAllAirports() {
+        return airportRepository.findAll()
+                                .stream()
+                                .map(airport -> airportMapper.map(airport, AirportDTO.class))
+                                .collect(Collectors.toList());
     }
 }

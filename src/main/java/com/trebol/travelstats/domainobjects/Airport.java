@@ -2,9 +2,11 @@ package com.trebol.travelstats.domainobjects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Airport {
@@ -28,8 +30,8 @@ public class Airport {
     @Column(nullable = false)
     private String iataCode;
 
-    @Column(nullable = false)
-    private Integer countryId;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private Country country;
 
     public Integer getId() {
         return id;
@@ -79,12 +81,12 @@ public class Airport {
         this.iataCode = iataCode;
     }
 
-    public Integer getCountryId() {
-        return countryId;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryId(Integer countryId) {
-        this.countryId = countryId;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
 }

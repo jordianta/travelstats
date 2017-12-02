@@ -149,15 +149,15 @@ function archChargeFlights(map) {
 
     $.each(flights, function (i, flight) {
 
-        var orig = flight.originIata;
-        var origName = flight.origin;
-        var dest = flight.destinationIata;
-        var destName = flight.destination;
+        var orig = flight.origin.iataCode;
+        var origName = flight.origin.name;
+        var dest = flight.destination.iataCode;
+        var destName = flight.destination.name;
 		
 		var date = flight.date.split("-");
 		var day = date[0];
 		var month = date[1];
-		var year = date[2];		
+		var year = date[2];
 		
 		if($.inArray(year, selectedYears) >= 0) {
 		
@@ -165,12 +165,12 @@ function archChargeFlights(map) {
 
 			var arch = {
 				origin: {
-					latitude: flight.originLat,
-					longitude: flight.originLng
+					latitude: flight.origin.latitude,
+					longitude: flight.origin.longitude
 				},
 				destination: {
-					latitude: flight.destinationLat,
-					longitude: flight.destinationLng
+					latitude: flight.destination.latitude,
+					longitude: flight.destination.longitude
 				},
 				options: {
 					strokeWidth: 2,
@@ -183,7 +183,7 @@ function archChargeFlights(map) {
 				destinationCityName: destName,
 				date:dateString,
 				distance:flight.distance,
-				carrier:flight.carrier,
+				carrier:flight.carrier.name,
 				flightYear:year
 			};
 

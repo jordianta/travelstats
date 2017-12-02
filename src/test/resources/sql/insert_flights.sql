@@ -1,0 +1,2 @@
+INSERT INTO flight (id, origin_id, destination_id, carrier_id, date, distance, duration, number) VALUES (1, 577, 3407, 209, '1996-08-15', 7000, '08:00:00', 'AA23');
+INSERT INTO flight (id, origin_id, destination_id, carrier_id, date, distance, duration, number) VALUES (2, 3407, 577, 845, '1996-08-23', 7100, '08:30:00', 'QF543');

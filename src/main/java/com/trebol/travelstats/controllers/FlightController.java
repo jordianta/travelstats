@@ -1,10 +1,13 @@
 package com.trebol.travelstats.controllers;
 
 
+import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/flights")
@@ -19,7 +22,7 @@ public class FlightController {
 
 
     @RequestMapping
-    public String getAllFlights() {
+    public List<FlightDTO> getAllFlights() {
         return flightService.getAllFlights();
     }
 }

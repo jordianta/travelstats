@@ -37,6 +37,11 @@
             <version>2.8.2</version>
         </dependency>
         <dependency>
+            <groupId>ma.glasnost.orika</groupId>
+            <artifactId>orika-core</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -58,7 +63,8 @@
         <profile>
             <id>local</id>
             <properties>
-                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/local/liquibase.properties</liquibase.properties.path>
+                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/local/liquibase.properties
+                </liquibase.properties.path>
             </properties>
             <dependencies>
                 <dependency>
@@ -70,7 +76,8 @@
         <profile>
             <id>openshift</id>
             <properties>
-                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/prod/liquibase.properties</liquibase.properties.path>
+                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/prod/liquibase.properties
+                </liquibase.properties.path>
             </properties>
             <dependencies>
                 <dependency>
@@ -102,26 +109,26 @@
                     <warName>ROOT</warName>
                 </configuration>
             </plugin>
-           <!-- <plugin>
+            <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase.version}</version>
-                <executions>
-                    <execution>
-                        <id>build-local-database</id>
-                        <phase>process-classes</phase>
-                        <configuration>
-                            <propertyFile>${liquibase.properties.path}</propertyFile>
-                            <changeLogFile>src/main/resources/liquibase/db.changelog-master.xml</changeLogFile>
-                            <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                            <clearCheckSums>true</clearCheckSums>
-                        </configuration>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
+                <configuration>
+                    <propertyFile>${liquibase.properties.path}</propertyFile>
+                    <changeLogFile>src/main/resources/liquibase/db.changelog-master.xml</changeLogFile>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <clearCheckSums>true</clearCheckSums>
+                </configuration>
+                <!--<executions>-->
+                <!--<execution>-->
+                <!--<id>build-local-database</id>-->
+                <!--<phase>process-classes</phase>-->
+                <!--<goals>-->
+                <!--<goal>update</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
+                <!--</executions>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>

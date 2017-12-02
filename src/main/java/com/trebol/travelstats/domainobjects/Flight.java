@@ -1,81 +1,107 @@
 package com.trebol.travelstats.domainobjects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.sql.Time;
 import java.util.Date;
 
+@Entity
 public class Flight {
 
-	private Integer		id;
-	private Integer		origin;
-	private Integer		destination;
-	private Integer		carrier;
-	private Date		date;
-	private Integer		distance;
-	private Time	duration;
-	private String		number;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private Airport origin;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private Airport destination;
 
-	public Integer getOrigin() {
-		return origin;
-	}
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    private Carrier carrier;
 
-	public void setOrigin(Integer origin) {
-		this.origin = origin;
-	}
+    @Column(nullable = false, columnDefinition="DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
 
-	public Integer getDestination() {
-		return destination;
-	}
+    @Column(nullable = false)
+    private Integer distance;
 
-	public void setDestination(Integer destination) {
-		this.destination = destination;
-	}
+    @Column(nullable = false)
+    private Time duration;
 
-	public Integer getCarrier() {
-		return carrier;
-	}
+    private String number;
 
-	public void setCarrier(Integer carrier) {
-		this.carrier = carrier;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public Airport getOrigin() {
+        return origin;
+    }
 
-	public Integer getDistance() {
-		return distance;
-	}
+    public void setOrigin(Airport origin) {
+        this.origin = origin;
+    }
 
-	public void setDistance(Integer distance) {
-		this.distance = distance;
-	}
+    public Airport getDestination() {
+        return destination;
+    }
 
-	public Time getDuration() {
-		return duration;
-	}
+    public void setDestination(Airport destination) {
+        this.destination = destination;
+    }
 
-	public void setDuration(Time duration) {
-		this.duration = duration;
-	}
+    public Carrier getCarrier() {
+        return carrier;
+    }
 
-	public String getNumber() {
-		return number;
-	}
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
+    public Time getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Time duration) {
+        this.duration = duration;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
 }

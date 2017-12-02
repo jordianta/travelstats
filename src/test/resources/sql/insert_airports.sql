@@ -1,2 +1,2 @@
-insert into airport(name, latitude, longitude, city, iata_code, country_id) values ('El Prat',41.3,2.083333,'Barcelona','BCN',69);
-insert into airport(name, latitude, longitude, city, iata_code, country_id) values ('John F Kennedy Intl Airport',40.638611,-73.762222,'New York , NY','JFK',229);
+insert into airport(id, name, latitude, longitude, city, iata_code, country_id) values (577, 'El Prat',41.3,2.083333,'Barcelona','BCN',69);
+insert into airport(id, name, latitude, longitude, city, iata_code, country_id) values (3407, 'John F Kennedy Intl Airport',40.638611,-73.762222,'New York , NY','JFK',229);

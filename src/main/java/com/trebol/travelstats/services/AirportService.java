@@ -1,6 +1,10 @@
 package com.trebol.travelstats.services;
 
+import com.trebol.travelstats.datatransferobjects.AirportDTO;
+
+import java.util.List;
+
 public interface AirportService {
 
-    String getAllAirports();
+    List<AirportDTO> getAllAirports();
 }

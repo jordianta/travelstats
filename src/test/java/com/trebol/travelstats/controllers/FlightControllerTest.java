@@ -1,5 +1,9 @@
 package com.trebol.travelstats.controllers;
 
+import com.trebol.travelstats.datatransferobjects.AirportDTO;
+import com.trebol.travelstats.datatransferobjects.CarrierDTO;
+import com.trebol.travelstats.datatransferobjects.CountryDTO;
+import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.services.FlightService;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,48 +11,18 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class FlightControllerTest {
 
-    private static final String FLIGHTS_EXPECTED = "[\n" +
-            "    {\n" +
-            "        \"distance\": 241,\n" +
-            "        \"destination\": \"Menorca\",\n" +
-            "        \"destinationCode\": 4487,\n" +
-            "        \"destinationIata\": \"MAH\",\n" +
-            "        \"origin\": \"Barcelona\",\n" +
-            "        \"date\": \"15-8-1996\",\n" +
-            "        \"originLng\": 2.083333,\n" +
-            "        \"originCode\": 577,\n" +
-            "        \"id\": 1,\n" +
-            "        \"destinationLat\": 39.86667,\n" +
-            "        \"carrierCode\": 566,\n" +
-            "        \"carrier\": \"Iberia\",\n" +
-            "        \"destinationLng\": 4.25,\n" +
-            "        \"originIata\": \"BCN\",\n" +
-            "        \"originLat\": 41.3\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"distance\": 241,\n" +
-            "        \"destination\": \"Barcelona\",\n" +
-            "        \"destinationCode\": 577,\n" +
-            "        \"destinationIata\": \"BCN\",\n" +
-            "        \"origin\": \"Menorca\",\n" +
-            "        \"date\": \"22-8-1996\",\n" +
-            "        \"originLng\": 4.25,\n" +
-            "        \"originCode\": 4487,\n" +
-            "        \"id\": 2,\n" +
-            "        \"destinationLat\": 41.3,\n" +
-            "        \"carrierCode\": 566,\n" +
-            "        \"carrier\": \"Iberia\",\n" +
-            "        \"destinationLng\": 2.083333,\n" +
-            "        \"originIata\": \"MAH\",\n" +
-            "        \"originLat\": 39.86667\n" +
-            "    }\n" +
-            "]";
+    private static final List<FlightDTO> FLIGHTS_EXPECTED = createFlightDTOList();
 
     @Mock
     private FlightService flightService;
@@ -67,6 +41,23 @@ public class FlightControllerTest {
 
         // when then
         assertEquals(FLIGHTS_EXPECTED, flightController.getAllFlights());
+    }
+
+    private static List<FlightDTO> createFlightDTOList() {
+
+        final CountryDTO spain = new CountryDTO(69, "Spain", 1, "ESP");
+        final AirportDTO airportBCN = new AirportDTO(577, "El Prat", 41.3F, 2.083333F, "Barcelona", "BCN", spain);
+
+        final CountryDTO usa = new CountryDTO(229, "United States", 3, "USA");
+        final AirportDTO airportJFK = new AirportDTO(3407, "John F Kennedy Intl Airport", 40.638611F, -73.762222F, "New York", "JFK", usa);
+
+        final CarrierDTO americanAirlines = new CarrierDTO(209, "American Airlines", "AA");
+        final CarrierDTO qantas = new CarrierDTO(845, "Qantas Airways", "QF");
+
+        final FlightDTO flight1 = new FlightDTO(1, airportBCN, airportJFK, americanAirlines, "15-08-1996", 7000, Time.valueOf("08:00:00"), "AA23");
+        final FlightDTO flight2 = new FlightDTO(2, airportJFK, airportBCN, qantas, "23-08-1996", 7100, Time.valueOf("08:30:00"), "QF543");
+
+        return asList(flight1, flight2);
     }
 
 }
