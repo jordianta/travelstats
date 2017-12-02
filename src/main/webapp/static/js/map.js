@@ -326,12 +326,8 @@ function loadFlights() {
 	
 	var serverResponse = $.ajax({
 						dataType: "json",
-						//url: "http://localhost:8080/engine/booking/v2/searchBookings;user=qa;password=prueba;locale=es_ES;buyerEmail=sqa@edreams.com",
 						url: "/flights/",
-						async: false/*,
-						success: function(data) {
-							return data.response;
-						}*/
+						async: false
 					}).responseText;
 	
 	return JSON.parse(serverResponse);
