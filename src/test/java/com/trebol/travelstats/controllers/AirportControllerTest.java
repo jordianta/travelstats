@@ -3,6 +3,7 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.AirportService;
+import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class AirportControllerTest {
 
-    private static final List<AirportDTO> AIRPORTSDTO_LIST = createAirportDTOList();
+    private static final List<AirportDTO> AIRPORTSDTO_LIST = TestUtils.createAirportDTOList();
 
     @Mock
     private AirportService airportService;
@@ -42,17 +43,4 @@ public class AirportControllerTest {
         // then
         assertThat(allAirports, equalTo(AIRPORTSDTO_LIST));
     }
-
-    private static List<AirportDTO> createAirportDTOList() {
-
-        final CountryDTO spain = new CountryDTO(69, "Spain", 1, "ESP");
-        final AirportDTO airportBCN = new AirportDTO(577, "El Prat", 41.3F, 2.083333F, "Barcelona", "BCN", spain);
-
-        final CountryDTO usa = new CountryDTO(229, "United States", 3, "USA");
-        final AirportDTO airportJFK = new AirportDTO(3407, "John F Kennedy Intl Airport", 40.638611F, -73.762222F, "New York", "JFK", usa);
-
-        return Arrays.asList(airportBCN, airportJFK);
-    }
-
-
 }

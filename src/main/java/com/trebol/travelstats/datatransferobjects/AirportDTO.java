@@ -2,15 +2,18 @@ package com.trebol.travelstats.datatransferobjects;
 
 public class AirportDTO {
 
-    private final Integer id;
-    private final String name;
-    private final Float latitude;
-    private final Float longitude;
-    private final String city;
-    private final String iataCode;
-    private final CountryDTO country;
+    private Long id;
+    private String name;
+    private Float latitude;
+    private Float longitude;
+    private String city;
+    private String iataCode;
+    private CountryDTO country;
 
-    public AirportDTO(final Integer id, final String name, final Float latitude, final Float longitude, final String city, final String iataCode, final CountryDTO country) {
+    public AirportDTO() {
+    }
+
+    public AirportDTO(final Long id, final String name, final Float latitude, final Float longitude, final String city, final String iataCode, final CountryDTO country) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -20,7 +23,7 @@ public class AirportDTO {
         this.country = country;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

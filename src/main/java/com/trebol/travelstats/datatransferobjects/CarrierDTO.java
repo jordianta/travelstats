@@ -2,17 +2,20 @@ package com.trebol.travelstats.datatransferobjects;
 
 public class CarrierDTO {
 
-    private final Integer id;
-    private final String name;
-    private final String iataCode;
+    private Long id;
+    private String name;
+    private String iataCode;
 
-    public CarrierDTO(final Integer id, final String name, final String iataCode) {
+    public CarrierDTO() {
+    }
+
+    public CarrierDTO(final Long id, final String name, final String iataCode) {
         this.id = id;
         this.name = name;
         this.iataCode = iataCode;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

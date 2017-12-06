@@ -11,7 +11,7 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer	id;
+	private Long	id;
 
     @Column(nullable = false)
 	private String	name;
@@ -22,11 +22,11 @@ public class Country {
     @Column(nullable = false)
 	private String	isoCode;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

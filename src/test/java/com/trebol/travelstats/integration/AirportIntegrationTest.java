@@ -25,9 +25,9 @@ import static org.hamcrest.Matchers.equalTo;
 public class AirportIntegrationTest {
 
     private static final String AIRPORTS_EXPECTED = "[" +
-            "{\"id\":577,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\"," +
+            "{\"id\":578,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\"," +
             "\"country\":{\"id\":69,\"name\":\"Spain\",\"continentId\":1,\"isoCode\":\"ESP\"}}," +
-            "{\"id\":3407,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\"," +
+            "{\"id\":3408,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\"," +
             "\"country\":{\"id\":229,\"name\":\"United States\",\"continentId\":3,\"isoCode\":\"USA\"}}" +
             "]";
 
@@ -41,6 +41,7 @@ public class AirportIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
+                .setBasePath("/airports")
                 .build();
     }
 
@@ -51,7 +52,7 @@ public class AirportIntegrationTest {
                 .spec(requestSpecification)
 
                 .when()
-                .get("/airports")
+                .get()
 
                 .then()
                 .statusCode(HttpStatus.OK.value())

@@ -8,4 +8,7 @@ public interface FlightService {
 
     List<FlightDTO> getAllFlights();
 
+    void createFlight(FlightDTO flightDTO);
+
+    void deleteFlight(Long flightId);
 }

@@ -2,19 +2,22 @@ package com.trebol.travelstats.datatransferobjects;
 
 public class CountryDTO {
 
-    private final Integer id;
-    private final String name;
-    private final Integer continentId;
-    private final String isoCode;
+    private Long id;
+    private String name;
+    private Integer continentId;
+    private String isoCode;
 
-    public CountryDTO(final Integer id, final String name, final Integer continentId, final String isoCode) {
+    public CountryDTO() {
+    }
+
+    public CountryDTO(final Long id, final String name, final Integer continentId, final String isoCode) {
         this.id = id;
         this.name = name;
         this.continentId = continentId;
         this.isoCode = isoCode;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

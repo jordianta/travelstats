@@ -39,6 +39,7 @@ public class CountryIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
+                .setBasePath("/countries")
                 .build();
     }
 
@@ -49,7 +50,7 @@ public class CountryIntegrationTest {
                 .spec(requestSpecification)
 
                 .when()
-                .get("/countries")
+                .get()
 
                 .then()
                 .statusCode(HttpStatus.OK.value())

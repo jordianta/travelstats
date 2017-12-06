@@ -4,6 +4,7 @@ import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.domainobjects.Carrier;
 import com.trebol.travelstats.mappers.CarrierMapper;
 import com.trebol.travelstats.repositories.CarrierRepository;
+import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
@@ -22,8 +22,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class CarrierServiceImplTest {
 
-    private static final List<Carrier> CARRIERS_FROM_DB = createCarrierList();
-    private static final List<CarrierDTO> CARRIERS_EXPECTED = createCarrierDTOList();
+    private static final List<Carrier> CARRIERS_FROM_DB = TestUtils.createCarrierList();
+    private static final List<CarrierDTO> CARRIERS_EXPECTED = TestUtils.createCarrierDTOList();
 
     @Mock
     private CarrierRepository carrierRepository;
@@ -57,27 +57,6 @@ public class CarrierServiceImplTest {
 
         // then
         assertThat(allCarriers, hasSize(0));
-    }
-
-    private static List<Carrier> createCarrierList() {
-        final Carrier americanAirlines = new Carrier();
-        americanAirlines.setId(209);
-        americanAirlines.setName("American Airlines");
-        americanAirlines.setIataCode("AA");
-
-        final Carrier qantas = new Carrier();
-        qantas.setId(845);
-        qantas.setName("Qantas Airways");
-        qantas.setIataCode("QF");
-
-        return asList(americanAirlines, qantas);
-    }
-
-    private static List<CarrierDTO> createCarrierDTOList() {
-        final CarrierDTO americanAirlines = new CarrierDTO(209, "American Airlines", "AA");
-        final CarrierDTO qantas = new CarrierDTO(845, "Qantas Airways", "QF");
-
-        return asList(americanAirlines, qantas);
     }
 
 }

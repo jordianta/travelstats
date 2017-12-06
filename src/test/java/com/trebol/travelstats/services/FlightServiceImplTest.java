@@ -1,38 +1,36 @@
 package com.trebol.travelstats.services;
 
-import com.trebol.travelstats.datatransferobjects.AirportDTO;
-import com.trebol.travelstats.datatransferobjects.CarrierDTO;
-import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
-import com.trebol.travelstats.domainobjects.Airport;
-import com.trebol.travelstats.domainobjects.Carrier;
-import com.trebol.travelstats.domainobjects.Country;
 import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.mappers.FlightMapper;
 import com.trebol.travelstats.repositories.FlightRepository;
+import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.sql.Time;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class FlightServiceImplTest {
 
-    private static final List<Flight> FLIGHTS_FROM_DB = createFlightList();
-    private static final List<FlightDTO> FLIGHTS_EXPECTED = createFlightDTOList();
+    private static final List<Flight> FLIGHTS_FROM_DB = TestUtils.createFlightList();
+    private static final List<FlightDTO> FLIGHTS_EXPECTED = TestUtils.createFlightDTOList();
+
+    private ArgumentCaptor<Flight> createArgumentCaptor = ArgumentCaptor.forClass(Flight.class);
+    private ArgumentCaptor<Long> deleteArgumentCaptor = ArgumentCaptor.forClass(Long.class);
 
     @Mock
     private FlightRepository flightRepository;
@@ -68,92 +66,36 @@ public class FlightServiceImplTest {
         assertThat(allFlights, hasSize(0));
     }
 
-    private static List<Flight> createFlightList() {
+    @Test
+    public void createFlight() throws Exception {
+        // given
+        final FlightDTO flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
-        final Country spain = new Country();
-        spain.setId(69);
-        spain.setName("Spain");
-        spain.setIsoCode("ESP");
-        spain.setContinentId(1);
+        // when
+        flightService.createFlight(flightDTO);
 
-        final Airport airportBCN = new Airport();
-        airportBCN.setCity("Barcelona");
-        airportBCN.setCountry(spain);
-        airportBCN.setIataCode("BCN");
-        airportBCN.setLatitude(41.3F);
-        airportBCN.setLongitude(2.083333F);
-        airportBCN.setId(577);
-        airportBCN.setName("El Prat");
-
-        final Country usa = new Country();
-        usa.setId(229);
-        usa.setName("United States");
-        usa.setIsoCode("USA");
-        usa.setContinentId(3);
-
-        final Airport airportJFK = new Airport();
-        airportJFK.setCity("New York");
-        airportJFK.setCountry(usa);
-        airportJFK.setIataCode("JFK");
-        airportJFK.setLatitude(40.638611F);
-        airportJFK.setLongitude(-73.762222F);
-        airportJFK.setId(3407);
-        airportJFK.setName("John F Kennedy Intl Airport");
-
-        final Carrier americanAirlines = new Carrier();
-        americanAirlines.setId(209);
-        americanAirlines.setName("American Airlines");
-        americanAirlines.setIataCode("AA");
-
-        final Carrier qantas = new Carrier();
-        qantas.setId(845);
-        qantas.setName("Qantas Airways");
-        qantas.setIataCode("QF");
-
-        final Flight flight1 = new Flight();
-        flight1.setId(1);
-        flight1.setCarrier(americanAirlines);
-        flight1.setOrigin(airportBCN);
-        final Calendar date1 = Calendar.getInstance();
-        date1.clear();
-        date1.set(1996, Calendar.AUGUST, 15);
-        flight1.setDate(date1.getTime());
-        flight1.setDestination(airportJFK);
-        flight1.setDistance(7000);
-        flight1.setDuration(Time.valueOf("08:00:00"));
-        flight1.setNumber("AA23");
-
-        final Flight flight2 = new Flight();
-        flight2.setId(2);
-        flight2.setCarrier(qantas);
-        flight2.setOrigin(airportJFK);
-        final Calendar date2 = Calendar.getInstance();
-        date2.clear();
-        date2.set(1996, Calendar.AUGUST, 23);
-        flight2.setDate(date2.getTime());
-        flight2.setDestination(airportBCN);
-        flight2.setDistance(7100);
-        flight2.setDuration(Time.valueOf("08:30:00"));
-        flight2.setNumber("QF543");
-
-        return asList(flight1, flight2);
+        // then
+        verify(flightRepository, times(1)).save(createArgumentCaptor.capture());
+        final Flight flightStored = createArgumentCaptor.getValue();
+        assertEquals(flightDTO.getNumber(), flightStored.getNumber());
+        assertEquals(flightDTO.getDistance(), flightStored.getDistance());
+        assertEquals(flightDTO.getCarrier().getIataCode(), flightStored.getCarrier().getIataCode());
+        assertEquals(flightDTO.getOrigin().getIataCode(), flightStored.getOrigin().getIataCode());
+        assertEquals(flightDTO.getDestination().getIataCode(), flightStored.getDestination().getIataCode());
     }
 
-    private static List<FlightDTO> createFlightDTOList() {
+    @Test
+    public void deleteFlight() throws Exception {
+        // given
+        final Long flightId = 1L;
 
-        final CountryDTO spain = new CountryDTO(69, "Spain", 1, "ESP");
-        final AirportDTO airportBCN = new AirportDTO(577, "El Prat", 41.3F, 2.083333F, "Barcelona", "BCN", spain);
+        // when
+        flightService.deleteFlight(flightId);
 
-        final CountryDTO usa = new CountryDTO(229, "United States", 3, "USA");
-        final AirportDTO airportJFK = new AirportDTO(3407, "John F Kennedy Intl Airport", 40.638611F, -73.762222F, "New York", "JFK", usa);
-
-        final CarrierDTO americanAirlines = new CarrierDTO(209, "American Airlines", "AA");
-        final CarrierDTO qantas = new CarrierDTO(845, "Qantas Airways", "QF");
-
-        final FlightDTO flight1 = new FlightDTO(1, airportBCN, airportJFK, americanAirlines, "15-08-1996", 7000, Time.valueOf("08:00:00"), "AA23");
-        final FlightDTO flight2 = new FlightDTO(2, airportJFK, airportBCN, qantas, "23-08-1996", 7100, Time.valueOf("08:30:00"), "QF543");
-
-        return asList(flight1, flight2);
+        // then
+        verify(flightRepository, times(1)).delete(deleteArgumentCaptor.capture());
+        final Long flightIdRemoved = deleteArgumentCaptor.getValue();
+        assertEquals(flightId, flightIdRemoved);
     }
 
 }

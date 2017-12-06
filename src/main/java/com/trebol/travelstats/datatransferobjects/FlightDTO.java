@@ -4,16 +4,19 @@ import java.sql.Time;
 
 public class FlightDTO {
 
-    private final Integer id;
-    private final AirportDTO origin;
-    private final AirportDTO destination;
-    private final CarrierDTO carrier;
-    private final String date;
-    private final Integer distance;
-    private final Time duration;
-    private final String number;
+    private Long id;
+    private AirportDTO origin;
+    private AirportDTO destination;
+    private CarrierDTO carrier;
+    private String date;
+    private Integer distance;
+    private Time duration;
+    private String number;
 
-    public FlightDTO(final Integer id, final AirportDTO origin, final AirportDTO destination, final CarrierDTO carrier, final String date, final Integer distance, final Time duration, final String number) {
+    public FlightDTO() {
+    }
+
+    public FlightDTO(final Long id, final AirportDTO origin, final AirportDTO destination, final CarrierDTO carrier, final String date, final Integer distance, final Time duration, final String number) {
         this.id = id;
         this.origin = origin;
         this.destination = destination;
@@ -24,7 +27,7 @@ public class FlightDTO {
         this.number = number;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

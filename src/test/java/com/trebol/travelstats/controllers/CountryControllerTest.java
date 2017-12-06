@@ -2,6 +2,7 @@ package com.trebol.travelstats.controllers;
 
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.CountryService;
+import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class CountryControllerTest {
 
-    private static final List<CountryDTO> ALL_COUNTRIES = createCountryDTOList();
+    private static final List<CountryDTO> ALL_COUNTRIES = TestUtils.createCountryDTOList();
 
     @Mock
     private CountryService countryService;
@@ -41,12 +41,4 @@ public class CountryControllerTest {
         // then
         assertThat(allCountries, equalTo(ALL_COUNTRIES));
     }
-
-    private static List<CountryDTO> createCountryDTOList() {
-        final CountryDTO spain = new CountryDTO(69, "Spain", 1, "ESP");
-        final CountryDTO usa = new CountryDTO(229, "United States", 3, "USA");
-
-        return asList(spain, usa);
-    }
-
 }

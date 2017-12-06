@@ -2,7 +2,10 @@ package com.trebol.travelstats.integration;
 
 import com.trebol.travelstats.TravelStatsApplication;
 import com.trebol.travelstats.config.DataSourceConfigTest;
+import com.trebol.travelstats.utils.TestUtils;
+import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.EncoderConfig;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Before;
@@ -25,12 +28,14 @@ import static org.hamcrest.Matchers.equalTo;
 public class FlightsIntegrationTest {
 
     private static final String FLIGHTS_EXPECTED = "[{\"id\":1," +
-            "\"origin\":{\"id\":577,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\",\"country\":{\"id\":69,\"name\":\"Spain\",\"continentId\":1,\"isoCode\":\"ESP\"}}," +
-            "\"destination\":{\"id\":3407,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\",\"country\":{\"id\":229,\"name\":\"United States\",\"continentId\":3,\"isoCode\":\"USA\"}}," +
+            "\"origin\":{\"id\":578,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\",\"country\":{\"id\":69,\"name\":\"Spain\",\"continentId\":1,\"isoCode\":\"ESP\"}}," +
+            "\"destination\":{\"id\":3408,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\",\"country\":{\"id\":229,\"name\":\"United States\",\"continentId\":3,\"isoCode\":\"USA\"}}," +
             "\"carrier\":{\"id\":209,\"name\":\"American Airlines\",\"iataCode\":\"AA\"},\"date\":\"15-08-1996\",\"distance\":7000,\"duration\":\"08:00:00\",\"number\":\"AA23\"}," +
-            "{\"id\":2,\"origin\":{\"id\":3407,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\",\"country\":{\"id\":229,\"name\":\"United States\",\"continentId\":3,\"isoCode\":\"USA\"}}," +
-            "\"destination\":{\"id\":577,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\",\"country\":{\"id\":69,\"name\":\"Spain\",\"continentId\":1,\"isoCode\":\"ESP\"}}," +
+            "{\"id\":2,\"origin\":{\"id\":3408,\"name\":\"John F Kennedy Intl Airport\",\"latitude\":40.63861,\"longitude\":-73.76222,\"city\":\"New York , NY\",\"iataCode\":\"JFK\",\"country\":{\"id\":229,\"name\":\"United States\",\"continentId\":3,\"isoCode\":\"USA\"}}," +
+            "\"destination\":{\"id\":578,\"name\":\"El Prat\",\"latitude\":41.3,\"longitude\":2.083333,\"city\":\"Barcelona\",\"iataCode\":\"BCN\",\"country\":{\"id\":69,\"name\":\"Spain\",\"continentId\":1,\"isoCode\":\"ESP\"}}," +
             "\"carrier\":{\"id\":845,\"name\":\"Qantas Airways\",\"iataCode\":\"QF\"},\"date\":\"23-08-1996\",\"distance\":7100,\"duration\":\"08:30:00\",\"number\":\"QF543\"}]";
+
+    private static final String FLIGHT_TO_INSERT = "{\"origin\":{\"id\":578}, \"destination\":{\"id\":3408}, \"carrier\":{\"id\":209},\"date\":\"23-10-2006\",\"distance\":7000,\"duration\":\"08:00:00\",\"number\":\"AA25\"}";
 
     private RequestSpecification requestSpecification;
 
@@ -42,6 +47,8 @@ public class FlightsIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
+                .setBasePath("/flights")
+                .setAccept(ContentType.JSON)
                 .build();
     }
 
@@ -52,10 +59,25 @@ public class FlightsIntegrationTest {
                 .spec(requestSpecification)
 
                 .when()
-                .get("/flights")
+                .get()
 
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .body(equalTo(FLIGHTS_EXPECTED));
     }
+//
+//    @Test
+//    public void addFlight() throws Exception {
+//        given()
+//                .accept(ContentType.JSON)
+//                .spec(requestSpecification)
+//                .body(FLIGHT_TO_INSERT)
+//                .config(RestAssured.config().encoderConfig(EncoderConfig.encoderConfig().encodeContentTypeAs("text/json", ContentType.TEXT)))
+//
+//                .when()
+//                .post()
+//
+//                .then()
+//                .statusCode(HttpStatus.OK.value());
+//    }
 }
