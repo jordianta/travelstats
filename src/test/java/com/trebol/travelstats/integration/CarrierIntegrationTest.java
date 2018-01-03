@@ -39,7 +39,7 @@ public class CarrierIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
-                .setBasePath("/carriers")
+                .setBasePath("api/carriers")
                 .build();
     }
 

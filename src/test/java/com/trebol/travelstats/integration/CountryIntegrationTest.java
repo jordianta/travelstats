@@ -39,7 +39,7 @@ public class CountryIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
-                .setBasePath("/countries")
+                .setBasePath("api/countries")
                 .build();
     }
 

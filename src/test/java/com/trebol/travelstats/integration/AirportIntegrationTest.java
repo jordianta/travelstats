@@ -41,7 +41,7 @@ public class AirportIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
-                .setBasePath("/airports")
+                .setBasePath("api/airports")
                 .build();
     }
 

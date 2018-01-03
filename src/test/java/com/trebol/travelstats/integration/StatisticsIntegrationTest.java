@@ -39,7 +39,7 @@ public class StatisticsIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
-                .setBasePath("/stats")
+                .setBasePath("api/stats")
                 .build();
     }
 

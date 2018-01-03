@@ -47,7 +47,7 @@ public class FlightsIntegrationTest {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
-                .setBasePath("/flights")
+                .setBasePath("api/flights")
                 .setAccept(ContentType.JSON)
                 .build();
     }
