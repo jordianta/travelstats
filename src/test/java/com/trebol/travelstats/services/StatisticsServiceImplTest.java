@@ -5,20 +5,20 @@ import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.repositories.FlightRepository;
 import com.trebol.travelstats.utils.TestUtils;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-public class StatisticsServiceImplTest
-{
+public class StatisticsServiceImplTest {
 
     private StatisticsService statisticsService;
 
@@ -27,15 +27,13 @@ public class StatisticsServiceImplTest
 
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         statisticsService = new StatisticsServiceImpl(flightRepository);
     }
 
 
     @Test
-    public void getFlightsByCarrier()
-    {
+    public void getFlightsByCarrier() {
         // given
         final List<Flight> flightList1 = TestUtils.createFlightList();
         flightList1.forEach(flight -> flight.setCarrier(TestUtils.createQantasCarrier()));
@@ -67,8 +65,7 @@ public class StatisticsServiceImplTest
 
 
     @Test
-    public void getFlightsByYear()
-    {
+    public void getFlightsByYear() {
         // given
         final List<Flight> flightList1 = TestUtils.createFlightList();
         final List<Flight> flightList2 = TestUtils.createFlightList();

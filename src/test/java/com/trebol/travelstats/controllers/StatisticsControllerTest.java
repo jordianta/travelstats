@@ -3,20 +3,20 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.services.StatisticsService;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-public class StatisticsControllerTest
-{
+public class StatisticsControllerTest {
 
     @Mock
     private StatisticsService statisticsService;
@@ -25,15 +25,13 @@ public class StatisticsControllerTest
 
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         statisticsController = new StatisticsController(statisticsService);
     }
 
 
     @Test
-    public void flightsByCarrier()
-    {
+    public void flightsByCarrier() {
         // given
         when(statisticsService.getFlightsByCarrier()).thenReturn(createStatsByCarrierDTOList());
 
@@ -54,8 +52,7 @@ public class StatisticsControllerTest
 
 
     @Test
-    public void flightsByYear()
-    {
+    public void flightsByYear() {
         // given
         when(statisticsService.getFlightsByYear()).thenReturn(createStatsByYearDTOList());
 
@@ -74,8 +71,7 @@ public class StatisticsControllerTest
     }
 
 
-    private static List<StatsByCarrierDTO> createStatsByCarrierDTOList()
-    {
+    private static List<StatsByCarrierDTO> createStatsByCarrierDTOList() {
         final List<StatsByCarrierDTO> statsByCarrierDTOList = new ArrayList<>();
         statsByCarrierDTOList.add(new StatsByCarrierDTO("Qantas Airways", 4, 10000, 2500));
         statsByCarrierDTOList.add(new StatsByCarrierDTO("American Airlines", 8, 64000, 8000));
@@ -83,8 +79,7 @@ public class StatisticsControllerTest
     }
 
 
-    private static List<StatsByYearDTO> createStatsByYearDTOList()
-    {
+    private static List<StatsByYearDTO> createStatsByYearDTOList() {
         final List<StatsByYearDTO> statsByYearDTOList = new ArrayList<>();
         statsByYearDTOList.add(new StatsByYearDTO(1996, 4, 10000));
         statsByYearDTOList.add(new StatsByYearDTO(1997, 8, 64000));

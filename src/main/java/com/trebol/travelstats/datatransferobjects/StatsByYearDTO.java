@@ -2,61 +2,52 @@ package com.trebol.travelstats.datatransferobjects;
 
 import java.util.Objects;
 
-public class StatsByYearDTO
-{
+public class StatsByYearDTO {
 
     private final Integer year;
     private final Integer flights;
     private final Integer distance;
 
 
-    public StatsByYearDTO(final Integer year, final Integer flights, final Integer distance)
-    {
+    public StatsByYearDTO(final Integer year, final Integer flights, final Integer distance) {
         this.year = year;
         this.flights = flights;
         this.distance = distance;
     }
 
 
-    public Integer getYear()
-    {
+    public Integer getYear() {
         return year;
     }
 
 
-    public Integer getFlights()
-    {
+    public Integer getFlights() {
         return flights;
     }
 
 
-    public Integer getDistance()
-    {
+    public Integer getDistance() {
         return distance;
     }
 
 
     @Override
-    public boolean equals(final Object o)
-    {
-        if (this == o)
-        {
+    public boolean equals(final Object o) {
+        if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass())
-        {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         final StatsByYearDTO that = (StatsByYearDTO) o;
         return Objects.equals(year, that.year) &&
-            Objects.equals(flights, that.flights) &&
-            Objects.equals(distance, that.distance);
+                Objects.equals(flights, that.flights) &&
+                Objects.equals(distance, that.distance);
     }
 
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return Objects.hash(year, flights, distance);
     }
 }

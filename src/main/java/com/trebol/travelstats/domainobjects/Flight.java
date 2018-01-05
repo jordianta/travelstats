@@ -28,7 +28,7 @@ public class Flight {
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Carrier carrier;
 
-    @Column(nullable = false, columnDefinition="DATETIME")
+    @Column(nullable = false, columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 

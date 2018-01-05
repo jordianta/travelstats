@@ -2,8 +2,7 @@ package com.trebol.travelstats.datatransferobjects;
 
 import java.util.Objects;
 
-public class StatsByCarrierDTO
-{
+public class StatsByCarrierDTO {
 
     private final String carrier;
     private final Integer flights;
@@ -11,8 +10,7 @@ public class StatsByCarrierDTO
     private final Integer average;
 
 
-    public StatsByCarrierDTO(final String carrier, final Integer flights, final Integer distance, final Integer average)
-    {
+    public StatsByCarrierDTO(final String carrier, final Integer flights, final Integer distance, final Integer average) {
         this.carrier = carrier;
         this.flights = flights;
         this.distance = distance;
@@ -20,52 +18,44 @@ public class StatsByCarrierDTO
     }
 
 
-    public String getCarrier()
-    {
+    public String getCarrier() {
         return carrier;
     }
 
 
-    public Integer getFlights()
-    {
+    public Integer getFlights() {
         return flights;
     }
 
 
-    public Integer getDistance()
-    {
+    public Integer getDistance() {
         return distance;
     }
 
 
-    public Integer getAverage()
-    {
+    public Integer getAverage() {
         return average;
     }
 
 
     @Override
-    public boolean equals(final Object o)
-    {
-        if (this == o)
-        {
+    public boolean equals(final Object o) {
+        if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass())
-        {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         final StatsByCarrierDTO that = (StatsByCarrierDTO) o;
         return Objects.equals(carrier, that.carrier) &&
-            Objects.equals(flights, that.flights) &&
-            Objects.equals(distance, that.distance) &&
-            Objects.equals(average, that.average);
+                Objects.equals(flights, that.flights) &&
+                Objects.equals(distance, that.distance) &&
+                Objects.equals(average, that.average);
     }
 
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
 
         return Objects.hash(carrier, flights, distance, average);
     }
