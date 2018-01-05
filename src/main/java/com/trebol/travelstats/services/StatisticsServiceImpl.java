@@ -1,47 +1,72 @@
 package com.trebol.travelstats.services;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
+import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
+import com.trebol.travelstats.domainobjects.Carrier;
+import com.trebol.travelstats.domainobjects.Flight;
+import com.trebol.travelstats.repositories.FlightRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.stream.Collectors;
-
 @Service
-public class StatisticsServiceImpl implements StatisticsService {
+public class StatisticsServiceImpl implements StatisticsService
+{
 
-    private static final Logger LOG = LoggerFactory.getLogger(StatisticsServiceImpl.class);
+    @Autowired
+    private FlightRepository flightRepository;
 
-    private static final String FLIGHTS_STATS_BY_CARRIER_FILE_NAME = "json/flightsStatsByCarrier.json";
-    private static final String FLIGHTS_STATS_BY_YEAR_FILE_NAME = "json/flightsStatsByYear.json";
+
+    public StatisticsServiceImpl(final FlightRepository flightRepository)
+    {
+        this.flightRepository = flightRepository;
+    }
+
 
     @Override
-    public String getFlightsByCarrier() {
-        return loadFileAsString(FLIGHTS_STATS_BY_CARRIER_FILE_NAME);
+    public List<StatsByCarrierDTO> getFlightsByCarrier()
+    {
+        final List<StatsByCarrierDTO> statsByCarrierDTOList = new ArrayList<>();
+
+        flightRepository.findAll()
+            .stream()
+            .collect(Collectors.groupingBy(Flight::getCarrier))
+            .forEach((carrier, flights) -> statsByCarrierDTOList.add(createStatsByCarrierDTO(carrier, flights)));
+
+        return statsByCarrierDTOList;
     }
+
 
     @Override
-    public String getFlightsByYear() {
-        return loadFileAsString(FLIGHTS_STATS_BY_YEAR_FILE_NAME);
+    public List<StatsByYearDTO> getFlightsByYear()
+    {
+
+        final List<StatsByYearDTO> statsByYearDTOList = new ArrayList<>();
+
+        flightRepository.findAll()
+            .stream()
+            .collect(Collectors.groupingBy(flight -> flight.getDate().getYear()))
+            .forEach((year, flights) -> statsByYearDTOList.add(createStatsByYearDTO(year, flights)));
+
+        return statsByYearDTOList;
     }
 
-    private String loadFileAsString(final String fileName) {
-        try {
-            final URL resource = getResource(fileName);
-            try (BufferedReader buffer = new BufferedReader(new InputStreamReader(resource.openStream()))) {
-                return buffer.lines().collect(Collectors.joining("\n"));
-            }
 
-        } catch (IOException e) {
-            LOG.error("Error reading {}", fileName, e);
-        }
-        return "";
+    private StatsByCarrierDTO createStatsByCarrierDTO(final Carrier carrier, final List<Flight> flights)
+    {
+        final IntStream distance = flights.stream().mapToInt(Flight::getDistance);
+        final Integer totalDistance = distance.sum();
+        final OptionalDouble average = distance.average();
+        return new StatsByCarrierDTO(carrier.getName(), flights.size(), totalDistance, average.isPresent() ? (int) average.getAsDouble() : 0);
     }
 
-    private URL getResource(final String fileName) {
-        return getClass().getClassLoader().getResource(fileName);
+
+    private StatsByYearDTO createStatsByYearDTO(final Integer year, final List<Flight> flights)
+    {
+        return new StatsByYearDTO(year, flights.size(), flights.stream().mapToInt(Flight::getDistance).sum());
     }
 }
