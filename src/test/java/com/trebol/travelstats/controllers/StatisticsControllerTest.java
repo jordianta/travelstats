@@ -1,6 +1,10 @@
 package com.trebol.travelstats.controllers;
 
+import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
+import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.services.StatisticsService;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,43 +15,79 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-public class StatisticsControllerTest {
-
-    private static final String STATS_BY_CARRIER_EXPECTED = "[\n" +
-            "{\"carrier\":\"Aeroflot\", \"flights\": 4, \"distance\":17670,\"average\":4418},\n" +
-            "{\"carrier\":\"Air Asia\", \"flights\": 1, \"distance\":1318,\"average\":1318}\n" +
-            "]";
-
-    private static final String STATS_BY_YEAR_EXPECTED = "[\n" +
-            "{\"year\": 1996, \"flights\": 2, \"distance\":482},\n" +
-            "{\"year\": 2000, \"flights\": 2, \"distance\": 2382}\n" +
-            "]";
+public class StatisticsControllerTest
+{
 
     @Mock
     private StatisticsService statisticsService;
 
     private StatisticsController statisticsController;
 
+
     @Before
-    public void setUp() throws Exception {
+    public void setUp()
+    {
         statisticsController = new StatisticsController(statisticsService);
     }
 
-    @Test
-    public void flightsByCarrier() throws Exception {
-        // given
-        when(statisticsService.getFlightsByCarrier()).thenReturn(STATS_BY_CARRIER_EXPECTED);
 
-        //when then
-        assertEquals(STATS_BY_CARRIER_EXPECTED, statisticsController.getFlightsByCarrier());
+    @Test
+    public void flightsByCarrier()
+    {
+        // given
+        when(statisticsService.getFlightsByCarrier()).thenReturn(createStatsByCarrierDTOList());
+
+        // when
+        final List<StatsByCarrierDTO> statsByCarrierDTOList = statisticsController.getFlightsByCarrier();
+
+        // then
+        assertEquals("Qantas Airways", statsByCarrierDTOList.get(0).getCarrier());
+        assertEquals(Integer.valueOf(10000), statsByCarrierDTOList.get(0).getDistance());
+        assertEquals(Integer.valueOf(4), statsByCarrierDTOList.get(0).getFlights());
+        assertEquals(Integer.valueOf(2500), statsByCarrierDTOList.get(0).getAverage());
+
+        assertEquals("American Airlines", statsByCarrierDTOList.get(1).getCarrier());
+        assertEquals(Integer.valueOf(64000), statsByCarrierDTOList.get(1).getDistance());
+        assertEquals(Integer.valueOf(8), statsByCarrierDTOList.get(1).getFlights());
+        assertEquals(Integer.valueOf(8000), statsByCarrierDTOList.get(1).getAverage());
     }
 
+
     @Test
-    public void flightsByYear() throws Exception {
+    public void flightsByYear()
+    {
         // given
-        when(statisticsService.getFlightsByYear()).thenReturn(STATS_BY_YEAR_EXPECTED);
+        when(statisticsService.getFlightsByYear()).thenReturn(createStatsByYearDTOList());
 
         //when then
-        assertEquals(STATS_BY_YEAR_EXPECTED, statisticsController.getFlightsByYear());
+        final List<StatsByYearDTO> statsByYearDTOList = statisticsController.getFlightsByYear();
+
+        // then
+        // then
+        assertEquals(Integer.valueOf(1996), statsByYearDTOList.get(0).getYear());
+        assertEquals(Integer.valueOf(10000), statsByYearDTOList.get(0).getDistance());
+        assertEquals(Integer.valueOf(4), statsByYearDTOList.get(0).getFlights());
+
+        assertEquals(Integer.valueOf(1997), statsByYearDTOList.get(1).getYear());
+        assertEquals(Integer.valueOf(64000), statsByYearDTOList.get(1).getDistance());
+        assertEquals(Integer.valueOf(8), statsByYearDTOList.get(1).getFlights());
+    }
+
+
+    private static List<StatsByCarrierDTO> createStatsByCarrierDTOList()
+    {
+        final List<StatsByCarrierDTO> statsByCarrierDTOList = new ArrayList<>();
+        statsByCarrierDTOList.add(new StatsByCarrierDTO("Qantas Airways", 4, 10000, 2500));
+        statsByCarrierDTOList.add(new StatsByCarrierDTO("American Airlines", 8, 64000, 8000));
+        return statsByCarrierDTOList;
+    }
+
+
+    private static List<StatsByYearDTO> createStatsByYearDTOList()
+    {
+        final List<StatsByYearDTO> statsByYearDTOList = new ArrayList<>();
+        statsByYearDTOList.add(new StatsByYearDTO(1996, 4, 10000));
+        statsByYearDTOList.add(new StatsByYearDTO(1997, 8, 64000));
+        return statsByYearDTOList;
     }
 }
