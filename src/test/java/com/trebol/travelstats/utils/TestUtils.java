@@ -54,7 +54,7 @@ public class TestUtils {
         return flight;
     }
 
-    private static Carrier createAACarrier() {
+    public static Carrier createAACarrier() {
         final Carrier americanAirlines = new Carrier();
         americanAirlines.setId(209L);
         americanAirlines.setName("American Airlines");
@@ -62,7 +62,7 @@ public class TestUtils {
         return americanAirlines;
     }
 
-    private static Carrier createQantasCarrier() {
+    public static Carrier createQantasCarrier() {
         final Carrier qantas = new Carrier();
         qantas.setId(845L);
         qantas.setName("Qantas Airways");
