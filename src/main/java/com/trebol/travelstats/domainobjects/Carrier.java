@@ -1,5 +1,6 @@
 package com.trebol.travelstats.domainobjects;
 
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,4 +44,29 @@ public class Carrier {
 		this.iataCode = iataCode;
 	}
 
+
+	@Override
+	public boolean equals(final Object o)
+	{
+		if (this == o)
+		{
+			return true;
+		}
+		if (o == null || getClass() != o.getClass())
+		{
+			return false;
+		}
+		final Carrier carrier = (Carrier) o;
+		return Objects.equals(id, carrier.id) &&
+			Objects.equals(name, carrier.name) &&
+			Objects.equals(iataCode, carrier.iataCode);
+	}
+
+
+	@Override
+	public int hashCode()
+	{
+
+		return Objects.hash(id, name, iataCode);
+	}
 }
