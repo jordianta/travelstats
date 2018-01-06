@@ -7,29 +7,34 @@ var BUBBLE_COLOR_DESTINATION = "#F845A2";//"rgba(184,33,58, 0.75)";//"rgba(255, 
 var BUBBLE_COLOR_POINT = "#F845A2";
 var MAXIMUM_NUMBER_OF_ARCHES = 0; // if 0 --> no maximum number of arches
 var FILL_COLOR = "rgb(211, 216, 222)";
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 var YEARS_COLORS = [
-	{"year":1996, "color":"#f66b44"}, // light orange
-	{"year":2000, "color":"#fff68f"}, // light yellow
-	{"year":2005, "color":"#b8213a"}, // dark pink
-	{"year":2006, "color":"#3f6263"}, // turquoise
-	{"year":2007, "color":"#1940e0"}, // dark blue
-	{"year":2008, "color":"#4fc107"}, // lima green
-	{"year":2009, "color":"#f06e01"}, // orange
-	{"year":2010, "color":"#FFC900"}, // yellow
-	{"year":2011, "color":"#df2393"}, // pink
-	{"year":2012, "color":"#9a73e6"}, // purple
-	{"year":2013, "color":"#3d93da"}, // light blue
-	{"year":2014, "color":"#1f552a"}, // dark green
-	{"year":2015, "color":"#cd2626"},  // light red
-	{"year":2016, "color":"#8515B5"}  // dark red
+	{"year":1996, "color":getRandomColor()},
+	{"year":2000, "color":getRandomColor()},
+	{"year":2005, "color":getRandomColor()},
+	{"year":2006, "color":getRandomColor()},
+	{"year":2007, "color":getRandomColor()},
+	{"year":2008, "color":getRandomColor()},
+	{"year":2009, "color":getRandomColor()},
+	{"year":2010, "color":getRandomColor()},
+	{"year":2011, "color":getRandomColor()},
+	{"year":2012, "color":getRandomColor()},
+	{"year":2013, "color":getRandomColor()},
+	{"year":2014, "color":getRandomColor()},
+	{"year":2015, "color":getRandomColor()},
+	{"year":2016, "color":getRandomColor()},
+	{"year":2017, "color":getRandomColor()},
+	{"year":2018, "color":getRandomColor()}
 ];
 var mapFills = {};
-// orange yellow red purple blue green
-var colors = ["#f06e01", "#FFC900", "#b8213a", "#9a73e6", "#1940e0", "#4fc107"];
-//var colors = ["#FFC900", "#b8213a"];
-//var colors = ["#b8213a"]; El color bueno es este
-//var colors = ["#FFC900"];
-var nextColorIndex = 0;
 var countries = {};
 var currentPointers = [];
 var lastUpdateTimestamp = new Date();
@@ -51,8 +56,6 @@ function initializeAll() {
 
 
 function initializeMap() {
-
-    //mapFills = getFills();
 
     document.getElementById(MAP_CONTAINER).innerHTML ="";
     document.getElementById(DATA_MAP_CONTAINER).innerHTML ="";
@@ -93,28 +96,9 @@ function getData() {
     return values;
 }
 
-function getFills() {
-
-    /*fills: {
-     defaultFill: "#a4d0dd",
-     USA: colors(Math.random() * 20),
-     FRA: colors(Math.random() * 20)
-     }*/
-
-    var values = {"defaultFill": FILL_COLOR};
-
-    var keys = Object.keys(countries);
-    keys.sort();
-
-    $.each(countries, function (i, country) {
-        values[country] = getColor();
-    });
-    return values;
-}
-
 function getColor(year) {
 	
-	var color = colors[nextColorIndex];
+	var color = "#000000";
 	
 	console.log(year);
 	
@@ -128,20 +112,6 @@ function getColor(year) {
 
     return color;
 }
-/*
-function getColor(year) {
-	
-	if(typeof year != undefined && year > currentYear) {
-		currentYear = year;
-		nextColorIndex++;
-	}
-
-    if (colors.length == nextColorIndex) {
-        nextColorIndex = 0;
-    }
-
-    return colors[nextColorIndex];
-}*/
 
 function archChargeFlights(map) {
     var archsInMap = [];

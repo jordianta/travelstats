@@ -15,7 +15,6 @@
     <script type="text/javascript" src="static/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <script type="text/javascript" src="static/js/jquery.serialize-object.min.js"></script>
     <script type="text/javascript" src="static/js/datatables/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="static/js/Chart.js"></script>
     <script type="text/javascript" src="static/js/flights.js"></script>
     <script type="text/javascript" src="static/js/utils.js"></script>
     <script type="text/javascript" src="static/js/menu.js"></script>
@@ -46,18 +45,18 @@
 
     <div id="main">
 
-        <div id="addFlight">
+        <div id="addFlight" class="addFlight">
             <h1>Add a new Flight </h1>
-            <form id="addFlightForm">
-                Origin: <select id="origin" name="origin[id]"></select><br>
-                Destination: <select id="destination" name="destination[id]"></select><br>
-                Carrier: <select id="carrier" name="carrier[id]"></select><br>
-                Distance: <input type="text" id="distance" name="distance"/><br>
-                Duration: <input type="text" id="duration" name="duration"/><br>
-                Date: <input type="text" id="date" name="date"/><br>
-                Number: <input type="text" id="number" name="number"/><br>
-                <input type="submit" value="Add Flight" name="Add Flight 2"/>
-            </form>
+                <form id="addFlightForm">
+                    <p><label>Origin:</label><select id="origin" name="origin[id]"></select></p>
+                    <p><label>Destination:</label><select id="destination" name="destination[id]"></select></p>
+                    <p><label>Carrier:</label> <select id="carrier" name="carrier[id]"></select></p>
+                    <p><label>Distance:</label> <input type="text" id="distance" name="distance" class="custom-combobox-input"/></p>
+                    <p><label>Duration:</label> <input type="text" id="duration" name="duration" class="custom-combobox-input"/></p>
+                    <p><label>Date:</label> <input type="text" id="date" name="date" class="custom-combobox-input" width="500"/></p>
+                    <p><label>Number:</label> <input type="text" id="number" name="number" class="custom-combobox-input" width="500"/></p>
+                    <p><input type="submit" value="Add Flight" name="Add Flight"/></p>
+                </form>
         </div>
     </div>
 </div>
