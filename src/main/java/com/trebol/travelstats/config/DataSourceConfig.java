@@ -26,7 +26,7 @@ public class DataSourceConfig {
     
     private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
     
-    @Value("${mysqldb.datasource.host}")
+    /*@Value("${mysqldb.datasource.host}")
     private String datasourceHost;
     
     @Value("${mysqldb.datasource.port}")
@@ -36,7 +36,7 @@ public class DataSourceConfig {
     private String datasourceUsername;
     
     @Value("${mysqldb.datasource.password}")
-    private String datasourcePassword;
+    private String datasourcePassword;*/
     @Value("${mysqldb.datasource.test}")
     private String datasourceTest;
 
@@ -55,10 +55,10 @@ public class DataSourceConfig {
         LOG.info("Username: " + envVar);
         envVar = System.getenv("MYSQL_PASSWORD");
         LOG.info("Password: " + envVar);
-        LOG.info("datasourceHost: " + datasourceHost);
+        /*LOG.info("datasourceHost: " + datasourceHost);
         LOG.info("datasourcePort: " + datasourcePort);
         LOG.info("datasourceUsername: " + datasourceUsername);
-        LOG.info("datasourcePassword: " + datasourcePassword);
+        LOG.info("datasourcePassword: " + datasourcePassword);*/
         LOG.info("datasourceTest: " + datasourceTest);
 
         return DataSourceBuilder
