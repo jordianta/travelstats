@@ -25,6 +25,17 @@ public class DataSourceConfig {
     @Bean
     @Primary
     public DataSource getDataSource() {
+        
+        String envVar = System.getenv("OPENSHIFT_MYSQL_DB_URL");
+        System.out.println("URL: " + envVar);
+        envVar = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+        System.out.println("Host: " + envVar);
+        envVar = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+        System.out.println("Port: " + envVar);
+        envVar = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+        System.out.println("Username: " + envVar);
+        envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+        System.out.println("Password: " + envVar);
 
         return DataSourceBuilder
                 .create()
