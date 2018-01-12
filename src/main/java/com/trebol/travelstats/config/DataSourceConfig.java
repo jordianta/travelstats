@@ -26,8 +26,11 @@ public class DataSourceConfig {
     
     private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
     
-    @Value("${mysqldb.datasource.url}")
-    private String datasourceUrl;
+    @Value("${mysqldb.datasource.host}")
+    private String datasourceHost;
+    
+    @Value("${mysqldb.datasource.port}")
+    private String datasourcePort;
     
     @Value("${mysqldb.datasource.username}")
     private String datasourceUsername;
@@ -53,7 +56,8 @@ public class DataSourceConfig {
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         LOG.info("Password: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-        LOG.info("datasourceUrl: " + datasourceUrl);
+        LOG.info("datasourceHost: " + datasourceHost);
+        LOG.info("datasourcePort: " + datasourcePort);
         LOG.info("datasourceUsername: " + datasourceUsername);
         LOG.info("datasourcePassword: " + datasourcePassword);
         LOG.info("datasourceTest: " + datasourceTest);
