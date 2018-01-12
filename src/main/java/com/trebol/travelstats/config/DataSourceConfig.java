@@ -13,7 +13,7 @@ public class DataSourceConfig {
 
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-    private static final String URL = "jdbc:mysql://10.131.13.111:3306/travelstats";
+    private static final String URL = "jdbc:mysql://10.130.9.91:3306/travelstats";
     private static final String USERNAME = "userDJ2";
     private static final String PASSWORD = "sV223KDtaIPDeJ2G";
 
