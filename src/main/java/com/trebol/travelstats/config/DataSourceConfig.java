@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
 
@@ -20,23 +22,25 @@ public class DataSourceConfig {
 //    private static final String URL = "jdbc:mysql://localhost:3306/travelstats";
 //    private static final String USERNAME = "root";
 //    private static final String PASSWORD = ")n6QSc7d.D$H[a*t";
+    
+    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
 
 
     @Bean
     @Primary
     public DataSource getDataSource() {
         
-        System.out.println("DataBaseConfig");
+        LOG.info("DataBaseConfig");
         String envVar = System.getenv("OPENSHIFT_MYSQL_DB_URL");
-        System.out.println("URL: " + envVar);
+        LOG.info("URL: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-        System.out.println("Host: " + envVar);
+        LOG.info("Host: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-        System.out.println("Port: " + envVar);
+        LOG.info("Port: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-        System.out.println("Username: " + envVar);
+        LOG.info("Username: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-        System.out.println("Password: " + envVar);
+        LOG.info("Password: " + envVar);
 
         return DataSourceBuilder
                 .create()
