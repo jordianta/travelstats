@@ -51,11 +51,10 @@ public class DataSourceConfig {
         LOG.info("Host: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
         LOG.info("Port: " + envVar);
-        envVar = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+        envVar = System.getenv("MYSQL_USER");
         LOG.info("Username: " + envVar);
-        envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+        envVar = System.getenv("MYSQL_PASSWORD");
         LOG.info("Password: " + envVar);
-        envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         LOG.info("datasourceHost: " + datasourceHost);
         LOG.info("datasourcePort: " + datasourcePort);
         LOG.info("datasourceUsername: " + datasourceUsername);
