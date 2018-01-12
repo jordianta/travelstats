@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class DataSourceConfig {
@@ -24,7 +25,15 @@ public class DataSourceConfig {
 //    private static final String PASSWORD = ")n6QSc7d.D$H[a*t";
     
     private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
-
+    
+    @Value("${mysqldb.datasource.url}")
+    private String datasourceUrl;
+    
+    @Value("${mysqldb.datasource.username}")
+    private String datasourceUsername;
+    
+    @Value("${mysqldb.datasource.password}")
+    private String datasourcePassword;
 
     @Bean
     @Primary
@@ -41,6 +50,10 @@ public class DataSourceConfig {
         LOG.info("Username: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         LOG.info("Password: " + envVar);
+        envVar = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
+        LOG.info("datasourceUrl: " + datasourceUrl);
+        LOG.info("datasourceUsername: " + datasourceUsername);
+        LOG.info("datasourcePassword: " + datasourcePassword);
 
         return DataSourceBuilder
                 .create()
