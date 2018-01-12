@@ -26,6 +26,7 @@ public class DataSourceConfig {
     @Primary
     public DataSource getDataSource() {
         
+        System.out.println("DataBaseConfig");
         String envVar = System.getenv("OPENSHIFT_MYSQL_DB_URL");
         System.out.println("URL: " + envVar);
         envVar = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
