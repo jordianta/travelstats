@@ -34,6 +34,8 @@ public class DataSourceConfig {
     
     @Value("${mysqldb.datasource.password}")
     private String datasourcePassword;
+    @Value("${mysqldb.datasource.test}")
+    private String datasourceTest;
 
     @Bean
     @Primary
@@ -54,6 +56,7 @@ public class DataSourceConfig {
         LOG.info("datasourceUrl: " + datasourceUrl);
         LOG.info("datasourceUsername: " + datasourceUsername);
         LOG.info("datasourcePassword: " + datasourcePassword);
+        LOG.info("datasourceTest: " + datasourceTest);
 
         return DataSourceBuilder
                 .create()
