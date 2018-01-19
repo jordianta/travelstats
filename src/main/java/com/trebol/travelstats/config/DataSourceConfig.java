@@ -20,8 +20,6 @@ public class DataSourceConfig {
 //    private static final String URL = "jdbc:mysql://localhost:3306/travelstats";
 //    private static final String USERNAME = "root";
 //    private static final String PASSWORD = ")n6QSc7d.D$H[a*t";
-    
-    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
 
     @Bean
     @Primary
