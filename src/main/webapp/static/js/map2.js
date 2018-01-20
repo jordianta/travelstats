@@ -206,7 +206,7 @@ function addFlights() {
 //		    drawFlight(flight.origin.latitude, flight.origin.longitude, flight.destination.latitude, flight.destination.longitude, getColor(year));
 		}
     });
-//	flightsArray.reverse();
+	flightsArray.reverse();
 
     tempArchInsert(flightsArray, flightsInMap);
 }
