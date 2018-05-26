@@ -4,6 +4,7 @@ import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.mappers.CarrierMapper;
 import com.trebol.travelstats.repositories.CarrierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class CarrierServiceImpl implements CarrierService {
     }
 
     @Override
+    @Cacheable("carriers")
     public List<CarrierDTO> getAllCarriers() {
         return carrierRepository.findAll()
                                 .stream()

@@ -4,6 +4,7 @@ import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.mappers.AirportMapper;
 import com.trebol.travelstats.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
+    @Cacheable("airports")
     public List<AirportDTO> getAllAirports() {
         return airportRepository.findAll()
                                 .stream()

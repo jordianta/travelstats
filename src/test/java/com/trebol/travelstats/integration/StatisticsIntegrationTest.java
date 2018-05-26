@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
@@ -17,17 +18,15 @@ import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TravelStatsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:sql/clean_database.sql", "classpath:sql/insert_countries.sql", "classpath:sql/insert_airports.sql", "classpath:sql/insert_carriers.sql", "classpath:sql/insert_flights.sql"})
 public class StatisticsIntegrationTest {
 
-    private static final String STATS_BY_CARRIER_EXPECTED = "[\n" +
-            "{\"carrier\":\"Aeroflot\", \"flights\": 4, \"distance\":17670,\"average\":4418},\n" +
-            "{\"carrier\":\"Air Asia\", \"flights\": 1, \"distance\":1318,\"average\":1318}\n" +
+    private static final String STATS_BY_CARRIER_EXPECTED = "[" +
+            "{\"carrier\":\"American Airlines\",\"flights\":1,\"distance\":7000,\"average\":7000}," +
+            "{\"carrier\":\"Qantas Airways\",\"flights\":1,\"distance\":7100,\"average\":7100}" +
             "]";
 
-    private static final String STATS_BY_YEAR_EXPECTED = "[\n" +
-            "{\"year\": 1996, \"flights\": 2, \"distance\":482},\n" +
-            "{\"year\": 2000, \"flights\": 2, \"distance\": 2382}\n" +
-            "]";
+    private static final String STATS_BY_YEAR_EXPECTED = "[{\"year\":1996,\"flights\":2,\"distance\":14100}]";
 
     private RequestSpecification requestSpecification;
 
