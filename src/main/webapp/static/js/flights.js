@@ -15,6 +15,47 @@ function initializeAll() {
     $(function() {
         $("#tabs").tabs();
     });
+
+
+
+    $("#distance").click(function() {
+        var origin = $("#origin option:selected").val();
+        var destination = $("#destination option:selected").val();
+
+        var originLat = 0;
+        var originLon = 0;
+        var destinationLat = 0;
+        var destinationLon = 0;
+
+        $.each(airports, function( key, airport ) {
+            if(airport.id == origin) {
+                originLat = airport.latitude;
+                originLon = airport.longitude;
+            }
+            if(airport.id == destination) {
+                destinationLat = airport.latitude;
+                destinationLon = airport.longitude;
+            }
+        });
+
+        if(originLat != 0 && originLon != 0 && destinationLat != 0 && destinationLon != 0) {
+            var geod = GeographicLib.Geodesic.WGS84, r;
+            r = geod.Inverse(originLat, originLon, destinationLat, destinationLon);
+            var distance = Math.round(r.s12.toFixed(3) / 1000);
+            $("#distance").val(distance);
+        }
+   });
+
+   $("#number").click(function() {
+        var carrierSelected = $("#carrier option:selected").val();
+
+        $.each(carriers, function( key, carrier ) {
+            if(carrier.id == carrierSelected) {
+                $("#number").val(carrier.iataCode)
+                return;
+            }
+         });
+   });
 }
 
 function loadAllAirports() {
