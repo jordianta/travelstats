@@ -1,7 +1,5 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import java.sql.Time;
-
 public class FlightDTO {
 
     private Long id;
@@ -10,13 +8,13 @@ public class FlightDTO {
     private CarrierDTO carrier;
     private String date;
     private Integer distance;
-    private Time duration;
+    private String duration;
     private String number;
 
     public FlightDTO() {
     }
 
-    public FlightDTO(final Long id, final AirportDTO origin, final AirportDTO destination, final CarrierDTO carrier, final String date, final Integer distance, final Time duration, final String number) {
+    public FlightDTO(final Long id, final AirportDTO origin, final AirportDTO destination, final CarrierDTO carrier, final String date, final Integer distance, final String duration, final String number) {
         this.id = id;
         this.origin = origin;
         this.destination = destination;
@@ -51,7 +49,7 @@ public class FlightDTO {
         return distance;
     }
 
-    public Time getDuration() {
+    public String getDuration() {
         return duration;
     }
 

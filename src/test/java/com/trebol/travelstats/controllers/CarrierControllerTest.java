@@ -26,12 +26,12 @@ public class CarrierControllerTest {
     private CarrierController carrierController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         carrierController = new CarrierController(carrierService);
     }
 
     @Test
-    public void getAllCarriers() throws Exception {
+    public void getAllCarriers() {
         // given
         when(carrierService.getAllCarriers()).thenReturn(ALL_CARRIERS);
 

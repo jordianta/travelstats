@@ -1,92 +1,157 @@
 package com.trebol.travelstats.domainobjects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+public class Airport
+{
 
-@Entity
-public class Airport {
+    private final Long id;
+    private final String name;
+    private final Float latitude;
+    private final Float longitude;
+    private final String city;
+    private final String iataCode;
+    private final Country country;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private Float latitude;
-
-    @Column(nullable = false)
-    private Float longitude;
-
-    @Column(nullable = false)
-    private String city;
-
-    @Column(nullable = false)
-    private String iataCode;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    private Country country;
-
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Float getLatitude() {
+    public Float getLatitude()
+    {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
 
-    public Float getLongitude() {
+    public Float getLongitude()
+    {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
 
-    public String getCity() {
+    public String getCity()
+    {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 
-    public String getIataCode() {
+    public String getIataCode()
+    {
         return iataCode;
     }
 
-    public void setIataCode(String iataCode) {
-        this.iataCode = iataCode;
-    }
 
-    public Country getCountry() {
+    public Country getCountry()
+    {
         return country;
     }
 
-    public void setCountry(Country country) {
+
+    public Airport(final Long id, final String name, final Float latitude, final Float longitude, final String city, final String iataCode, final Country country)
+    {
+        this.id = id;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.city = city;
+        this.iataCode = iataCode;
         this.country = country;
     }
 
+
+    private Airport(final Builder builder)
+    {
+        id = builder.id;
+        name = builder.name;
+        latitude = builder.latitude;
+        longitude = builder.longitude;
+        city = builder.city;
+        iataCode = builder.iataCode;
+        country = builder.country;
+    }
+
+
+    public static Builder newBuilder()
+    {
+        return new Builder();
+    }
+
+
+    public static final class Builder
+    {
+        private Long id;
+        private String name;
+        private Float latitude;
+        private Float longitude;
+        private String city;
+        private String iataCode;
+        private Country country;
+
+
+        private Builder()
+        {
+        }
+
+
+        public Builder withId(final Long id)
+        {
+            this.id = id;
+            return this;
+        }
+
+
+        public Builder withName(final String name)
+        {
+            this.name = name;
+            return this;
+        }
+
+
+        public Builder withLatitude(final Float latitude)
+        {
+            this.latitude = latitude;
+            return this;
+        }
+
+
+        public Builder withLongitude(final Float longitude)
+        {
+            this.longitude = longitude;
+            return this;
+        }
+
+
+        public Builder withCity(final String city)
+        {
+            this.city = city;
+            return this;
+        }
+
+
+        public Builder withIataCode(final String iataCode)
+        {
+            this.iataCode = iataCode;
+            return this;
+        }
+
+
+        public Builder withCountry(final Country country)
+        {
+            this.country = country;
+            return this;
+        }
+
+
+        public Airport build()
+        {
+            return new Airport(this);
+        }
+    }
 }

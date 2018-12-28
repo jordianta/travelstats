@@ -26,8 +26,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class FlightServiceImplTest {
 
-    private static final List<Flight> FLIGHTS_FROM_DB = TestUtils.createFlightList();
-    private static final List<FlightDTO> FLIGHTS_EXPECTED = TestUtils.createFlightDTOList();
+//    private static final List<Flight> FLIGHTS_FROM_DB = TestUtils.createFlightList();
+//    private static final List<FlightDTO> FLIGHTS_EXPECTED = TestUtils.createFlightDTOList();
 
     private ArgumentCaptor<Flight> createArgumentCaptor = ArgumentCaptor.forClass(Flight.class);
     private ArgumentCaptor<Long> deleteArgumentCaptor = ArgumentCaptor.forClass(Long.class);
@@ -38,24 +38,24 @@ public class FlightServiceImplTest {
     private FlightService flightService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         flightService = new FlightServiceImpl(flightRepository, new FlightMapper());
     }
 
+//    @Test
+//    public void getAllFlights() {
+//        // given
+//        when(flightRepository.findAll()).thenReturn(FLIGHTS_FROM_DB);
+//
+//        // when
+//        final List<FlightDTO> allFlights = flightService.getAllFlights();
+//
+//        // then
+//        assertThat(allFlights, is(FLIGHTS_EXPECTED));
+//    }
+
     @Test
-    public void getAllFlights() throws Exception {
-        // given
-        when(flightRepository.findAll()).thenReturn(FLIGHTS_FROM_DB);
-
-        // when
-        final List<FlightDTO> allFlights = flightService.getAllFlights();
-
-        // then
-        assertThat(allFlights, is(FLIGHTS_EXPECTED));
-    }
-
-    @Test
-    public void getAllFlights_WithEmptyList() throws Exception {
+    public void getAllFlights_WithEmptyList() {
         // given
         when(flightRepository.findAll()).thenReturn(Collections.emptyList());
 
@@ -67,7 +67,7 @@ public class FlightServiceImplTest {
     }
 
     @Test
-    public void createFlight() throws Exception {
+    public void createFlight() {
         // given
         final FlightDTO flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
@@ -85,7 +85,7 @@ public class FlightServiceImplTest {
     }
 
     @Test
-    public void deleteFlight() throws Exception {
+    public void deleteFlight() {
         // given
         final Long flightId = 1L;
 

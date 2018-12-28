@@ -22,8 +22,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class AirportServiceImplTest {
 
-    private static final List<Airport> AIRPORTS_FROM_DB = TestUtils.createAirportList();
-    private static final List<AirportDTO> AIRPORTS_EXPECTED = TestUtils.createAirportDTOList();
+//    private static final List<Airport> AIRPORTS_FROM_DB = TestUtils.createAirportList();
+//    private static final List<AirportDTO> AIRPORTS_EXPECTED = TestUtils.createAirportDTOList();
 
     @Mock
     private AirportRepository airportRepository;
@@ -31,24 +31,24 @@ public class AirportServiceImplTest {
     private AirportService airportService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         airportService = new AirportServiceImpl(airportRepository, new AirportMapper());
     }
+//
+//    @Test
+//    public void getAllAirports() {
+//        // given
+//        when(airportRepository.findAll()).thenReturn(AIRPORTS_FROM_DB);
+//
+//        // when
+//        final List<AirportDTO> allAirports = airportService.getAllAirports();
+//
+//        // then
+//        assertThat(allAirports, equalTo(AIRPORTS_EXPECTED));
+//    }
 
     @Test
-    public void getAllAirports() throws Exception {
-        // given
-        when(airportRepository.findAll()).thenReturn(AIRPORTS_FROM_DB);
-
-        // when
-        final List<AirportDTO> allAirports = airportService.getAllAirports();
-
-        // then
-        assertThat(allAirports, equalTo(AIRPORTS_EXPECTED));
-    }
-
-    @Test
-    public void getAllAirports_WithEmptyList() throws Exception {
+    public void getAllAirports_WithEmptyList() {
         // given
         when(airportRepository.findAll()).thenReturn(Collections.emptyList());
 

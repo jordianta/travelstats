@@ -14,7 +14,7 @@ import java.util.Date;
 public class DateConverter extends BidirectionalConverter<Date, String> {
 
     private static final Logger LOG = LoggerFactory.getLogger(DateConverter.class);
-    public static final String PATTERN = "dd-MM-yyyy";
+    private static final String PATTERN = "dd-MM-yyyy";
 
     private final SimpleDateFormat simpleDateFormat;
 

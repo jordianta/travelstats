@@ -7,12 +7,15 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CountryMapper extends ConfigurableMapper {
+public class CountryMapper extends ConfigurableMapper
+{
 
-    protected void configure(MapperFactory factory) {
+    protected void configure(MapperFactory factory)
+    {
 
         factory.classMap(Country.class, CountryDTO.class)
-               .byDefault()
-               .register();
+            .constructorA("id", "name", "continentId", "isoCode")
+            .byDefault()
+            .register();
     }
 }

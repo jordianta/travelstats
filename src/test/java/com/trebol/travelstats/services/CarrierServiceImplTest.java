@@ -22,33 +22,33 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class CarrierServiceImplTest {
 
-    private static final List<Carrier> CARRIERS_FROM_DB = TestUtils.createCarrierList();
-    private static final List<CarrierDTO> CARRIERS_EXPECTED = TestUtils.createCarrierDTOList();
-
+//    private static final List<Carrier> CARRIERS_FROM_DB = TestUtils.createCarrierList();
+//    private static final List<CarrierDTO> CARRIERS_EXPECTED = TestUtils.createCarrierDTOList();
+//
     @Mock
     private CarrierRepository carrierRepository;
 
     private CarrierService carrierService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         carrierService = new CarrierServiceImpl(carrierRepository, new CarrierMapper());
     }
+//
+//    @Test
+//    public void getAllCarriers() {
+//        // given
+//        when(carrierRepository.findAll()).thenReturn(CARRIERS_FROM_DB);
+//
+//        // when
+//        final List<CarrierDTO> allCarriers = carrierService.getAllCarriers();
+//
+//        // then
+//        assertThat(allCarriers, equalTo(CARRIERS_EXPECTED));
+//    }
 
     @Test
-    public void getAllCarriers() throws Exception {
-        // given
-        when(carrierRepository.findAll()).thenReturn(CARRIERS_FROM_DB);
-
-        // when
-        final List<CarrierDTO> allCarriers = carrierService.getAllCarriers();
-
-        // then
-        assertThat(allCarriers, equalTo(CARRIERS_EXPECTED));
-    }
-
-    @Test
-    public void getAllCarriers_WithEmptyList() throws Exception {
+    public void getAllCarriers_WithEmptyList() {
         // given
         when(carrierRepository.findAll()).thenReturn(Collections.emptyList());
 

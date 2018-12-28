@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("carriers")
 public class CarrierController {
 
-    @Autowired
     private CarrierService carrierService;
 
     public CarrierController(final CarrierService carrierService) {

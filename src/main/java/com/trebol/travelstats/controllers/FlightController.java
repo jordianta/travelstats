@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("flights")
 public class FlightController {
 
-    @Autowired
     private FlightService flightService;
 
     public FlightController(final FlightService flightService) {

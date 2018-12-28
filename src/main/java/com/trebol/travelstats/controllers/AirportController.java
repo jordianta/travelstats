@@ -12,7 +12,6 @@ import java.util.List;
 @RequestMapping("airports")
 public class AirportController {
 
-    @Autowired
     private AirportService airportService;
 
     public AirportController(final AirportService airportService) {

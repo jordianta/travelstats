@@ -7,12 +7,15 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarrierMapper extends ConfigurableMapper {
+public class CarrierMapper extends ConfigurableMapper
+{
 
-    protected void configure(MapperFactory factory) {
+    protected void configure(MapperFactory factory)
+    {
 
         factory.classMap(Carrier.class, CarrierDTO.class)
-               .byDefault()
-               .register();
+            .constructorA("id", "name", "iataCode")
+            .byDefault()
+            .register();
     }
 }

@@ -25,7 +25,6 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
 
-    @Autowired
     private FlightRepository flightRepository;
 
 

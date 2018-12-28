@@ -1,10 +1,15 @@
 package com.trebol.travelstats.repositories;
 
 import com.trebol.travelstats.domainobjects.Airport;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AirportRepository extends JpaRepository<Airport, Long> {
+public interface AirportRepository
+{
 
+    List<Airport> findAll();
+
+    Optional<Airport> find(Long id);
 }

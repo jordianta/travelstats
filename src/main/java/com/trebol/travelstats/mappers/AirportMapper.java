@@ -7,12 +7,15 @@ import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AirportMapper extends ConfigurableMapper {
+public class AirportMapper extends ConfigurableMapper
+{
 
-    protected void configure(MapperFactory factory) {
+    protected void configure(MapperFactory factory)
+    {
 
         factory.classMap(Airport.class, AirportDTO.class)
-               .byDefault()
-               .register();
+            .constructorA("id", "name", "latitude", "longitude", "city", "iataCode", "country")
+            .byDefault()
+            .register();
     }
 }

@@ -1,10 +1,16 @@
 package com.trebol.travelstats.repositories;
 
 import com.trebol.travelstats.domainobjects.Flight;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FlightRepository extends JpaRepository<Flight, Long> {
+public interface FlightRepository
+{
 
+    List<Flight> findAll();
+
+    void save(Flight flight);
+
+    void delete(Long flightId);
 }

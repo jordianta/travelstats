@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public class CarrierServiceImpl implements CarrierService {
 
-    @Autowired
     private CarrierRepository carrierRepository;
-    @Autowired
     private CarrierMapper carrierMapper;
 
     public CarrierServiceImpl(final CarrierRepository carrierRepository, final CarrierMapper carrierMapper) {
