@@ -1,0 +1,81 @@
+[
+  {
+    "id": 207,
+    "origin": {
+      "id": 578,
+      "name": "El Prat",
+      "latitude": 41.3,
+      "longitude": 2.08333,
+      "city": "Barcelona",
+      "iataCode": "BCN",
+      "country": {
+        "id": 69,
+        "name": "Spain",
+        "continentId": 1,
+        "isoCode": "ESP"
+      }
+    },
+    "destination": {
+      "id": 4488,
+      "name": "Menorca",
+      "latitude": 39.8667,
+      "longitude": 4.25,
+      "city": "Menorca",
+      "iataCode": "MAH",
+      "country": {
+        "id": 69,
+        "name": "Spain",
+        "continentId": 1,
+        "isoCode": "ESP"
+      }
+    },
+    "carrier": {
+      "id": 566,
+      "name": "Iberia",
+      "iataCode": "IB"
+    },
+    "date": "Aug 15, 1996 12:00:00 AM",
+    "distance": 241,
+    "duration": "12:45:00 AM"
+  },
+  {
+    "id": 209,
+    "origin": {
+      "id": 578,
+      "name": "El Prat",
+      "latitude": 41.3,
+      "longitude": 2.08333,
+      "city": "Barcelona",
+      "iataCode": "BCN",
+      "country": {
+        "id": 69,
+        "name": "Spain",
+        "continentId": 1,
+        "isoCode": "ESP"
+      }
+    },
+    "destination": {
+      "id": 7068,
+      "name": "Stansted",
+      "latitude": 51.8833,
+      "longitude": 0.233333,
+      "city": "London",
+      "iataCode": "STN",
+      "country": {
+        "id": 79,
+        "name": "United Kingdom",
+        "continentId": 1,
+        "isoCode": "GBR"
+      }
+    },
+    "carrier": {
+      "id": 513,
+      "name": "Go",
+      "iataCode": "GO"
+    },
+    "date": "Mar 15, 2000 12:00:00 AM",
+    "distance": 1191,
+    "duration": "02:10:00 AM",
+    "number": "GO312"
+  }
+]
