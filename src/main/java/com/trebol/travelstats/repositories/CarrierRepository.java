@@ -12,4 +12,6 @@ public interface CarrierRepository
     List<Carrier> findAll();
 
     Optional<Carrier> find(Long carrierKey);
+
+    void add(List<Carrier> carrierList);
 }

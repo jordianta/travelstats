@@ -7,4 +7,6 @@ import java.util.List;
 public interface CarrierService {
 
     List<CarrierDTO> getAllCarriers();
+
+    void importCarriers();
 }

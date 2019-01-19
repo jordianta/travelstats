@@ -3,6 +3,7 @@ package com.trebol.travelstats.repositories;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
 import com.trebol.travelstats.domainobjects.Carrier;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public class CarrierRepositoryImpl implements CarrierRepository
 {
 
-    private static final String KEY = Carrier.class.getSimpleName();
+    private static final String ENTITY_TYPE = Carrier.class.getSimpleName();
     private static final String IATA_CODE = "iataCode";
     private static final String NAME = "name";
 
@@ -33,7 +34,7 @@ public class CarrierRepositoryImpl implements CarrierRepository
     {
         final List<Carrier> carrierList = new ArrayList<>();
 
-        datastoreService.prepare(new Query(KEY))
+        datastoreService.prepare(new Query(ENTITY_TYPE))
             .asIterable()
             .forEach(entity -> carrierList.add(entityToCarrier(entity)));
 
@@ -46,12 +47,40 @@ public class CarrierRepositoryImpl implements CarrierRepository
     {
         try
         {
-            return Optional.of(entityToCarrier(datastoreService.get(KeyFactory.createKey(KEY, id))));
+            return Optional.of(entityToCarrier(datastoreService.get(createKey(id))));
         }
         catch (EntityNotFoundException e)
         {
             return Optional.empty();
         }
+    }
+
+
+    @Override
+    public void add(final List<Carrier> carrierList)
+    {
+        carrierList.forEach(this::add);
+    }
+
+
+    private void add(final Carrier carrier)
+    {
+        datastoreService.put(carrierToEntity(carrier));
+    }
+
+
+    private Key createKey(final Long id)
+    {
+        return KeyFactory.createKey(ENTITY_TYPE, id);
+    }
+
+
+    private Entity carrierToEntity(final Carrier carrier)
+    {
+        final Entity entity = new Entity(ENTITY_TYPE, createKey(carrier.getId()));
+        entity.setProperty(NAME, carrier.getName());
+        entity.setProperty(IATA_CODE, carrier.getIataCode());
+        return entity;
     }
 
 
