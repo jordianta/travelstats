@@ -51,8 +51,10 @@ public class CarrierServiceImpl implements CarrierService
     @Override
     public void importCarriers()
     {
+        LOG.info("Starting to import carriers");
         final List<Carrier> carrierList = readCSV();
         carrierRepository.add(carrierList);
+        LOG.info("Ended import carriers");
     }
 
 
