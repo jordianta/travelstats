@@ -103,7 +103,8 @@ var index = 0;
   	{"year":2015, "color": "#0417D6"},
   	{"year":2016, "color": "#04D60E"},
   	{"year":2017, "color": "#900C3F"},
-  	{"year":2018, "color": "#FED713"}
+  	{"year":2018, "color": "#FED713"},
+      {"year":2019, "color": "#fe18a0"}
   ];
 
 function getColor(year) {
