@@ -8,10 +8,10 @@ var animated = true;
 
 function getColorArray(size) {
 
-    var colors = new Array();
+    var colors = [];
 
     for(var i = 0;i < size;i++) {
-        if(i == 0) {
+        if(i === 0) {
             colors[i] = getRandomColor();
         } else {
             var previousColor = colors[i - 1];
@@ -115,7 +115,7 @@ function getColor(year) {
 
 	$.each(YEARS_COLORS, function(index, element) {
 		console.log(element);
-		if(element.year == year) {
+		if(element.year === year) {
 			console.log("OK " + element.color);
 			color = element.color;
 		}
@@ -309,17 +309,16 @@ function createAirportMarker(originLat, originLng, color) {
 }
 
 function createIcon(color) {
-    var icon = {
-            path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
-            fillColor: color,
-            fillOpacity: .8,
-            anchor: new google.maps.Point(0,0),
-            strokeWeight: 2,
-            strokeOpacity: 1,
-            strokeColor: color,
-            scale: 0.3
-    }
-    return icon;
+    return {
+        path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+        fillColor: color,
+        fillOpacity: .8,
+        anchor: new google.maps.Point(0, 0),
+        strokeWeight: 2,
+        strokeOpacity: 1,
+        strokeColor: color,
+        scale: 0.3
+    };
 }
 
 function createLineSymbol(color) {

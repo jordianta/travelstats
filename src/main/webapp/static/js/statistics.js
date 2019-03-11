@@ -93,7 +93,7 @@ function createFlightsByYearChart() {
 		var flights = 0;
 		
 		$.each(flightsStatsByYear, function(j,flightStat) {
-			if(flightStat.year == i) {
+			if(flightStat.year === i) {
 				flights = flightStat.flights;
 			}
 		});
@@ -118,7 +118,7 @@ function createDistanceByYearChart() {
 		var distance = 0;
 		
 		$.each(flightsStatsByYear, function(j,flightStat) {
-			if(flightStat.year == i) {
+			if(flightStat.year === i) {
 				distance = flightStat.distance;
 			}
 		});
@@ -143,7 +143,7 @@ function createAverageByYearChart() {
 		var average = 0;
 		
 		$.each(flightsStatsByYear, function(j,flightStat) {
-			if(flightStat.year == i) {
+			if(flightStat.year === i) {
 				average = flightStat.average;
 			}
 		});
@@ -246,7 +246,7 @@ function createBarChart(dataValues, labelsValues, labelName, canvasID) {
 
 function getColor() {
 
-    if (COLORS.length == nextColorIndex) {
+    if (COLORS.length === nextColorIndex) {
         nextColorIndex = 0;
     }
     return COLORS[nextColorIndex++];
