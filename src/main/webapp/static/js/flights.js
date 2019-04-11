@@ -27,17 +27,17 @@ function initializeAll() {
         var destinationLon = 0;
 
         $.each(airports, function (key, airport) {
-            if (airport.id === origin) {
+            if (airport.id == origin) {
                 originLat = airport.latitude;
                 originLon = airport.longitude;
             }
-            if (airport.id === destination) {
+            if (airport.id == destination) {
                 destinationLat = airport.latitude;
                 destinationLon = airport.longitude;
             }
         });
 
-        if (originLat !== 0 && originLon !== 0 && destinationLat !== 0 && destinationLon !== 0) {
+        if (originLat != 0 && originLon != 0 && destinationLat != 0 && destinationLon != 0) {
             var geod = GeographicLib.Geodesic.WGS84, r;
             r = geod.Inverse(originLat, originLon, destinationLat, destinationLon);
             var distance = Math.round(r.s12.toFixed(3) / 1000);
