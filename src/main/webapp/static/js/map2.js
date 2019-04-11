@@ -11,7 +11,7 @@ function getColorArray(size) {
     var colors = [];
 
     for(var i = 0;i < size;i++) {
-        if(i === 0) {
+        if(i == 0) {
             colors[i] = getRandomColor();
         } else {
             var previousColor = colors[i - 1];
@@ -115,7 +115,7 @@ function getColor(year) {
 
 	$.each(YEARS_COLORS, function(index, element) {
 		console.log(element);
-		if(element.year === year) {
+		if(element.year == year) {
 			console.log("OK " + element.color);
 			color = element.color;
 		}
