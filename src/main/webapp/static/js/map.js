@@ -159,7 +159,7 @@ function getColor(year) {
 
     $.each(YEARS_COLORS, function (index, element) {
         console.log(element);
-        if (element.year === year) {
+        if (element.year == year) {
             console.log("OK " + element.color);
             color = element.color;
         }
