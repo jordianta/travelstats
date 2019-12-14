@@ -2,6 +2,24 @@
 	text-align: right;	
 }
 
+.flightsSummaryTotal {
+    color:black;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.flightsSummaryMax {
+    color: green;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.flightsSummaryMin {
+    color: red;
+	font-weight: bold;
+	font-size: 13px;
+}
+
 #flightsSummaryDiv {
     width: 75%;
     height: 100%;

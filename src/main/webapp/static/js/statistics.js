@@ -44,16 +44,36 @@ function initializeAll() {
 }
 
 function createAverageData() {
-	
+
 	$.each(flightsStatsByYear, function(i,flightStat) {
-		flightStat.average = Math.ceil(flightStat.distance / flightStat.flights);		
+		flightStat.average = Math.ceil(flightStat.distance / flightStat.flights);
 	});
 }
 
 function createFlightStatsTable() {
-	
+
+    var flightsStatsByYearTable = clone(flightsStatsByYear);
+
+    var totalFlights = getTotalFlights(flightsStatsByYearTable);
+    var totalDistance = getTotalDistance(flightsStatsByYearTable);
+    var totalAverage = Math.ceil(totalDistance / totalFlights);
+
+    var maxFlights = getMaxFlights(flightsStatsByYearTable);
+    var maxDistance = getMaxDistance(flightsStatsByYearTable);
+    var maxAverage = getMaxAverage(flightsStatsByYearTable);
+
+    var minFlights = getMinFlights(flightsStatsByYearTable);
+    var minDistance = getMinDistance(flightsStatsByYearTable);
+    var minAverage = getMinAverage(flightsStatsByYearTable);
+
+
+    flightsStatsByYearTable.push({  "year" : "Total",
+                                    "flights": totalFlights,
+                                    "distance": totalDistance,
+                                    "average": totalAverage})
+
 	$('#flightsSummary').DataTable( {
-		"data": flightsStatsByYear,
+		"data": flightsStatsByYearTable,
 		"columns": [
 			{ "data": "year" },
 			{ "data": "flights" },
@@ -71,12 +91,35 @@ function createFlightStatsTable() {
 						  "targets": [2,3],
 						  "className": "flightsSummaryColumn thousandSeparator"
 						}
-		]			
+		],
+		"createdRow": function( row, data, dataIndex ) {
+            if ( data['year'] == "Total" ) {
+                $(row).addClass( 'flightsSummaryTotal' );
+            }
+            if( data['flights'] == maxFlights ) {
+                $('td', row).eq(1).addClass('flightsSummaryMax');
+            }
+            if( data['distance'] == maxDistance ) {
+                $('td', row).eq(2).addClass('flightsSummaryMax');
+            }
+            if( data['average'] == maxAverage ) {
+                $('td', row).eq(3).addClass('flightsSummaryMax');
+            }
+            if( data['flights'] == minFlights ) {
+                $('td', row).eq(1).addClass('flightsSummaryMin');
+            }
+            if( data['distance'] == minDistance ) {
+                $('td', row).eq(2).addClass('flightsSummaryMin');
+            }
+            if( data['average'] == minAverage ) {
+                $('td', row).eq(3).addClass('flightsSummaryMin');
+            }
+        }
 	});	
 
 	$(".thousandSeparator").each(function() {
 		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
-	});	
+	});
 }
 
 function createFlightsByYearChart() {
@@ -251,3 +294,101 @@ function getColor() {
     }
     return COLORS[nextColorIndex++];
 }
+
+function getTotalFlights() {
+    var totalFlights = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+        totalFlights += flightStat.flights;
+    });
+    return totalFlights;
+}
+
+function getTotalDistance() {
+    var totalDistance = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+    	totalDistance += flightStat.distance;
+    });
+    return totalDistance;
+}
+
+function getMaxFlights() {
+    var maxFlights = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            maxFlights = flightStat.flights > maxFlights ? flightStat.flights : maxFlights;
+    });
+    return maxFlights;
+}
+
+function getMaxDistance() {
+    var maxDistance = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            maxDistance = flightStat.distance > maxDistance ? flightStat.distance : maxDistance;
+    });
+    return maxDistance;
+}
+
+function getMaxAverage() {
+    var maxAverage = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            maxAverage = flightStat.average > maxAverage ? flightStat.average : maxAverage;
+    });
+    return maxAverage;
+}
+
+function getMinFlights() {
+    var minFlights = flightsStatsByYear[0].flights;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            minFlights = flightStat.flights < minFlights ? flightStat.flights : minFlights;
+    });
+    return minFlights;
+}
+
+function getMinDistance() {
+    var minDistance = flightsStatsByYear[0].distance;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            minDistance = flightStat.distance < minDistance ? flightStat.distance : minDistance;
+    });
+    return minDistance;
+}
+
+function getMinAverage() {
+    var minAverage = flightsStatsByYear[0].average;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            minAverage = flightStat.average < minAverage ? flightStat.average : minAverage;
+    });
+    return minAverage;
+}
+
+function clone(obj) {
+     var copy;
+
+     // Handle the 3 simple types, and null or undefined
+     if (null == obj || "object" != typeof obj) return obj;
+
+     // Handle Date
+     if (obj instanceof Date) {
+         copy = new Date();
+         copy.setTime(obj.getTime());
+         return copy;
+     }
+
+     // Handle Array
+     if (obj instanceof Array) {
+         copy = [];
+         for (var i = 0, len = obj.length; i < len; i++) {
+             copy[i] = clone(obj[i]);
+         }
+         return copy;
+     }
+
+     // Handle Object
+     if (obj instanceof Object) {
+         copy = {};
+         for (var attr in obj) {
+             if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+         }
+         return copy;
+     }
+
+     throw new Error("Unable to copy obj! Its type isn't supported.");
+ }

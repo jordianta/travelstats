@@ -58,7 +58,7 @@ function colorIsValid(hex1, hex2) {
     r /= 255;
     g /= 255;
     b /= 255;
-    // 0 means opposit colors, 1 means same colors
+    // 0 means opposite colors, 1 means same colors
     return (r + g + b) / 3 < 0.5;
 }
 
@@ -67,7 +67,7 @@ function colorIsTooDark(r, g, b) {
     return luma < 90;
 }
 
-var colorArray = getColorArray(16);
+var colorArray = getColorArray(20);
 var index = 0;
 
 var YEARS_COLORS = [
@@ -86,7 +86,11 @@ var YEARS_COLORS = [
 	{"year":2015, "color": "#" + colorArray[index++]},
 	{"year":2016, "color": "#" + colorArray[index++]},
 	{"year":2017, "color": "#" + colorArray[index++]},
-	{"year":2018, "color": "#" + colorArray[index++]}
+	{"year":2018, "color": "#" + colorArray[index++]},
+	{"year":2019, "color": "#" + colorArray[index++]},
+	{"year":2020, "color": "#" + colorArray[index++]},
+	{"year":2021, "color": "#" + colorArray[index++]},
+	{"year":2022, "color": "#" + colorArray[index++]}
 ];
 
 var mapFills = {};

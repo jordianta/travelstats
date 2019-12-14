@@ -45,7 +45,7 @@ public class FlightServiceImplTest {
     @Test
     public void getAllFlights() throws Exception {
         // given
-        when(flightRepository.findAll()).thenReturn(FLIGHTS_FROM_DB);
+        when(flightRepository.findAllByOrderByDateAsc()).thenReturn(FLIGHTS_FROM_DB);
 
         // when
         final List<FlightDTO> allFlights = flightService.getAllFlights();
@@ -57,7 +57,7 @@ public class FlightServiceImplTest {
     @Test
     public void getAllFlights_WithEmptyList() throws Exception {
         // given
-        when(flightRepository.findAll()).thenReturn(Collections.emptyList());
+        when(flightRepository.findAllByOrderByDateAsc()).thenReturn(Collections.emptyList());
 
         // when
         final List<FlightDTO> allFlights = flightService.getAllFlights();
