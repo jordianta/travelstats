@@ -1,35 +1,39 @@
 package com.trebol.travelstats.config;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @Configuration
 public class DataSourceConfig {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DataSourceConfig.class);
+
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-
-    private static final String URL = "jdbc:mysql://mysql-db:3306/travelstats";
-    private static final String USERNAME = "userDJ2";
-    private static final String PASSWORD = "sV223KDtaIPDeJ2G";
-
-//    private static final String URL = "jdbc:mysql://localhost:3306/travelstats";
-//    private static final String USERNAME = "root";
-//    private static final String PASSWORD = ")n6QSc7d.D$H[a*t";
 
     @Bean
     @Primary
-    public DataSource getDataSource() {
+    public DataSource getDataSource() throws URISyntaxException {
+
+        final URI dbUri = new URI(System.getenv("JAWSDB_URL"));
+
+        final String username = dbUri.getUserInfo().split(":")[0];
+        final String password = dbUri.getUserInfo().split(":")[1];
+        final String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
 
         return DataSourceBuilder
                 .create()
-                .url(URL)
-                .username(USERNAME)
-                .password(PASSWORD)
+                .url(dbUrl)
+                .username(username)
+                .password(password)
                 .driverClassName(DRIVER_CLASS_NAME)
                 .build();
     }

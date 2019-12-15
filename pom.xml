@@ -5,11 +5,13 @@
     <artifactId>travelstats</artifactId>
     <version>1.0</version>
     <name>travelstats</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <liquibase.version>3.5.3</liquibase.version>
+        <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/local/liquibase.properties
+        </liquibase.properties.path>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,12 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -69,40 +70,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>local</id>
-            <properties>
-                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/local/liquibase.properties
-                </liquibase.properties.path>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>openshift</id>
-            <properties>
-                <liquibase.properties.path>${project.basedir}/src/main/resources/liquibase/prod/liquibase.properties
-                </liquibase.properties.path>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                    <exclusions>
-                        <exclusion>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-starter-tomcat</artifactId>
-                        </exclusion>
-                    </exclusions>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
     <build>
         <finalName>ROOT</finalName>
         <plugins>
