@@ -43,7 +43,7 @@ public class FlightsIntegrationTest {
     private int port;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
@@ -53,7 +53,7 @@ public class FlightsIntegrationTest {
     }
 
     @Test
-    public void flights() throws Exception {
+    public void flights() {
         given()
                 .accept(ContentType.JSON)
                 .spec(requestSpecification)

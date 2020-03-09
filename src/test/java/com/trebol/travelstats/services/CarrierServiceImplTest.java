@@ -31,12 +31,12 @@ public class CarrierServiceImplTest {
     private CarrierService carrierService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         carrierService = new CarrierServiceImpl(carrierRepository, new CarrierMapper());
     }
 
     @Test
-    public void getAllCarriers() throws Exception {
+    public void getAllCarriers() {
         // given
         when(carrierRepository.findAll()).thenReturn(CARRIERS_FROM_DB);
 
@@ -48,7 +48,7 @@ public class CarrierServiceImplTest {
     }
 
     @Test
-    public void getAllCarriers_WithEmptyList() throws Exception {
+    public void getAllCarriers_WithEmptyList() {
         // given
         when(carrierRepository.findAll()).thenReturn(Collections.emptyList());
 

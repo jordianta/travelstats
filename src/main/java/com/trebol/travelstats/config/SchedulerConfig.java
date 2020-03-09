@@ -11,8 +11,8 @@ public class SchedulerConfig implements SchedulingConfigurer {
     private static final int POOL_SIZE = 10;
 
     @Override
-    public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
-        ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
+    public void configureTasks(final ScheduledTaskRegistrar scheduledTaskRegistrar) {
+        final ThreadPoolTaskScheduler threadPoolTaskScheduler = new ThreadPoolTaskScheduler();
 
         threadPoolTaskScheduler.setPoolSize(POOL_SIZE);
         threadPoolTaskScheduler.setThreadNamePrefix("my-scheduled-task-pool-");

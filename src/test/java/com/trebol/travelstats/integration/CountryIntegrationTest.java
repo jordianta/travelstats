@@ -35,7 +35,7 @@ public class CountryIntegrationTest {
     private int port;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
@@ -44,7 +44,7 @@ public class CountryIntegrationTest {
     }
 
     @Test
-    public void countries() throws Exception {
+    public void countries() {
         given()
                 .accept(ContentType.JSON)
                 .spec(requestSpecification)

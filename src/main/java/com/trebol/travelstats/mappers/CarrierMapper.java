@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CarrierMapper extends ConfigurableMapper {
 
-    protected void configure(MapperFactory factory) {
+    protected void configure(final MapperFactory factory) {
 
         factory.classMap(Carrier.class, CarrierDTO.class)
                .byDefault()

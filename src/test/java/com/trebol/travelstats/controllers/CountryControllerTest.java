@@ -26,12 +26,12 @@ public class CountryControllerTest {
     private CountryController countryController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         countryController = new CountryController(countryService);
     }
 
     @Test
-    public void getAllCountries() throws Exception {
+    public void getAllCountries() {
         // given
         when(countryService.getAllCountries()).thenReturn(ALL_COUNTRIES);
 

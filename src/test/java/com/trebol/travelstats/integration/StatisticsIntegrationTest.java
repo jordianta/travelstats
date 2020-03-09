@@ -37,7 +37,7 @@ public class StatisticsIntegrationTest {
     private int port;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
@@ -46,7 +46,7 @@ public class StatisticsIntegrationTest {
     }
 
     @Test
-    public void flightsByCarrier() throws Exception {
+    public void flightsByCarrier() {
         given()
                 .accept(ContentType.JSON)
                 .spec(requestSpecification)
@@ -60,7 +60,7 @@ public class StatisticsIntegrationTest {
     }
 
     @Test
-    public void flightsByYear() throws Exception {
+    public void flightsByYear() {
         given()
                 .accept(ContentType.JSON)
                 .spec(requestSpecification)

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CountryMapper extends ConfigurableMapper {
 
-    protected void configure(MapperFactory factory) {
+    protected void configure(final MapperFactory factory) {
 
         factory.classMap(Country.class, CountryDTO.class)
                .byDefault()

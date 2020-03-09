@@ -27,7 +27,7 @@ public class StatisticsServiceImplTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         statisticsService = new StatisticsServiceImpl(flightRepository);
     }
 
