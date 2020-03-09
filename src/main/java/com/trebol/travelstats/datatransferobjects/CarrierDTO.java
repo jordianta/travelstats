@@ -1,58 +1,20 @@
 package com.trebol.travelstats.datatransferobjects;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@EqualsAndHashCode
+@ToString
 public class CarrierDTO {
 
     private Long id;
     private String name;
     private String iataCode;
-
-    public CarrierDTO() {
-    }
-
-    public CarrierDTO(final Long id, final String name, final String iataCode) {
-        this.id = id;
-        this.name = name;
-        this.iataCode = iataCode;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getIataCode() {
-        return iataCode;
-    }
-
-    @Override
-    public String toString() {
-        return "CarrierDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", iataCode='" + iataCode + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        final CarrierDTO that = (CarrierDTO) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return iataCode != null ? iataCode.equals(that.iataCode) : that.iataCode == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (iataCode != null ? iataCode.hashCode() : 0);
-        return result;
-    }
 }

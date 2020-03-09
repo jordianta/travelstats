@@ -4,7 +4,6 @@ import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.mappers.converters.DateConverter;
 import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.converter.ConverterFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,7 @@ public class FlightMapper extends ConfigurableMapper {
 
     protected void configure(final MapperFactory mapperFactory) {
 
-        final ConverterFactory converterFactory = mapperFactory.getConverterFactory();
+        final var converterFactory = mapperFactory.getConverterFactory();
         converterFactory.registerConverter(DATE_CONVERTER_ID, new DateConverter());
 
         mapperFactory.classMap(Flight.class, FlightDTO.class)

@@ -19,11 +19,11 @@ public class DataSourceConfig {
     @Primary
     public DataSource getDataSource() throws URISyntaxException {
 
-        final URI dbUri = new URI(System.getenv("JAWSDB_URL"));
+        final var dbUri = new URI(System.getenv("JAWSDB_URL"));
 
-        final String username = dbUri.getUserInfo().split(":")[0];
-        final String password = dbUri.getUserInfo().split(":")[1];
-        final String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+        final var username = dbUri.getUserInfo().split(":")[0];
+        final var password = dbUri.getUserInfo().split(":")[1];
+        final var dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
 
         return DataSourceBuilder
                 .create()

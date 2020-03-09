@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.OptionalDouble;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
@@ -59,8 +57,8 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private Function<Flight, Integer> getYearFromFlight() {
         return flight -> {
-            final Date date = flight.getDate();
-            final Calendar calendar = Calendar.getInstance();
+            final var date = flight.getDate();
+            final var calendar = Calendar.getInstance();
             calendar.setTime(date);
             return calendar.get(Calendar.YEAR);
         };
@@ -69,7 +67,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private StatsByCarrierDTO createStatsByCarrierDTO(final Carrier carrier, final List<Flight> flights) {
         final Integer totalDistance = getDistanceStream(flights).sum();
-        final OptionalDouble average = getDistanceStream(flights).average();
+        final var average = getDistanceStream(flights).average();
         return new StatsByCarrierDTO(carrier.getName(), flights.size(), totalDistance, average.isPresent() ? (int) average.getAsDouble() : 0);
     }
 

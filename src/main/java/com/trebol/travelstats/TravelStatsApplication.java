@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @SpringBootApplication
 public class TravelStatsApplication extends SpringBootServletInitializer {
 
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         SpringApplication.run(TravelStatsApplication.class, args);
     }
 

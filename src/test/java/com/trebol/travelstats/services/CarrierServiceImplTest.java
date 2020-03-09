@@ -41,7 +41,7 @@ public class CarrierServiceImplTest {
         when(carrierRepository.findAll()).thenReturn(CARRIERS_FROM_DB);
 
         // when
-        final List<CarrierDTO> allCarriers = carrierService.getAllCarriers();
+        final var allCarriers = carrierService.getAllCarriers();
 
         // then
         assertThat(allCarriers, equalTo(CARRIERS_EXPECTED));
@@ -53,7 +53,7 @@ public class CarrierServiceImplTest {
         when(carrierRepository.findAll()).thenReturn(Collections.emptyList());
 
         // when
-        final List<CarrierDTO> allCarriers = carrierService.getAllCarriers();
+        final var allCarriers = carrierService.getAllCarriers();
 
         // then
         assertThat(allCarriers, hasSize(0));

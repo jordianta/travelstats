@@ -36,7 +36,7 @@ public class CarrierControllerTest {
         when(carrierService.getAllCarriers()).thenReturn(ALL_CARRIERS);
 
         // when
-        final List<CarrierDTO> allCarriers = carrierController.getAllCarriers();
+        final var allCarriers = carrierController.getAllCarriers();
 
         // then
         assertThat(allCarriers, equalTo(ALL_CARRIERS));

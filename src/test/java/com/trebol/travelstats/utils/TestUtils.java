@@ -23,11 +23,11 @@ public class TestUtils {
     }
 
     private static Flight createBCNToJFKFlight() {
-        final Flight flight = new Flight();
+        final var flight = new Flight();
         flight.setId(1L);
         flight.setCarrier(createAACarrier());
         flight.setOrigin(createBCNAirport());
-        final Calendar date1 = Calendar.getInstance();
+        final var date1 = Calendar.getInstance();
         date1.clear();
         date1.set(1996, Calendar.AUGUST, 15);
         flight.setDate(date1.getTime());
@@ -39,11 +39,11 @@ public class TestUtils {
     }
 
     private static Flight createJFKToBCNFlight() {
-        final Flight flight = new Flight();
+        final var flight = new Flight();
         flight.setId(2L);
         flight.setCarrier(createQantasCarrier());
         flight.setOrigin(createJFKAirport());
-        final Calendar date2 = Calendar.getInstance();
+        final var date2 = Calendar.getInstance();
         date2.clear();
         date2.set(1996, Calendar.AUGUST, 23);
         flight.setDate(date2.getTime());
@@ -55,7 +55,7 @@ public class TestUtils {
     }
 
     public static Carrier createAACarrier() {
-        final Carrier americanAirlines = new Carrier();
+        final var americanAirlines = new Carrier();
         americanAirlines.setId(209L);
         americanAirlines.setName("American Airlines");
         americanAirlines.setIataCode("AA");
@@ -63,7 +63,7 @@ public class TestUtils {
     }
 
     public static Carrier createQantasCarrier() {
-        final Carrier qantas = new Carrier();
+        final var qantas = new Carrier();
         qantas.setId(845L);
         qantas.setName("Qantas Airways");
         qantas.setIataCode("QF");
@@ -75,7 +75,7 @@ public class TestUtils {
     }
 
     private static Airport createBCNAirport() {
-        final Airport airportBCN = new Airport();
+        final var airportBCN = new Airport();
         airportBCN.setCity("Barcelona");
         airportBCN.setCountry(createSpainCountry());
         airportBCN.setIataCode("BCN");
@@ -87,7 +87,7 @@ public class TestUtils {
     }
 
     private static Airport createJFKAirport() {
-        final Airport airportJFK = new Airport();
+        final var airportJFK = new Airport();
         airportJFK.setCity("New York");
         airportJFK.setCountry(createUSACountry());
         airportJFK.setIataCode("JFK");
@@ -103,7 +103,7 @@ public class TestUtils {
     }
 
     private static Country createSpainCountry() {
-        final Country spain = new Country();
+        final var spain = new Country();
         spain.setId(69L);
         spain.setName("Spain");
         spain.setIsoCode("ESP");
@@ -112,7 +112,7 @@ public class TestUtils {
     }
 
     private static Country createUSACountry() {
-        final Country usa = new Country();
+        final var usa = new Country();
         usa.setId(229L);
         usa.setName("United States");
         usa.setIsoCode("USA");

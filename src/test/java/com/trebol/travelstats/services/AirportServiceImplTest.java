@@ -41,7 +41,7 @@ public class AirportServiceImplTest {
         when(airportRepository.findAll()).thenReturn(AIRPORTS_FROM_DB);
 
         // when
-        final List<AirportDTO> allAirports = airportService.getAllAirports();
+        final var allAirports = airportService.getAllAirports();
 
         // then
         assertThat(allAirports, equalTo(AIRPORTS_EXPECTED));
@@ -53,7 +53,7 @@ public class AirportServiceImplTest {
         when(airportRepository.findAll()).thenReturn(Collections.emptyList());
 
         // when
-        final List<AirportDTO> allAirports = airportService.getAllAirports();
+        final var allAirports = airportService.getAllAirports();
 
         // then
         assertThat(allAirports, hasSize(0));

@@ -43,7 +43,7 @@ public class FlightControllerTest {
     @Test
     public void addFlight() {
         // given
-        final FlightDTO flightDTO = TestUtils.createBCNToJFKFlightDTO();
+        final var flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
         // when
         flightController.addFlight(flightDTO);

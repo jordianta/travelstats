@@ -30,14 +30,12 @@ public class FlightController {
     }
 
     @PostMapping
-    public ResponseEntity<EmptyJsonResponse> addFlight(@RequestBody final FlightDTO flightDTO) {
+    public void addFlight(@RequestBody final FlightDTO flightDTO) {
         flightService.createFlight(flightDTO);
-        return new ResponseEntity<>(new EmptyJsonResponse(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{flightId}")
-    public ResponseEntity<EmptyJsonResponse> deleteFlight(@PathVariable final Long flightId) {
+    public void deleteFlight(@PathVariable final Long flightId) {
         flightService.deleteFlight(flightId);
-        return new ResponseEntity<>(new EmptyJsonResponse(), HttpStatus.OK);
     }
 }
