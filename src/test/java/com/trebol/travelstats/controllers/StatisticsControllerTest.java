@@ -36,7 +36,7 @@ public class StatisticsControllerTest {
         when(statisticsService.getFlightsByCarrier()).thenReturn(createStatsByCarrierDTOList());
 
         // when
-        final List<StatsByCarrierDTO> statsByCarrierDTOList = statisticsController.getFlightsByCarrier();
+        final var statsByCarrierDTOList = statisticsController.getFlightsByCarrier();
 
         // then
         assertEquals("Qantas Airways", statsByCarrierDTOList.get(0).getCarrier());
@@ -57,7 +57,7 @@ public class StatisticsControllerTest {
         when(statisticsService.getFlightsByYear()).thenReturn(createStatsByYearDTOList());
 
         //when then
-        final List<StatsByYearDTO> statsByYearDTOList = statisticsController.getFlightsByYear();
+        final var statsByYearDTOList = statisticsController.getFlightsByYear();
 
         // then
         // then

@@ -41,7 +41,7 @@ public class CountryServiceImplTest {
         when(countryRepository.findAll()).thenReturn(COUNTRIES_FROM_DB);
 
         // when
-        final List<CountryDTO> allCountries = countryService.getAllCountries();
+        final var allCountries = countryService.getAllCountries();
 
         // then
         assertThat(allCountries, equalTo(COUNTRIES_EXPECTED));
@@ -53,7 +53,7 @@ public class CountryServiceImplTest {
         when(countryRepository.findAll()).thenReturn(Collections.emptyList());
 
         // when
-        final List<CountryDTO> allCountries = countryService.getAllCountries();
+        final var allCountries = countryService.getAllCountries();
 
         // then
         assertThat(allCountries, hasSize(0));

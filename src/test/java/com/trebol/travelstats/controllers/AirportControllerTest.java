@@ -1,7 +1,6 @@
 package com.trebol.travelstats.controllers;
 
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
-import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.AirportService;
 import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
@@ -10,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -38,7 +36,7 @@ public class AirportControllerTest {
         when(airportService.getAllAirports()).thenReturn(AIRPORTSDTO_LIST);
 
         // when
-        final List<AirportDTO> allAirports = airportController.getAllAirports();
+        final var allAirports = airportController.getAllAirports();
 
         // then
         assertThat(allAirports, equalTo(AIRPORTSDTO_LIST));

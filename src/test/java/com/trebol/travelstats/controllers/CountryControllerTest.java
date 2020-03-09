@@ -36,7 +36,7 @@ public class CountryControllerTest {
         when(countryService.getAllCountries()).thenReturn(ALL_COUNTRIES);
 
         // when
-        final List<CountryDTO> allCountries = countryController.getAllCountries();
+        final var allCountries = countryController.getAllCountries();
 
         // then
         assertThat(allCountries, equalTo(ALL_COUNTRIES));

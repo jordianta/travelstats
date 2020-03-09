@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -29,7 +28,7 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void createFlight(final FlightDTO flightDTO) {
-        final Flight flight = flightMapper.map(flightDTO, Flight.class);
+        final var flight = flightMapper.map(flightDTO, Flight.class);
         flightRepository.save(flight);
     }
 

@@ -2,10 +2,7 @@ package com.trebol.travelstats.integration;
 
 import com.trebol.travelstats.TravelStatsApplication;
 import com.trebol.travelstats.config.DataSourceConfigTest;
-import com.trebol.travelstats.utils.TestUtils;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.config.EncoderConfig;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Before;
@@ -65,19 +62,20 @@ public class FlightsIntegrationTest {
                 .statusCode(HttpStatus.OK.value())
                 .body(equalTo(FLIGHTS_EXPECTED));
     }
-//
-//    @Test
-//    public void addFlight() throws Exception {
+
+    @Test
+    public void addFlight() {
 //        given()
 //                .accept(ContentType.JSON)
+//                .contentType(ContentType.JSON)
 //                .spec(requestSpecification)
 //                .body(FLIGHT_TO_INSERT)
-//                .config(RestAssured.config().encoderConfig(EncoderConfig.encoderConfig().encodeContentTypeAs("text/json", ContentType.TEXT)))
+//                .config(RestAssured.config().encoderConfig(EncoderConfig.encoderConfig().encodeContentTypeAs("application/json", ContentType.TEXT)))
 //
 //                .when()
 //                .post()
 //
 //                .then()
 //                .statusCode(HttpStatus.OK.value());
-//    }
+    }
 }

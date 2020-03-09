@@ -48,7 +48,7 @@ public class FlightServiceImplTest {
         when(flightRepository.findAllByOrderByDateAsc()).thenReturn(FLIGHTS_FROM_DB);
 
         // when
-        final List<FlightDTO> allFlights = flightService.getAllFlights();
+        final var allFlights = flightService.getAllFlights();
 
         // then
         assertThat(allFlights, is(FLIGHTS_EXPECTED));
@@ -60,7 +60,7 @@ public class FlightServiceImplTest {
         when(flightRepository.findAllByOrderByDateAsc()).thenReturn(Collections.emptyList());
 
         // when
-        final List<FlightDTO> allFlights = flightService.getAllFlights();
+        final var allFlights = flightService.getAllFlights();
 
         // then
         assertThat(allFlights, hasSize(0));
@@ -69,14 +69,14 @@ public class FlightServiceImplTest {
     @Test
     public void createFlight() {
         // given
-        final FlightDTO flightDTO = TestUtils.createBCNToJFKFlightDTO();
+        final var flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
         // when
         flightService.createFlight(flightDTO);
 
         // then
         verify(flightRepository, times(1)).save(createArgumentCaptor.capture());
-        final Flight flightStored = createArgumentCaptor.getValue();
+        final var flightStored = createArgumentCaptor.getValue();
         assertEquals(flightDTO.getNumber(), flightStored.getNumber());
         assertEquals(flightDTO.getDistance(), flightStored.getDistance());
         assertEquals(flightDTO.getCarrier().getIataCode(), flightStored.getCarrier().getIataCode());
@@ -94,7 +94,7 @@ public class FlightServiceImplTest {
 
         // then
         verify(flightRepository, times(1)).deleteById(deleteArgumentCaptor.capture());
-        final Long flightIdRemoved = deleteArgumentCaptor.getValue();
+        final var flightIdRemoved = deleteArgumentCaptor.getValue();
         assertEquals(flightId, flightIdRemoved);
     }
 

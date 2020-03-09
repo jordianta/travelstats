@@ -1,7 +1,5 @@
 package com.trebol.travelstats.services;
 
-import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
-import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.repositories.FlightRepository;
 import com.trebol.travelstats.utils.TestUtils;
@@ -35,10 +33,10 @@ public class StatisticsServiceImplTest {
     @Test
     public void getFlightsByCarrier() {
         // given
-        final List<Flight> flightList1 = TestUtils.createFlightList();
+        final var flightList1 = TestUtils.createFlightList();
         flightList1.forEach(flight -> flight.setCarrier(TestUtils.createQantasCarrier()));
         flightList1.forEach(flight -> flight.setDistance(5000));
-        final List<Flight> flightList2 = TestUtils.createFlightList();
+        final var flightList2 = TestUtils.createFlightList();
         flightList2.forEach(flight -> flight.setCarrier(TestUtils.createAACarrier()));
         flightList2.forEach(flight -> flight.setDistance(6000));
 
@@ -48,7 +46,7 @@ public class StatisticsServiceImplTest {
         when(flightRepository.findAll()).thenReturn(flightList);
 
         // when
-        final List<StatsByCarrierDTO> statsByCarrierDTOList = statisticsService.getFlightsByCarrier();
+        final var statsByCarrierDTOList = statisticsService.getFlightsByCarrier();
 
         // then
         assertEquals("American Airlines", statsByCarrierDTOList.get(0).getCarrier());
@@ -67,8 +65,8 @@ public class StatisticsServiceImplTest {
     @Test
     public void getFlightsByYear() {
         // given
-        final List<Flight> flightList1 = TestUtils.createFlightList();
-        final List<Flight> flightList2 = TestUtils.createFlightList();
+        final var flightList1 = TestUtils.createFlightList();
+        final var flightList2 = TestUtils.createFlightList();
         flightList2.forEach(flight -> flight.getDate().setYear(97));
 
         final List<Flight> flightList = new ArrayList<>(flightList1);
@@ -77,7 +75,7 @@ public class StatisticsServiceImplTest {
         when(flightRepository.findAll()).thenReturn(flightList);
 
         // when
-        final List<StatsByYearDTO> statsByYearDTOList = statisticsService.getFlightsByYear();
+        final var statsByYearDTOList = statisticsService.getFlightsByYear();
 
         // then
         assertEquals(Integer.valueOf(1996), statsByYearDTOList.get(0).getYear());
