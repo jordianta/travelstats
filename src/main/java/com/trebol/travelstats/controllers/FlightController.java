@@ -1,12 +1,9 @@
 package com.trebol.travelstats.controllers;
 
 
-import com.trebol.travelstats.controllers.responses.EmptyJsonResponse;
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.services.FlightService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
