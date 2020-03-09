@@ -1,7 +1,6 @@
 package com.trebol.travelstats.tasks;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +8,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Component
+@Slf4j
 public class KeepALiveTask {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(KeepALiveTask.class);
 
     private static final int TIME_PING_DB_IN_MILLIS = 60 * 60 * 1000;
     private static final String QUERY = "SELECT 1 FROM DUAL";
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public KeepALiveTask(final EntityManager entityManager) {
         this.entityManager = entityManager;
@@ -25,7 +24,7 @@ public class KeepALiveTask {
 
     @Scheduled(fixedRate = TIME_PING_DB_IN_MILLIS)
     public void scheduleTaskToKeepALiveDBConnection() {
-        LOGGER.error("KeepALive: {}", entityManager.createNativeQuery(QUERY).getSingleResult());
+        log.error("KeepALive: {}", entityManager.createNativeQuery(QUERY).getSingleResult());
     }
 
 }

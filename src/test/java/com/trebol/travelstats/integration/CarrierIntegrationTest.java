@@ -35,7 +35,7 @@ public class CarrierIntegrationTest {
     private int port;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         requestSpecification = new RequestSpecBuilder()
                 .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
@@ -44,7 +44,7 @@ public class CarrierIntegrationTest {
     }
 
     @Test
-    public void airports() throws Exception {
+    public void airports() {
         given()
                 .accept(ContentType.JSON)
                 .spec(requestSpecification)

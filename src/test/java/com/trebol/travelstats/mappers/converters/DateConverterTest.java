@@ -13,12 +13,12 @@ public class DateConverterTest {
     private DateConverter dateConverter;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         dateConverter = new DateConverter();
     }
 
     @Test
-    public void convertTo() throws Exception {
+    public void convertTo() {
         final Calendar calendar = Calendar.getInstance();
         calendar.set(2010, Calendar.OCTOBER, 15);
         final Date date = calendar.getTime();
@@ -27,7 +27,7 @@ public class DateConverterTest {
     }
 
     @Test
-    public void convertFrom() throws Exception {
+    public void convertFrom() {
     }
 
 }

@@ -10,7 +10,7 @@ public class ApiError {
 
     private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private LocalDateTime timestamp;
+    private final LocalDateTime timestamp;
     private String message;
     private String debugMessage;
     private List<ApiValidationError> subErrors;
@@ -24,7 +24,7 @@ public class ApiError {
         this.status = status;
     }
 
-    public ApiError(final HttpStatus status, Throwable ex) {
+    public ApiError(final HttpStatus status, final Throwable ex) {
         this();
         this.status = status;
         this.message = "Unexpected error";
@@ -64,10 +64,10 @@ public class ApiError {
 
     public class ApiValidationError {
 
-        private String object;
+        private final String object;
         private String field;
         private Object rejectedValue;
-        private String message;
+        private final String message;
 
         public ApiValidationError(final String object, final String message) {
             this.object = object;

@@ -3,25 +3,20 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.mappers.CountryMapper;
 import com.trebol.travelstats.repositories.CountryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
+@AllArgsConstructor
 @Service
 public class CountryServiceImpl implements CountryService {
 
-    @Autowired
-    private CountryRepository countryRepository;
-    @Autowired
-    private CountryMapper countryMapper;
-
-    public CountryServiceImpl(final CountryRepository countryRepository, final CountryMapper countryMapper) {
-        this.countryRepository = countryRepository;
-        this.countryMapper = countryMapper;
-    }
+    private final CountryRepository countryRepository;
+    private final CountryMapper countryMapper;
 
     @Override
     @Cacheable("countries")
@@ -29,6 +24,6 @@ public class CountryServiceImpl implements CountryService {
         return countryRepository.findAll()
                                 .stream()
                                 .map(airport -> countryMapper.map(airport, CountryDTO.class))
-                                .collect(Collectors.toList());
+                                .collect(toList());
     }
 }

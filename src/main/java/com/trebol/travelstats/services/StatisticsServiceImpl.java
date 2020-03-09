@@ -5,34 +5,26 @@ import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.domainobjects.Carrier;
 import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.repositories.FlightRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
+@AllArgsConstructor
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
 
-    @Autowired
-    private FlightRepository flightRepository;
-
-
-    public StatisticsServiceImpl(final FlightRepository flightRepository) {
-        this.flightRepository = flightRepository;
-    }
-
+    private final FlightRepository flightRepository;
 
     @Override
     public List<StatsByCarrierDTO> getFlightsByCarrier() {
@@ -43,7 +35,9 @@ public class StatisticsServiceImpl implements StatisticsService {
                         .collect(groupingBy(Flight::getCarrier))
                         .forEach((carrier, flights) -> statsByCarrierDTOList.add(createStatsByCarrierDTO(carrier, flights)));
 
-        return statsByCarrierDTOList.stream().sorted(comparing(StatsByCarrierDTO::getCarrier)).collect(toList());
+        return statsByCarrierDTOList.stream()
+                                    .sorted(comparing(StatsByCarrierDTO::getCarrier))
+                                    .collect(toList());
     }
 
 
@@ -57,7 +51,9 @@ public class StatisticsServiceImpl implements StatisticsService {
                         .collect(groupingBy(getYearFromFlight()))
                         .forEach((year, flights) -> statsByYearDTOList.add(createStatsByYearDTO(year, flights)));
 
-        return statsByYearDTOList.stream().sorted(comparing(StatsByYearDTO::getYear)).collect(toList());
+        return statsByYearDTOList.stream()
+                                 .sorted(comparing(StatsByYearDTO::getYear))
+                                 .collect(toList());
     }
 
 

@@ -19,12 +19,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class TravelStatsApplication extends SpringBootServletInitializer {
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SpringApplication.run(TravelStatsApplication.class, args);
     }
 
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+    protected SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
         return application.sources(TravelStatsApplication.class);
     }
 }

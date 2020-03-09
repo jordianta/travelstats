@@ -2,24 +2,21 @@ package com.trebol.travelstats.controllers;
 
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.CountryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("countries")
 public class CountryController {
 
-    @Autowired
-    private CountryService countryService;
+    private final CountryService countryService;
 
-    public CountryController(final CountryService countryService) {
-        this.countryService = countryService;
-    }
-
-    @RequestMapping("")
+    @GetMapping
     public List<CountryDTO> getAllCountries() {
         return countryService.getAllCountries();
     }

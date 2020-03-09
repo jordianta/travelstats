@@ -28,12 +28,12 @@ public class AirportControllerTest {
     private AirportController airportController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         airportController = new AirportController(airportService);
     }
 
     @Test
-    public void getAllAirports() throws Exception {
+    public void getAllAirports() {
         // given
         when(airportService.getAllAirports()).thenReturn(AIRPORTSDTO_LIST);
 

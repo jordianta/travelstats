@@ -31,12 +31,12 @@ public class AirportServiceImplTest {
     private AirportService airportService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         airportService = new AirportServiceImpl(airportRepository, new AirportMapper());
     }
 
     @Test
-    public void getAllAirports() throws Exception {
+    public void getAllAirports() {
         // given
         when(airportRepository.findAll()).thenReturn(AIRPORTS_FROM_DB);
 
@@ -48,7 +48,7 @@ public class AirportServiceImplTest {
     }
 
     @Test
-    public void getAllAirports_WithEmptyList() throws Exception {
+    public void getAllAirports_WithEmptyList() {
         // given
         when(airportRepository.findAll()).thenReturn(Collections.emptyList());
 

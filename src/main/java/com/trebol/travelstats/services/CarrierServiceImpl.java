@@ -3,25 +3,21 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.mappers.CarrierMapper;
 import com.trebol.travelstats.repositories.CarrierRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
+
+@AllArgsConstructor
 @Service
 public class CarrierServiceImpl implements CarrierService {
 
-    @Autowired
-    private CarrierRepository carrierRepository;
-    @Autowired
-    private CarrierMapper carrierMapper;
-
-    public CarrierServiceImpl(final CarrierRepository carrierRepository, final CarrierMapper carrierMapper) {
-        this.carrierRepository = carrierRepository;
-        this.carrierMapper = carrierMapper;
-    }
+    private final CarrierRepository carrierRepository;
+    private final CarrierMapper carrierMapper;
 
     @Override
     @Cacheable("carriers")
@@ -29,6 +25,6 @@ public class CarrierServiceImpl implements CarrierService {
         return carrierRepository.findAll()
                                 .stream()
                                 .map(airport -> carrierMapper.map(airport, CarrierDTO.class))
-                                .collect(Collectors.toList());
+                                .collect(toList());
     }
 }

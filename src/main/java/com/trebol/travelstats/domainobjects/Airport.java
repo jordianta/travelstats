@@ -1,5 +1,9 @@
 package com.trebol.travelstats.domainobjects;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
+@Data
 public class Airport {
 
     @Id
@@ -32,61 +37,4 @@ public class Airport {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private Country country;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
-
-    public Float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getIataCode() {
-        return iataCode;
-    }
-
-    public void setIataCode(String iataCode) {
-        this.iataCode = iataCode;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
 }

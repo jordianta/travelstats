@@ -27,12 +27,12 @@ public class FlightControllerTest {
     private FlightController flightController;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         flightController = new FlightController(flightService);
     }
 
     @Test
-    public void getAllFlights() throws Exception {
+    public void getAllFlights() {
         // given
         when(flightService.getAllFlights()).thenReturn(FLIGHTS_EXPECTED);
 
@@ -41,7 +41,7 @@ public class FlightControllerTest {
     }
 
     @Test
-    public void addFlight() throws Exception {
+    public void addFlight() {
         // given
         final FlightDTO flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
@@ -53,7 +53,7 @@ public class FlightControllerTest {
     }
 
     @Test
-    public void removeFlight() throws Exception {
+    public void removeFlight() {
         // given
         final Long flightId = 1L;
 

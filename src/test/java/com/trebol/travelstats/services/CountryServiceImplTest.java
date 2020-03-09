@@ -31,12 +31,12 @@ public class CountryServiceImplTest {
     private CountryService countryService;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         countryService = new CountryServiceImpl(countryRepository, new CountryMapper());
     }
 
     @Test
-    public void getAllCountries() throws Exception {
+    public void getAllCountries() {
         // given
         when(countryRepository.findAll()).thenReturn(COUNTRIES_FROM_DB);
 
@@ -48,7 +48,7 @@ public class CountryServiceImplTest {
     }
 
     @Test
-    public void getAllCountries_WithEmptyList() throws Exception {
+    public void getAllCountries_WithEmptyList() {
         // given
         when(countryRepository.findAll()).thenReturn(Collections.emptyList());
 
