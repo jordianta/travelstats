@@ -8,14 +8,12 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
 @EnableCaching
-@EnableScheduling
 @SpringBootApplication
 public class TravelStatsApplication extends SpringBootServletInitializer {
 
