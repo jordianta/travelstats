@@ -93,7 +93,7 @@ public class FlightServiceImplTest {
         flightService.deleteFlight(flightId);
 
         // then
-        verify(flightRepository, times(1)).delete(deleteArgumentCaptor.capture());
+        verify(flightRepository, times(1)).deleteById(deleteArgumentCaptor.capture());
         final Long flightIdRemoved = deleteArgumentCaptor.getValue();
         assertEquals(flightId, flightIdRemoved);
     }
