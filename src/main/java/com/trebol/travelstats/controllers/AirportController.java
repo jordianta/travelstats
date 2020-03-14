@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("airports")
+@RequestMapping("api/airports")
 public class AirportController {
 
     private final AirportService airportService;

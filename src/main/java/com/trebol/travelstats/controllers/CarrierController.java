@@ -10,7 +10,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("carriers")
+@RequestMapping("api/carriers")
 public class CarrierController {
 
     private final CarrierService carrierService;
