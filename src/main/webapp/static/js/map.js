@@ -46,7 +46,7 @@ function colorIsValid(hex1, hex2) {
     var g2 = parseInt(hex2.substring(2, 4), 16);
     var b2 = parseInt(hex2.substring(4, 6), 16);
 
-    if(colorIsTooDark(r2, g2, b2)) {
+    if(colorIsTooDarkOrTooLight(r2, g2, b2)) {
         return false;
     }
 
@@ -62,9 +62,9 @@ function colorIsValid(hex1, hex2) {
     return (r + g + b) / 3 < 0.5;
 }
 
-function colorIsTooDark(r, g, b) {
-    var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
-    return luma < 90;
+function colorIsTooDarkOrTooLight(r, g, b) {
+    var darkness = 0.2126 * r + 0.7152 * g + 0.0722 * b; // per ITU-R BT.709
+    return darkness < 90 && darkness < 120;
 }
 
 var colorArray = getColorArray(20);
@@ -132,6 +132,7 @@ function initializeMap() {
 		fills: {
 		  defaultFill: FILL_COLOR
 		},
+		responsive: true
     });
 	
 	currentPointers = [];
@@ -140,11 +141,6 @@ function initializeMap() {
 }
 
 function getData() {
-
-    /*data: {
-     USA: { fillKey: "USA" },
-     FRA: { fillKey: "FRA" }
-     }*/
 
     var values = {};
 
