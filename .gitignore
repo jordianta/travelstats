@@ -4,3 +4,5 @@ target/
 *.DS_Store
 
 travelstats\.iml
+
+src/main/resources/liquibase/prod/liquibase.properties
