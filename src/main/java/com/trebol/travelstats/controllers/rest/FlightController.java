@@ -1,4 +1,4 @@
-package com.trebol.travelstats.controllers;
+package com.trebol.travelstats.controllers.rest;
 
 
 import com.trebol.travelstats.datatransferobjects.FlightDTO;

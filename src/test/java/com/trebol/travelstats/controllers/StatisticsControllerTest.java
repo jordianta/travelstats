@@ -1,5 +1,6 @@
 package com.trebol.travelstats.controllers;
 
+import com.trebol.travelstats.controllers.rest.StatisticsController;
 import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.services.StatisticsService;
