@@ -1,5 +1,6 @@
 package com.trebol.travelstats.controllers;
 
+import com.trebol.travelstats.controllers.rest.AirportController;
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.services.AirportService;
 import com.trebol.travelstats.utils.TestUtils;

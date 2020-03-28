@@ -1,4 +1,4 @@
-package com.trebol.travelstats.controllers;
+package com.trebol.travelstats.controllers.rest;
 
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.services.CarrierService;

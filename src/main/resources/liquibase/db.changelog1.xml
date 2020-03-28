@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-    <changeSet author="jordianta" id="changelog-1.0">
+    <changeSet author="jordianta" id="add-table-airport">
         <createTable tableName="airport">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -21,10 +21,10 @@
             <column name="city" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="iataCode" type="varchar(3)">
+            <column name="iata_code" type="varchar(3)">
                 <constraints nullable="false"/>
             </column>
-            <column name="countryId" type="int">
+            <column name="country_id" type="int">
                 <constraints nullable="false"/>
             </column>
         </createTable>

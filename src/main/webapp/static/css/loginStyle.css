@@ -322,3 +322,18 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	color: #F845A2;
 	/*text-transform: uppercase;*/
 }
+
+.login-error {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(252, 3, 5);
+    text-align: center;
+}
+.logout-success{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(37, 130, 8);
+    text-align: center;
+}

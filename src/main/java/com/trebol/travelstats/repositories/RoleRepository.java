@@ -1,0 +1,12 @@
+package com.trebol.travelstats.repositories;
+
+import com.trebol.travelstats.domainobjects.Role;
+import com.trebol.travelstats.domainobjects.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RoleRepository extends JpaRepository<Role, Long> {
+
+    Role findByName(String userName);
+}

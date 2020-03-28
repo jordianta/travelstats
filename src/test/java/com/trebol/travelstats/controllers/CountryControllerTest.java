@@ -1,5 +1,6 @@
 package com.trebol.travelstats.controllers;
 
+import com.trebol.travelstats.controllers.rest.CountryController;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.CountryService;
 import com.trebol.travelstats.utils.TestUtils;

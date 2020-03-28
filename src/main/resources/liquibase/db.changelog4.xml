@@ -4,19 +4,31 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
-    <changeSet author="jordianta" id="changelog-4.0">
-        <createTable tableName="country">
+    <changeSet author="jordianta" id="add-table-flight">
+        <createTable tableName="flight">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(100)">
+            <column name="origin_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="iso_code" type="varchar(3)">
+            <column name="destination_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="continent_id" type="bigint">
+            <column name="carrier_id" type="bigint">
                 <constraints nullable="false"/>
+            </column>
+            <column name="date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="distance" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="time">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="varchar(10)">
+                <constraints nullable="true"/>
             </column>
         </createTable>
     </changeSet>
