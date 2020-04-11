@@ -96,18 +96,6 @@
 	
 }
 
-/*#filterPanel {	
-	color: black;
-	display: block;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 11px;
-	font-weight: bold;
-	height: 12px;
-	line-height: normal;
-	text-align: center;
-	width: 24px;
-}*/
-
 #filterPanel table{
 	border-collapse: separate;
 	border-spacing: 10px;
