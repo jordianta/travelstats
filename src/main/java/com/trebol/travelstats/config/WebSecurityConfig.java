@@ -39,5 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll();
+
+        http.headers().frameOptions().sameOrigin();
     }
 }
