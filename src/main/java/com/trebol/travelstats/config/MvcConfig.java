@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    private final List<String> pages = List.of("flightsMap", "placesMap", "flights", "statistics", "login", "logout");
+    private final List<String> pages = List.of("flightsMap", "placesMap", "flights", "places", "statistics", "login", "logout");
 
     public void addViewControllers(final ViewControllerRegistry registry) {
         registry.addViewController("/home").setViewName("flightsMap");

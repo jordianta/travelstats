@@ -1,20 +1,12 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Value;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@EqualsAndHashCode
-@ToString
+@Value
 public class CarrierDTO {
 
-    private Long id;
-    private String name;
-    private String iataCode;
+    Long id;
+    String name;
+    String iataCode;
 }
