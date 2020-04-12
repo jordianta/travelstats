@@ -9,9 +9,18 @@ var platform = new H.service.Platform({
 
 function initializeAll() {
 	createMap();
-	fetch("/static/json/places.json")
-      .then(response => response.json())
-      .then(json => addLocations(json));
+	addPlaces(loadPlaces());
+}
+
+function loadPlaces() {
+	
+	var serverResponse = $.ajax({
+						dataType: "json",
+						url: "/api/places/",
+						async: false
+					}).responseText;
+	
+	return JSON.parse(serverResponse);
 }
 
 // initialize map
@@ -46,9 +55,9 @@ function createMap() {
     new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 }
 
-function addLocations(places) {
+function addPlaces(places) {
     $.each(places, function (i, place) {
-        createLocationMarker(place.coordinates.lat, place.coordinates.lng, place.name)
+        createLocationMarker(place.latitude, place.longitude, place.name)
     });
 }
 

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.trebol.travelstats.utils.TestUtils.createCountryDTOList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class CountryControllerTest {
 
-    private static final List<CountryDTO> ALL_COUNTRIES = TestUtils.createCountryDTOList();
+    private static final List<CountryDTO> ALL_COUNTRIES = createCountryDTOList();
 
     @Mock
     private CountryService countryService;

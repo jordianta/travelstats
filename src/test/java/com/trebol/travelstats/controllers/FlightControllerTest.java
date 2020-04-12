@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.trebol.travelstats.utils.TestUtils.createFlightDTOList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,7 +21,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 public class FlightControllerTest {
 
-    private static final List<FlightDTO> FLIGHTS_EXPECTED = TestUtils.createFlightDTOList();
+    private static final List<FlightDTO> FLIGHTS_EXPECTED = createFlightDTOList();
 
     @Mock
     private FlightService flightService;

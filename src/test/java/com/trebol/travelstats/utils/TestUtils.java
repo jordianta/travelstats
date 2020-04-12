@@ -4,13 +4,14 @@ import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
+import com.trebol.travelstats.datatransferobjects.PlaceDTO;
 import com.trebol.travelstats.domainobjects.Airport;
 import com.trebol.travelstats.domainobjects.Carrier;
 import com.trebol.travelstats.domainobjects.Country;
 import com.trebol.travelstats.domainobjects.Flight;
+import com.trebol.travelstats.domainobjects.Place;
 
 import java.sql.Time;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import static java.util.Arrays.asList;
 public class TestUtils {
 
     public static List<Flight> createFlightList() {
-        return Arrays.asList(createBCNToJFKFlight(), createJFKToBCNFlight());
+        return asList(createBCNToJFKFlight(), createJFKToBCNFlight());
     }
 
     private static Flight createBCNToJFKFlight() {
@@ -170,5 +171,39 @@ public class TestUtils {
 
     public static List<CarrierDTO> createCarrierDTOList() {
         return asList(createAACarrierDTO(), createQantasCarrierDTO());
+    }
+
+    public static List<PlaceDTO> createPlaceDTOList() {
+        return asList(createNYPlaceDTO(), createIstanbulPlaceDTO());
+    }
+
+    private static PlaceDTO createNYPlaceDTO() {
+        return new PlaceDTO("New York City, NY, USA", 40.713238F, -74.00584F);
+    }
+
+    private static PlaceDTO createIstanbulPlaceDTO() {
+        return new PlaceDTO("Istanbul, Turkey", 41.00986F, 28.95707F);
+    }
+
+    public static List<Place> createPlaceList() {
+        return asList(createNYPlace(), createIstanbulPlace());
+    }
+
+    private static Place createNYPlace() {
+        final var place = new Place();
+        place.setId(1L);
+        place.setName("New York City, NY, USA");
+        place.setLatitude(40.713238F);
+        place.setLongitude(-74.00584F);
+        return place;
+    }
+
+    private static Place createIstanbulPlace() {
+        final var place = new Place();
+        place.setId(2L);
+        place.setName("Istanbul, Turkey");
+        place.setLatitude(41.00986F);
+        place.setLongitude(28.95707F);
+        return place;
     }
 }

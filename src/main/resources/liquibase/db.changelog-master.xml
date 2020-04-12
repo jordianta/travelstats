@@ -11,4 +11,5 @@
     <include file="db.changelog5.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog6.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog7.xml" relativeToChangelogFile="true"/>
+    <include file="db.changelog8.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

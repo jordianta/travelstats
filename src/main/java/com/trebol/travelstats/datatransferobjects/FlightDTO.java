@@ -1,26 +1,18 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Value;
 
 import java.sql.Time;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@EqualsAndHashCode
-@ToString
+@Value
 public class FlightDTO {
 
-    private Long id;
-    private AirportDTO origin;
-    private AirportDTO destination;
-    private CarrierDTO carrier;
-    private String date;
-    private Integer distance;
-    private Time duration;
-    private String number;
+    Long id;
+    AirportDTO origin;
+    AirportDTO destination;
+    CarrierDTO carrier;
+    String date;
+    Integer distance;
+    Time duration;
+    String number;
 }
