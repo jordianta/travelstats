@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutId;
+import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutIdDTO;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceDTOList;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceList;
 import static org.hamcrest.Matchers.equalTo;
@@ -67,6 +69,18 @@ public class PlaceServiceImplTest {
 
         // then
         verify(placeRepository).deleteById(1L);
+    }
+
+    @Test
+    public void addPlace() {
+        // given
+        final var placeDTO = createNYPlaceWithoutIdDTO();
+
+        // when
+        placeService.add(placeDTO);
+
+        // then
+        verify(placeRepository).save(createNYPlaceWithoutId());
     }
 
 }

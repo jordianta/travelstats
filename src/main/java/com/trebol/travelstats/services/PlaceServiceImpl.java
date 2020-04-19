@@ -1,6 +1,7 @@
 package com.trebol.travelstats.services;
 
 import com.trebol.travelstats.datatransferobjects.PlaceDTO;
+import com.trebol.travelstats.domainobjects.Place;
 import com.trebol.travelstats.mappers.PlaceMapper;
 import com.trebol.travelstats.repositories.PlaceRepository;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,10 @@ public class PlaceServiceImpl implements PlaceService {
     @Override
     public void deleteById(final Long id) {
         placeRepository.deleteById(id);
+    }
+
+    @Override
+    public void add(final PlaceDTO placeDTO) {
+        placeRepository.save(placeMapper.map(placeDTO, Place.class));
     }
 }

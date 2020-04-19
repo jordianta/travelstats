@@ -9,4 +9,6 @@ public interface PlaceService {
     List<PlaceDTO> getAllPlaces();
 
     void deleteById(Long id);
+
+    void add(PlaceDTO placeDTO);
 }

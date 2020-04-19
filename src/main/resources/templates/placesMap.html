@@ -10,14 +10,14 @@
     <link rel="stylesheet" type="text/css" href="static/css/flightInfoPanel.css">
     <link rel="stylesheet" type="text/css" href="static/js/jquery-ui-1.11.4.custom/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="static/css/menuStyle.css">
-    <link rel="stylesheet" type="text/css" href="static/css/heremaps/mapsjs-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css"/>
     <link rel="stylesheet" type="text/css"
           href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script type="text/javascript" src="static/js/heremaps/mapsjs-core.js"></script>
-    <script type="text/javascript" src="static/js/heremaps/mapsjs-service.js"></script>
-    <script type="text/javascript" src="static/js/heremaps/mapsjs-ui.js"></script>
-    <script type="text/javascript" src="static/js/heremaps/mapsjs-mapevents.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js" charset="utf-8"></script>
     <script type="text/javascript" src="static/js/d3.v3.min.js"></script>
     <script type="text/javascript" src="static/js/topojson.v1.min.js"></script>
     <script type="text/javascript" src="static/js/datamaps.world.js"></script>
@@ -36,7 +36,13 @@
     <div th:insert="~{menu::left-menu}"></div>
 
     <div id="main">
-        <div id="map-canvas"></div>
+        <div id="map-canvas">
+            <div id="search-form-div">
+                <input type="text" name="search-form" id="search-form"/>
+                <div id="search-results"></div>
+                <p>
+            </div>
+        </div>
         <div style="width: 640px; height: 480px" id="datamaps-container"></div>
     </div>
 </div>

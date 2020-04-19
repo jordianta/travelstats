@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutIdDTO;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceDTOList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -47,5 +48,16 @@ public class PlaceControllerTest {
 
         // then
         verify(placeService).deleteById(1L);
+    }
+
+    @Test
+    public void addPlace() {
+        // given
+        final var placeDTO = createNYPlaceWithoutIdDTO();
+        // when
+        placeController.addPlace(placeDTO);
+
+        // then
+        verify(placeService).add(placeDTO);
     }
 }

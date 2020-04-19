@@ -178,11 +178,15 @@ public class TestUtils {
     }
 
     private static PlaceDTO createNYPlaceDTO() {
-        return new PlaceDTO(1L,"New York City, NY, USA", 40.713238F, -74.00584F);
+        return new PlaceDTO(1L, "New York City, NY, USA", 40.713238F, -74.00584F);
     }
 
     private static PlaceDTO createIstanbulPlaceDTO() {
         return new PlaceDTO(2L, "Istanbul, Turkey", 41.00986F, 28.95707F);
+    }
+
+    public static PlaceDTO createNYPlaceWithoutIdDTO() {
+        return new PlaceDTO(null, "New York City, NY, USA", 40.713238F, -74.00584F);
     }
 
     public static List<Place> createPlaceList() {
@@ -190,8 +194,13 @@ public class TestUtils {
     }
 
     private static Place createNYPlace() {
-        final var place = new Place();
+        final var place = createNYPlaceWithoutId();
         place.setId(1L);
+        return place;
+    }
+
+    public static Place createNYPlaceWithoutId() {
+        final var place = new Place();
         place.setName("New York City, NY, USA");
         place.setLatitude(40.713238F);
         place.setLongitude(-74.00584F);
