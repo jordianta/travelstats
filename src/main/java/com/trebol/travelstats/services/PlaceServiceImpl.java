@@ -24,4 +24,9 @@ public class PlaceServiceImpl implements PlaceService {
                               .map(place -> placeMapper.map(place, PlaceDTO.class))
                               .collect(toList());
     }
+
+    @Override
+    public void deleteById(final Long id) {
+        placeRepository.deleteById(id);
+    }
 }

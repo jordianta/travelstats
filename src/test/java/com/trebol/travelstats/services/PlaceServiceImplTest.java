@@ -17,6 +17,7 @@ import static com.trebol.travelstats.utils.TestUtils.createPlaceList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -57,6 +58,15 @@ public class PlaceServiceImplTest {
 
         // then
         assertThat(allCountries, hasSize(0));
+    }
+
+    @Test
+    public void deletePlace() {
+        // when
+        placeService.deleteById(1L);
+
+        // then
+        verify(placeRepository).deleteById(1L);
     }
 
 }

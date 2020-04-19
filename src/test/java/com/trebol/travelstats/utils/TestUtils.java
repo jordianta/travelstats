@@ -178,11 +178,11 @@ public class TestUtils {
     }
 
     private static PlaceDTO createNYPlaceDTO() {
-        return new PlaceDTO("New York City, NY, USA", 40.713238F, -74.00584F);
+        return new PlaceDTO(1L,"New York City, NY, USA", 40.713238F, -74.00584F);
     }
 
     private static PlaceDTO createIstanbulPlaceDTO() {
-        return new PlaceDTO("Istanbul, Turkey", 41.00986F, 28.95707F);
+        return new PlaceDTO(2L, "Istanbul, Turkey", 41.00986F, 28.95707F);
     }
 
     public static List<Place> createPlaceList() {

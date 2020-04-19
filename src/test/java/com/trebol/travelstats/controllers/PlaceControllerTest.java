@@ -3,7 +3,6 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.controllers.rest.PlaceController;
 import com.trebol.travelstats.datatransferobjects.PlaceDTO;
 import com.trebol.travelstats.services.PlaceService;
-import com.trebol.travelstats.utils.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,7 @@ import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createPlaceDTOList;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -38,5 +38,14 @@ public class PlaceControllerTest {
 
         // when then
         assertEquals(PLACES_EXPECTED, placeController.getAllPlaces());
+    }
+
+    @Test
+    public void deletePlace() {
+        // when
+        placeController.deletePlace(1L);
+
+        // then
+        verify(placeService).deleteById(1L);
     }
 }

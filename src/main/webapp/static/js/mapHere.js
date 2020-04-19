@@ -57,15 +57,15 @@ function createMap() {
 
 function addPlaces(places) {
     $.each(places, function (i, place) {
-        createLocationMarker(place.latitude, place.longitude, place.name)
+        createLocationMarker(place.id, place.latitude, place.longitude, place.name)
     });
 }
 
 
-function createLocationMarker(latitude, longitude, description) {
+function createLocationMarker(id, latitude, longitude, description) {
     var coords = {lat: latitude, lng: longitude};
     var marker = new H.map.Marker(coords,{ icon: mapPinIcon });
-    marker.setData(description);
+    marker.setData(createLocationContent(id, description));
     marker.addEventListener('tap',  function(e) {addLocationMarkerInfo(e)});
     map.addObject(marker);
 }
@@ -80,4 +80,20 @@ function removeCurrentLocationMarkerInfo() {
     ui.getBubbles().forEach(function(bubble) {
                                 ui.removeBubble(bubble);
                             });
+}
+
+function createLocationContent(id, description) {
+    return "<div>" + description + "<p align='right'><a href='javascript:deletePlace(" + id + ");'><img src='static/images/bin.png' width='25%'></a></div>";
+}
+
+function deletePlace(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/api/places/" + id,
+        success: function(msg){
+            map.removeObjects(map.getObjects());
+            addPlaces(loadPlaces());
+            removeCurrentLocationMarkerInfo();
+        }
+    });
 }
