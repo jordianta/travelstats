@@ -103,9 +103,14 @@ var selectedYears = [];
 var tmpArchInsertedTimeOut;
 var currentAnimationSpeed = DEFAULT_ANIMATION_SPEED;
 var animated = true;
+var mapContainerOriginalWidth;
+var mapContainerOriginalHeight;
 
 function initializeAll() {
-	
+
+    mapContainerOriginalWidth = document.getElementById(MAP_CONTAINER).clientWidth;
+    mapContainerOriginalHeight = document.getElementById(MAP_CONTAINER).clientHeight;
+
 	setEvents();
 	
 	checkAllYearsSelectors();
@@ -120,8 +125,8 @@ function initializeMap() {
     document.getElementById(DATA_MAP_CONTAINER).innerHTML ="";
 
     //adapt sizes to the screen
-    var mapWidth =  document.getElementById('map-canvas').clientWidth * 0.95;
-    var mapHeight =  document.getElementById('map-canvas').clientHeight * 0.95;
+    var mapWidth =  mapContainerOriginalWidth * 0.95;
+    var mapHeight =  mapContainerOriginalHeight * 0.95;
 
 
     var map = new Datamap({
@@ -312,6 +317,7 @@ function clearCityLabels() {
 
 function hideFlightPanel() {
 	$(".flightInfoPanel").hide();
+	$("#flightImageContainer").hide();
 }
 
 function createBubbles(map, latOrigin, lngOrigin, latDestination, lngDestination) {
