@@ -59,3 +59,38 @@
 	top: 30px;
 	/*height: 100%*/
 }
+
+
+#allFlightsDiv {
+    width: 75%;
+    height: 100%;
+    top: 50%;
+    overflow:hidden;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	padding-right: 5%;
+	padding-left: 5%
+}
+
+#allFlights {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	cellspacing: 0;
+	width: 100%;
+}
+
+#allFlights th{
+	color: #0073EA;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.allFlightsColumnLeft {
+	text-align: left;
+}
+
+.allFlightsColumnRight {
+	text-align: right;
+}

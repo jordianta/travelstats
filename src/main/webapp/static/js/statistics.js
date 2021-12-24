@@ -1,9 +1,6 @@
-var COLORS = ["#f66b44", "#FFC900", "#b8213a", "#9a73e6", "#1940e0", "#4fc107"];
-
-var nextColorIndex = 0;
-
-var flightsStatsByYear = loadFlightsStatsByYear();	
+var flightsStatsByYear = loadFlightsStatsByYear();
 var flightsStatsByCarrier = loadFlightsStatsByCarrier();	
+var allFlights = loadAllFlights();
 
 function loadFlightsStatsByYear() {
 	
@@ -27,20 +24,43 @@ function loadFlightsStatsByCarrier() {
 	return JSON.parse(serverResponse);
 }
 
+function loadAllFlights() {
+
+	var serverResponse = $.ajax({
+						dataType: "json",
+						url: "/api/flights/",
+						async: false
+					}).responseText;
+
+	return JSON.parse(serverResponse);
+}
+
 function initializeAll() {
 	
 	createAverageData();
 	createFlightStatsTable();
-	createFlightsByYearChart();	
-	createDistanceByYearChart();	
+	createFlightsByYearChart();
+	createDistanceByYearChart();
 	createAverageByYearChart();
-	createFlightsByCarrierChart();	
-	createDistanceByCarrierChart();	
+	createFlightsByCarrierChart();
+	createDistanceByCarrierChart();
 	createAverageByCarrierChart();
 	createTimeByYearChart();
 	createTimeAverageByYearChart();
 	createTimeByCarrierChart();
 	createTimeAverageByCarrierChart();
+	createAllFlightsTable();
+
+	$(".kmStyle").each(function() {
+		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
+	});
+
+	$(".hourStyle").each(function() {
+	    if($.isNumeric($(this).html())) {
+            var rounded = Math.round($(this).html() * 10) / 10;
+            $(this).html(rounded + " Hours")
+	    }
+	});
 
 	$(function() {
 		$("#tabs").tabs();
@@ -48,7 +68,6 @@ function initializeAll() {
 }
 
 function createAverageData() {
-
 	$.each(flightsStatsByYear, function(i,flightStat) {
 		flightStat.average = Math.ceil(flightStat.distance / flightStat.flights);
 	});
@@ -145,7 +164,7 @@ function createFlightStatsTable() {
                 $('td', row).eq(3).addClass('flightsSummaryMin');
             }
         }
-	});	
+	});
 
 	$(".kmStyle").each(function() {
 		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
@@ -156,6 +175,67 @@ function createFlightStatsTable() {
             var rounded = Math.round($(this).html() * 10) / 10;
             $(this).html(rounded + " Hours")
 	    }
+	});
+}
+function createAllFlightsTable() {
+
+	$('#allFlights').DataTable( {
+		"data": allFlights,
+		"columns": [
+		    { "data": "date" },
+			{ "data": "number" },
+			{ "data": "origin"},
+			{ "data": "destination"},
+			{ "data": "carrier.name" },
+			{ "data": "distance" },
+			{ "data": "duration" }
+		],
+		"dom": "rtip",
+		"pageLength": 25,
+		"orderClasses": true,
+		"columnDefs": [{
+						  "targets": [0],
+						  "className": "allFlightsColumnRight",
+						  "type": "date-euro",
+						  "width": "5%"
+						},
+						{
+                          "targets": [1],
+                          "className": "allFlightsColumnRight",
+                          "width": "5%"
+                        },
+                        {
+                          "targets": [2],
+                          "className": "allFlightsColumnLeft",
+                          "render": function ( data, type, row, meta ) {
+                            return data.name + ' (' + data.iataCode + ')';
+                          },
+                          "width": "15%"
+                        },
+                        {
+                          "targets": [3],
+                          "className": "allFlightsColumnLeft",
+                          "render": function ( data, type, row, meta ) {
+                            return data.name + ' (' + data.iataCode + ')';
+                          },
+                          "width": "15%"
+                        },
+                        {
+                          "targets": [4],
+                          "className": "allFlightsColumnLeft",
+                          "width": "10%"
+                        },
+                        {
+                          "targets": [5],
+                          "className": "allFlightsColumnRight kmStyle",
+                          "width": "5%"
+                        },
+                        {
+                          "targets": [6],
+                          "className": "allFlightsColumnRight",
+                          "width": "5%"
+                        }
+		]
 	});
 }
 
@@ -397,14 +477,6 @@ function createBarChart(dataValues, labelsValues, labelName, canvasID) {
 	var ctx = $("#" + canvasID).get(0).getContext("2d");
 	
 	var myBarChart = new Chart(ctx).Bar(data, barOptions);	
-}
-
-function getColor() {
-
-    if (COLORS.length == nextColorIndex) {
-        nextColorIndex = 0;
-    }
-    return COLORS[nextColorIndex++];
 }
 
 function getTotalFlights() {
