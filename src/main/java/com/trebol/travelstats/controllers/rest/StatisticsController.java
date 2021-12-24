@@ -1,6 +1,7 @@
 package com.trebol.travelstats.controllers.rest;
 
 
+import com.trebol.travelstats.datatransferobjects.StatsByAirportDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.services.StatisticsService;
@@ -26,6 +27,11 @@ public class StatisticsController {
     @GetMapping("/flights/year/")
     public List<StatsByYearDTO> getFlightsByYear() {
         return statisticsService.getFlightsByYear();
+    }
+
+    @GetMapping("/airports/")
+    public List<StatsByAirportDTO> getAirports() {
+        return statisticsService.getAirports();
     }
 
 }

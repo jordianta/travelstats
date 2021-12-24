@@ -1,5 +1,6 @@
 package com.trebol.travelstats.services;
 
+import com.trebol.travelstats.datatransferobjects.StatsByAirportDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.domainobjects.Carrier;
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.OptionalDouble;
 import java.util.function.Function;
 
 import static java.util.Comparator.comparing;
@@ -52,6 +53,21 @@ public class StatisticsServiceImpl implements StatisticsService {
         return statsByYearDTOList.stream()
                                  .sorted(comparing(StatsByYearDTO::getYear))
                                  .collect(toList());
+    }
+
+    @Override
+    public List<StatsByAirportDTO> getAirports() {
+        final var airports = new HashMap<String, StatsByAirportDTO>();
+
+        flightRepository.findAll()
+                        .forEach(flight -> {
+                            airports.computeIfAbsent(flight.getOrigin().getIataCode(), iataCode -> new StatsByAirportDTO(iataCode, flight.getOrigin().getName())).increaseOrigin();
+                            airports.computeIfAbsent(flight.getDestination().getIataCode(), iataCode -> new StatsByAirportDTO(iataCode, flight.getDestination().getName())).increaseDestination();
+                        });
+
+        return airports.values().stream()
+                       .sorted(comparing(StatsByAirportDTO::getName))
+                       .collect(toList());
     }
 
 

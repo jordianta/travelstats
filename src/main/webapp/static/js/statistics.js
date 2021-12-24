@@ -1,6 +1,7 @@
 var flightsStatsByYear = loadFlightsStatsByYear();
 var flightsStatsByCarrier = loadFlightsStatsByCarrier();	
 var allFlights = loadAllFlights();
+var airportsStats = loadAirportsStats();
 
 function loadFlightsStatsByYear() {
 	
@@ -35,6 +36,17 @@ function loadAllFlights() {
 	return JSON.parse(serverResponse);
 }
 
+function loadAirportsStats() {
+
+	var serverResponse = $.ajax({
+						dataType: "json",
+						url: "/api/stats/airports/",
+						async: false
+					}).responseText;
+
+	return JSON.parse(serverResponse);
+}
+
 function initializeAll() {
 	
 	createAverageData();
@@ -50,6 +62,7 @@ function initializeAll() {
 	createTimeByCarrierChart();
 	createTimeAverageByCarrierChart();
 	createAllFlightsTable();
+	createAirportsStatsTable();
 
 	$(function() {
 		$("#tabs").tabs();
@@ -164,6 +177,7 @@ function createFlightStatsTable() {
         }
 	});
 }
+
 function createAllFlightsTable() {
 
 	$('#allFlights').DataTable( {
@@ -224,6 +238,43 @@ function createAllFlightsTable() {
                           "targets": [6],
                           "className": "allFlightsColumnRight",
                           "width": "5%"
+                        }
+		]
+	});
+}
+
+function createAirportsStatsTable() {
+
+	$('#airportsSummary').DataTable( {
+		"data": airportsStats,
+		"columns": [
+		    { "data": "name" },
+			{ "data": "origin"},
+			{ "data": "destination"},
+			{ "data": "total" }
+		],
+		"dom": "rtip",
+		"pageLength": 25,
+		"orderClasses": true,
+		"columnDefs": [{
+						  "targets": [0],
+						  "className": "airportsSummaryColumnLeft",
+						  "width": "5%"
+						},
+						{
+                          "targets": [1],
+                          "className": "airportsSummaryColumnRight",
+                          "width": "5%"
+                        },
+                        {
+                          "targets": [2],
+                          "className": "airportsSummaryColumnRight",
+                          "width": "15%"
+                        },
+                        {
+                          "targets": [3],
+                          "className": "airportsSummaryColumnRight",
+                          "width": "15%"
                         }
 		]
 	});
