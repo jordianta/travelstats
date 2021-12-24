@@ -234,7 +234,6 @@ function setAutocompleteCapabilities(selectId) {
 
 
 function addFlight() {
-//    var formData = JSON.stringify($("#addFlightForm").serialize());
     var formData = $("#addFlightForm").serializeJSON()
 
     $.ajax({
@@ -244,10 +243,10 @@ function addFlight() {
         success: function () {
             alert("Flight added!")
         },
-        error: function () {
+        error: function (e) {
             alert("Something was wrong...")
+            console.log(e)
         },
-        dataType: "json",
         contentType: "application/json"
     });
 }
