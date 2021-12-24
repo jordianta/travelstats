@@ -28,7 +28,7 @@ public class DataSourceConfig {
 
         final var username = dbUri.getUserInfo().split(":")[0];
         final var password = dbUri.getUserInfo().split(":")[1];
-        final var dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+        final var dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath() + "?enabledTLSProtocols=TLSv1.2";
         log.info("username: {}", username);
         log.info("password: {}", password);
         log.info("dbUrl: {}", dbUrl);
