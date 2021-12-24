@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
@@ -66,18 +66,50 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     private StatsByCarrierDTO createStatsByCarrierDTO(final Carrier carrier, final List<Flight> flights) {
-        final Integer totalDistance = getDistanceStream(flights).sum();
-        final var average = getDistanceStream(flights).average();
-        return new StatsByCarrierDTO(carrier.getName(), flights.size(), totalDistance, average.isPresent() ? (int) average.getAsDouble() : 0);
+        final var totalDistance = calculateTotalDistance(flights);
+        final var averageDistance = calculateAverageDistance(flights);
+        final var totalTime = calculateTotalTime(flights);
+        final var averageTime = calculateAverageTime(flights);
+        return new StatsByCarrierDTO(carrier.getName(), flights.size(), totalDistance, averageDistance, totalTime, averageTime);
     }
 
 
     private StatsByYearDTO createStatsByYearDTO(final Integer year, final List<Flight> flights) {
-        return new StatsByYearDTO(year, flights.size(), getDistanceStream(flights).sum());
+        final var totalDistance = calculateTotalDistance(flights);
+        final var totalTime = calculateTotalTime(flights);
+        final var averageTime = calculateAverageTime(flights);
+        return new StatsByYearDTO(year, flights.size(), totalDistance, totalTime, averageTime);
+    }
+
+    private int calculateTotalDistance(final List<Flight> flights) {
+        return flights.stream()
+                      .mapToInt(Flight::getDistance)
+                      .sum();
+    }
+
+    private int calculateAverageDistance(final List<Flight> flights) {
+        return (int) flights.stream()
+                            .mapToInt(Flight::getDistance)
+                            .average()
+                            .orElse(0);
+    }
+
+    private double calculateTotalTime(final List<Flight> flights) {
+        return flights.stream()
+                      .mapToDouble(StatisticsServiceImpl::getFlightDuration)
+                      .sum();
+    }
+
+    private double calculateAverageTime(final List<Flight> flights) {
+        return flights.stream()
+                      .mapToDouble(StatisticsServiceImpl::getFlightDuration)
+                      .average()
+                      .orElse(0);
+    }
+
+    private static double getFlightDuration(final Flight flight) {
+        return (flight.getDuration().getMinutes() + flight.getDuration().getHours() * 60) / 60;
     }
 
 
-    private IntStream getDistanceStream(final List<Flight> flights) {
-        return flights.stream().mapToInt(Flight::getDistance);
-    }
 }

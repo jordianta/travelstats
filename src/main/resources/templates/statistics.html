@@ -34,12 +34,16 @@
 		<div id="tabs">
 			<ul>
 				<li><a href="#tabs-1">Flights Summary</a></li>
-				<li><a href="#tabs-2">Flights by Year</a></li>
-				<li><a href="#tabs-3">Distance by Year</a></li>
-				<li><a href="#tabs-4">Average by Year</a></li>
-				<li><a href="#tabs-5">Flights by Carrier</a></li>
-				<li><a href="#tabs-6">Distance by Carrier</a></li>
-				<li><a href="#tabs-7">Average by Carrier</a></li>
+				<li><a href="#tabs-2">Flights/Year</a></li>
+				<li><a href="#tabs-3">Distance/Year</a></li>
+				<li><a href="#tabs-4">Avg Dist/Year</a></li>
+				<li><a href="#tabs-5">Flights/Carrier</a></li>
+				<li><a href="#tabs-6">Distance/Carrier</a></li>
+				<li><a href="#tabs-7">Avg Dist/Carrier</a></li>
+				<li><a href="#tabs-8">Time/Year</a></li>
+				<li><a href="#tabs-9">Avg Time/Year</a></li>
+				<li><a href="#tabs-10">Time/Carrier</a></li>
+				<li><a href="#tabs-11">Avg Time/Carrier</a></li>
 			</ul>
 			<div id="tabs-1">
 				<div id="flightsSummaryDiv">
@@ -50,6 +54,8 @@
 								<th>Flights</th>
 								<th>Distance</th>
 								<th>Average</th>
+								<th>Time</th>
+								<th>Average Time</th>
 							</tr>
 						</thead>
 					</table>	
@@ -83,6 +89,26 @@
 			<div id="tabs-7">
 				<div class="flightsCharts">
 					<canvas id="carrierAverageChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-8">
+				<div class="flightsCharts">
+					<canvas id="yearTimeChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-9">
+				<div class="flightsCharts">
+					<canvas id="yearTimeAverageChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-10">
+				<div class="flightsCharts">
+					<canvas id="timeCarrierChart"> </canvas>
+				</div>
+			</div>
+			<div id="tabs-11">
+				<div class="flightsCharts">
+					<canvas id="timeCarrierAverageChart"> </canvas>
 				</div>
 			</div>
 		</div>

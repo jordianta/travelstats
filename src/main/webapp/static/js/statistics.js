@@ -37,7 +37,11 @@ function initializeAll() {
 	createFlightsByCarrierChart();	
 	createDistanceByCarrierChart();	
 	createAverageByCarrierChart();
-	
+	createTimeByYearChart();
+	createTimeAverageByYearChart();
+	createTimeByCarrierChart();
+	createTimeAverageByCarrierChart();
+
 	$(function() {
 		$("#tabs").tabs();
 	});
@@ -57,20 +61,28 @@ function createFlightStatsTable() {
     var totalFlights = getTotalFlights(flightsStatsByYearTable);
     var totalDistance = getTotalDistance(flightsStatsByYearTable);
     var totalAverage = Math.ceil(totalDistance / totalFlights);
+    var totalTime = getTotalTime(flightsStatsByYearTable);
+    var totalAverageTime = totalTime / totalFlights;
 
     var maxFlights = getMaxFlights(flightsStatsByYearTable);
     var maxDistance = getMaxDistance(flightsStatsByYearTable);
     var maxAverage = getMaxAverage(flightsStatsByYearTable);
+    var maxTime = getMaxTime(flightsStatsByYearTable);
+    var maxAverageTime = getMaxAverageTime(flightsStatsByYearTable);
 
     var minFlights = getMinFlights(flightsStatsByYearTable);
     var minDistance = getMinDistance(flightsStatsByYearTable);
     var minAverage = getMinAverage(flightsStatsByYearTable);
+    var minTime = getMinTime(flightsStatsByYearTable);
+    var minAverageTime = getMinAverageTime(flightsStatsByYearTable);
 
 
     flightsStatsByYearTable.push({  "year" : "Total",
                                     "flights": totalFlights,
                                     "distance": totalDistance,
-                                    "average": totalAverage})
+                                    "average": totalAverage,
+                                    "time": totalTime,
+                                    "averageTime": totalAverageTime})
 
 	$('#flightsSummary').DataTable( {
 		"data": flightsStatsByYearTable,
@@ -78,7 +90,9 @@ function createFlightStatsTable() {
 			{ "data": "year" },
 			{ "data": "flights" },
 			{ "data": "distance" },
-			{ "data": "average" }
+			{ "data": "average" },
+			{ "data": "time" },
+			{ "data": "averageTime" }
 		],
 		"dom": "rtip",
 		"pageLength": 20,
@@ -89,8 +103,12 @@ function createFlightStatsTable() {
 						},
 						{
 						  "targets": [2,3],
-						  "className": "flightsSummaryColumn thousandSeparator"
-						}
+						  "className": "flightsSummaryColumn kmStyle"
+						},
+                        {
+                          "targets": [4,5],
+                          "className": "flightsSummaryColumn hourStyle"
+                        }
 		],
 		"createdRow": function( row, data, dataIndex ) {
             if ( data['year'] == "Total" ) {
@@ -105,6 +123,12 @@ function createFlightStatsTable() {
             if( data['average'] == maxAverage ) {
                 $('td', row).eq(3).addClass('flightsSummaryMax');
             }
+            if( data['time'] == maxTime ) {
+                $('td', row).eq(2).addClass('flightsSummaryMax');
+            }
+            if( data['averageTime'] == maxAverageTime ) {
+                $('td', row).eq(3).addClass('flightsSummaryMax');
+            }
             if( data['flights'] == minFlights ) {
                 $('td', row).eq(1).addClass('flightsSummaryMin');
             }
@@ -114,11 +138,24 @@ function createFlightStatsTable() {
             if( data['average'] == minAverage ) {
                 $('td', row).eq(3).addClass('flightsSummaryMin');
             }
+            if( data['time'] == minTime ) {
+                $('td', row).eq(2).addClass('flightsSummaryMin');
+            }
+            if( data['averageTime'] == minAverageTime ) {
+                $('td', row).eq(3).addClass('flightsSummaryMin');
+            }
         }
 	});	
 
-	$(".thousandSeparator").each(function() {
+	$(".kmStyle").each(function() {
 		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
+	});
+
+	$(".hourStyle").each(function() {
+	    if($.isNumeric($(this).html())) {
+            var rounded = Math.round($(this).html() * 10) / 10;
+            $(this).html(rounded + " Hours")
+	    }
 	});
 }
 
@@ -197,8 +234,6 @@ function createAverageByYearChart() {
 	createLineChart(dataValues, labelsValues, "Average By Year", "yearAverageChart");
 }
 
-
-
 function createFlightsByCarrierChart() {
 	
 	var labelsValues = [];
@@ -236,6 +271,83 @@ function createAverageByCarrierChart() {
 	});
 	
 	createBarChart(dataValues, labelsValues, "Average By Carrier", "carrierAverageChart");
+}
+
+function createTimeByYearChart() {
+
+	var labelsValues = [];
+	var dataValues = [];
+
+	var firstYear = flightsStatsByYear[0].year;
+	var lastYear = flightsStatsByYear[flightsStatsByYear.length - 1].year;
+
+	for(var i = firstYear; i <= lastYear; i++) {
+		labelsValues.push(i);
+
+		var time = 0;
+
+		$.each(flightsStatsByYear, function(j,flightStat) {
+			if(flightStat.year == i) {
+				time = flightStat.time;
+			}
+		});
+
+		dataValues.push(time);
+	}
+
+	createLineChart(dataValues, labelsValues, "Time By Year", "yearTimeChart");
+}
+
+function createTimeAverageByYearChart() {
+
+	var labelsValues = [];
+	var dataValues = [];
+
+	var firstYear = flightsStatsByYear[0].year;
+	var lastYear = flightsStatsByYear[flightsStatsByYear.length - 1].year;
+
+	for(var i = firstYear; i <= lastYear; i++) {
+		labelsValues.push(i);
+
+		var averageTime = 0;
+
+		$.each(flightsStatsByYear, function(j,flightStat) {
+			if(flightStat.year == i) {
+				averageTime = flightStat.averageTime;
+			}
+		});
+		var rounded = Math.round(averageTime * 10) / 10;
+		dataValues.push(rounded);
+	}
+
+	createLineChart(dataValues, labelsValues, "Average Time By Year", "yearTimeAverageChart");
+}
+
+function createTimeByCarrierChart() {
+
+	var labelsValues = [];
+	var dataValues = [];
+
+	$.each(flightsStatsByCarrier, function(j,flightStat) {
+		labelsValues.push(flightStat.carrier);
+		dataValues.push(flightStat.time);
+	});
+
+	createBarChart(dataValues, labelsValues, "Time By Carrier", "timeCarrierChart");
+}
+
+function createTimeAverageByCarrierChart() {
+
+	var labelsValues = [];
+	var dataValues = [];
+
+	$.each(flightsStatsByCarrier, function(j,flightStat) {
+		labelsValues.push(flightStat.carrier);
+		var rounded = Math.round(flightStat.averageTime * 10) / 10;
+		dataValues.push(rounded);
+	});
+
+	createBarChart(dataValues, labelsValues, "Average Time By Carrier", "timeCarrierAverageChart");
 }
 
 function createLineChart(dataValues, labelsValues, labelName, canvasID) {	
@@ -311,6 +423,14 @@ function getTotalDistance() {
     return totalDistance;
 }
 
+function getTotalTime() {
+    var totalTime = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+    	totalTime += flightStat.time;
+    });
+    return totalTime;
+}
+
 function getMaxFlights() {
     var maxFlights = 0;
     $.each(flightsStatsByYear, function(i,flightStat) {
@@ -335,6 +455,22 @@ function getMaxAverage() {
     return maxAverage;
 }
 
+function getMaxTime() {
+    var maxTime = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            maxTime = flightStat.time > maxTime ? flightStat.time : maxTime;
+    });
+    return maxTime;
+}
+
+function getMaxAverageTime() {
+    var maxAverageTime = 0;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            maxAverageTime = flightStat.averageTime > maxAverageTime ? flightStat.averageTime : maxAverageTime;
+    });
+    return maxAverageTime;
+}
+
 function getMinFlights() {
     var minFlights = flightsStatsByYear[0].flights;
     $.each(flightsStatsByYear, function(i,flightStat) {
@@ -357,6 +493,22 @@ function getMinAverage() {
             minAverage = flightStat.average < minAverage ? flightStat.average : minAverage;
     });
     return minAverage;
+}
+
+function getMinTime() {
+    var minTime = flightsStatsByYear[0].time;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            minTime = flightStat.time < minTime ? flightStat.time : minTime;
+    });
+    return minTime;
+}
+
+function getMinAverageTime() {
+    var minAverageTime = flightsStatsByYear[0].averageTime;
+    $.each(flightsStatsByYear, function(i,flightStat) {
+            minAverageTime = flightStat.averageTime < minAverageTime ? flightStat.averageTime : minAverageTime;
+    });
+    return minAverageTime;
 }
 
 function clone(obj) {

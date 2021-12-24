@@ -9,4 +9,6 @@ public class StatsByCarrierDTO {
     Integer flights;
     Integer distance;
     Integer average;
+    Double time;
+    Double averageTime;
 }

@@ -74,16 +74,16 @@ public class StatisticsControllerTest {
 
     private static List<StatsByCarrierDTO> createStatsByCarrierDTOList() {
         final List<StatsByCarrierDTO> statsByCarrierDTOList = new ArrayList<>();
-        statsByCarrierDTOList.add(new StatsByCarrierDTO("Qantas Airways", 4, 10000, 2500));
-        statsByCarrierDTOList.add(new StatsByCarrierDTO("American Airlines", 8, 64000, 8000));
+        statsByCarrierDTOList.add(new StatsByCarrierDTO("Qantas Airways", 4, 10000, 2500, 12d, 3d));
+        statsByCarrierDTOList.add(new StatsByCarrierDTO("American Airlines", 8, 64000, 8000, 32d, 4d));
         return statsByCarrierDTOList;
     }
 
 
     private static List<StatsByYearDTO> createStatsByYearDTOList() {
         final List<StatsByYearDTO> statsByYearDTOList = new ArrayList<>();
-        statsByYearDTOList.add(new StatsByYearDTO(1996, 4, 10000));
-        statsByYearDTOList.add(new StatsByYearDTO(1997, 8, 64000));
+        statsByYearDTOList.add(new StatsByYearDTO(1996, 4, 10000, 6d, 1.5d));
+        statsByYearDTOList.add(new StatsByYearDTO(1997, 8, 64000, 16d, 2d));
         return statsByYearDTOList;
     }
 }

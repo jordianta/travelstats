@@ -46,7 +46,7 @@
 	font-weight: bold;
 }
 
-#yearFlightsChart, #yearDistanceChart, #yearAverageChart, #carrierFlightsChart, #carrierDistanceChart, #carrierAverageChart {
+#yearFlightsChart, #yearDistanceChart, #yearAverageChart, #carrierFlightsChart, #carrierDistanceChart, #carrierAverageChart, #yearTimeChart, #yearTimeAverageChart, #timeCarrierChart, #timeCarrierAverageChart {
     width: 75%;
 	height:100%;
 	padding-right: 5%;
