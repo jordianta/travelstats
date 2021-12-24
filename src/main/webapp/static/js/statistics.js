@@ -51,17 +51,6 @@ function initializeAll() {
 	createTimeAverageByCarrierChart();
 	createAllFlightsTable();
 
-	$(".kmStyle").each(function() {
-		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
-	});
-
-	$(".hourStyle").each(function() {
-	    if($.isNumeric($(this).html())) {
-            var rounded = Math.round($(this).html() * 10) / 10;
-            $(this).html(rounded + " Hours")
-	    }
-	});
-
 	$(function() {
 		$("#tabs").tabs();
 	});
@@ -122,11 +111,20 @@ function createFlightStatsTable() {
 						},
 						{
 						  "targets": [2,3],
-						  "className": "flightsSummaryColumn kmStyle"
+						  "className": "flightsSummaryColumn",
+						  "render": function ( data, type, row, meta ) {
+                              return numberWithThousandSeparator(data) + ($.isNumeric(data) ? " Km" : "");
+                          },
 						},
                         {
                           "targets": [4,5],
-                          "className": "flightsSummaryColumn hourStyle"
+                          "className": "flightsSummaryColumn",
+                          "render": function ( data, type, row, meta ) {
+                               if($.isNumeric(data)) {
+                                   var rounded = Math.round(data * 10) / 10;
+                                   return rounded + " Hours"
+                          	   }
+                          }
                         }
 		],
 		"createdRow": function( row, data, dataIndex ) {
@@ -143,10 +141,10 @@ function createFlightStatsTable() {
                 $('td', row).eq(3).addClass('flightsSummaryMax');
             }
             if( data['time'] == maxTime ) {
-                $('td', row).eq(2).addClass('flightsSummaryMax');
+                $('td', row).eq(4).addClass('flightsSummaryMax');
             }
             if( data['averageTime'] == maxAverageTime ) {
-                $('td', row).eq(3).addClass('flightsSummaryMax');
+                $('td', row).eq(5).addClass('flightsSummaryMax');
             }
             if( data['flights'] == minFlights ) {
                 $('td', row).eq(1).addClass('flightsSummaryMin');
@@ -158,23 +156,12 @@ function createFlightStatsTable() {
                 $('td', row).eq(3).addClass('flightsSummaryMin');
             }
             if( data['time'] == minTime ) {
-                $('td', row).eq(2).addClass('flightsSummaryMin');
+                $('td', row).eq(4).addClass('flightsSummaryMin');
             }
             if( data['averageTime'] == minAverageTime ) {
-                $('td', row).eq(3).addClass('flightsSummaryMin');
+                $('td', row).eq(5).addClass('flightsSummaryMin');
             }
         }
-	});
-
-	$(".kmStyle").each(function() {
-		$(this).html(numberWithThousandSeparator($(this).html()) + ($.isNumeric($(this).html()) ? " Km" : ""));
-	});
-
-	$(".hourStyle").each(function() {
-	    if($.isNumeric($(this).html())) {
-            var rounded = Math.round($(this).html() * 10) / 10;
-            $(this).html(rounded + " Hours")
-	    }
 	});
 }
 function createAllFlightsTable() {
@@ -227,8 +214,11 @@ function createAllFlightsTable() {
                         },
                         {
                           "targets": [5],
-                          "className": "allFlightsColumnRight kmStyle",
-                          "width": "5%"
+                          "className": "allFlightsColumnRight",
+                          "width": "5%",
+                          "render": function ( data, type, row, meta ) {
+                              return numberWithThousandSeparator(data) + ($.isNumeric(data) ? " Km" : "");
+                          },
                         },
                         {
                           "targets": [6],
