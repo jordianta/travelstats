@@ -5,26 +5,26 @@ import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.mappers.FlightMapper;
 import com.trebol.travelstats.repositories.FlightRepository;
 import com.trebol.travelstats.utils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class FlightServiceImplTest {
+@ExtendWith(SpringExtension.class)
+class FlightServiceImplTest {
 
     private static final List<Flight> FLIGHTS_FROM_DB = TestUtils.createFlightList();
     private static final List<FlightDTO> FLIGHTS_EXPECTED = TestUtils.createFlightDTOList();
@@ -37,13 +37,13 @@ public class FlightServiceImplTest {
 
     private FlightService flightService;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         flightService = new FlightServiceImpl(flightRepository, new FlightMapper());
     }
 
     @Test
-    public void getAllFlights() {
+    void getAllFlights() {
         // given
         when(flightRepository.findAllByOrderByDateAsc()).thenReturn(FLIGHTS_FROM_DB);
 
@@ -55,7 +55,7 @@ public class FlightServiceImplTest {
     }
 
     @Test
-    public void getAllFlights_WithEmptyList() {
+    void getAllFlights_WithEmptyList() {
         // given
         when(flightRepository.findAllByOrderByDateAsc()).thenReturn(Collections.emptyList());
 
@@ -67,7 +67,7 @@ public class FlightServiceImplTest {
     }
 
     @Test
-    public void createFlight() {
+    void createFlight() {
         // given
         final var flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
@@ -85,7 +85,7 @@ public class FlightServiceImplTest {
     }
 
     @Test
-    public void deleteFlight() {
+    void deleteFlight() {
         // given
         final Long flightId = 1L;
 

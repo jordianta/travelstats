@@ -1,23 +1,23 @@
 package com.trebol.travelstats.mappers.converters;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DateConverterTest {
+class DateConverterTest {
 
     private DateConverter dateConverter;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         dateConverter = new DateConverter();
     }
 
     @Test
-    public void convertTo() {
+    void convertTo() {
         final var calendar = Calendar.getInstance();
         calendar.set(2010, Calendar.OCTOBER, 15);
         final var date = calendar.getTime();

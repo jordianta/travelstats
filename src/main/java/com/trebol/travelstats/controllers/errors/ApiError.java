@@ -62,7 +62,7 @@ public class ApiError {
         this.message = message;
     }
 
-    public class ApiValidationError {
+    public static class ApiValidationError {
 
         private final String object;
         private String field;

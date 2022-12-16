@@ -1,12 +1,9 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import lombok.Value;
+public record CountryDTO(
+        Long id,
+        String name,
+        Integer continentId,
+        String isoCode) {
 
-@Value
-public class CountryDTO {
-
-    Long id;
-    String name;
-    Integer continentId;
-    String isoCode;
 }

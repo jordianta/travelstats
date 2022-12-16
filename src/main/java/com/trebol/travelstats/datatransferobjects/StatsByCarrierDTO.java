@@ -1,14 +1,11 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import lombok.Value;
+public record StatsByCarrierDTO(
+        String carrier,
+        Integer flights,
+        Integer distance,
+        Integer average,
+        Double time,
+        Double averageTime) {
 
-@Value
-public class StatsByCarrierDTO {
-
-    String carrier;
-    Integer flights;
-    Integer distance;
-    Integer average;
-    Double time;
-    Double averageTime;
 }

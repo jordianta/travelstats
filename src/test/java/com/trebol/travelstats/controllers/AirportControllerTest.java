@@ -3,21 +3,21 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.controllers.rest.AirportController;
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.services.AirportService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createAirportDTOList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class AirportControllerTest {
+@ExtendWith(SpringExtension.class)
+class AirportControllerTest {
 
     private static final List<AirportDTO> ALL_AIRPORTS = createAirportDTOList();
 
@@ -26,13 +26,13 @@ public class AirportControllerTest {
 
     private AirportController airportController;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         airportController = new AirportController(airportService);
     }
 
     @Test
-    public void getAllAirports() {
+    void getAllAirports() {
         // given
         when(airportService.getAllAirports()).thenReturn(ALL_AIRPORTS);
 

@@ -5,22 +5,22 @@ import com.trebol.travelstats.domainobjects.Country;
 import com.trebol.travelstats.mappers.CountryMapper;
 import com.trebol.travelstats.repositories.CountryRepository;
 import com.trebol.travelstats.utils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class CountryServiceImplTest {
+@ExtendWith(SpringExtension.class)
+class CountryServiceImplTest {
 
     private static final List<Country> COUNTRIES_FROM_DB = TestUtils.createCountryList();
     private static final List<CountryDTO> COUNTRIES_EXPECTED = TestUtils.createCountryDTOList();
@@ -30,13 +30,13 @@ public class CountryServiceImplTest {
 
     private CountryService countryService;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         countryService = new CountryServiceImpl(countryRepository, new CountryMapper());
     }
 
     @Test
-    public void getAllCountries() {
+    void getAllCountries() {
         // given
         when(countryRepository.findAll()).thenReturn(COUNTRIES_FROM_DB);
 
@@ -48,7 +48,7 @@ public class CountryServiceImplTest {
     }
 
     @Test
-    public void getAllCountries_WithEmptyList() {
+    void getAllCountries_WithEmptyList() {
         // given
         when(countryRepository.findAll()).thenReturn(Collections.emptyList());
 

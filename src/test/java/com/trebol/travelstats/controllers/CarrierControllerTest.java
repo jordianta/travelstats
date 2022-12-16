@@ -3,22 +3,21 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.controllers.rest.CarrierController;
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.services.CarrierService;
-import com.trebol.travelstats.utils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createCarrierDTOList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class CarrierControllerTest {
+@ExtendWith(SpringExtension.class)
+class CarrierControllerTest {
 
     private static final List<CarrierDTO> ALL_CARRIERS = createCarrierDTOList();
 
@@ -27,13 +26,13 @@ public class CarrierControllerTest {
 
     private CarrierController carrierController;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         carrierController = new CarrierController(carrierService);
     }
 
     @Test
-    public void getAllCarriers() {
+    void getAllCarriers() {
         // given
         when(carrierService.getAllCarriers()).thenReturn(ALL_CARRIERS);
 

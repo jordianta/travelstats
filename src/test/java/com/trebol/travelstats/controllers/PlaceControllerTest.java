@@ -3,22 +3,22 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.controllers.rest.PlaceController;
 import com.trebol.travelstats.datatransferobjects.PlaceDTO;
 import com.trebol.travelstats.services.PlaceService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutIdDTO;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceDTOList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class PlaceControllerTest {
+@ExtendWith(SpringExtension.class)
+class PlaceControllerTest {
 
     private static final List<PlaceDTO> PLACES_EXPECTED = createPlaceDTOList();
 
@@ -27,13 +27,13 @@ public class PlaceControllerTest {
 
     private PlaceController placeController;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         placeController = new PlaceController(placeService);
     }
 
     @Test
-    public void getAllPlaces() {
+    void getAllPlaces() {
         // given
         when(placeService.getAllPlaces()).thenReturn(PLACES_EXPECTED);
 
@@ -42,7 +42,7 @@ public class PlaceControllerTest {
     }
 
     @Test
-    public void deletePlace() {
+    void deletePlace() {
         // when
         placeController.deletePlace(1L);
 
@@ -51,7 +51,7 @@ public class PlaceControllerTest {
     }
 
     @Test
-    public void addPlace() {
+    void addPlace() {
         // given
         final var placeDTO = createNYPlaceWithoutIdDTO();
         // when

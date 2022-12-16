@@ -11,10 +11,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @Service
@@ -31,11 +31,9 @@ public class DBUserDetailsService implements UserDetailsService {
     }
 
     private List<GrantedAuthority> getUserAuthority(final Set<Role> userRoles) {
-        final Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
-        for (final var role : userRoles) {
-            roles.add(new SimpleGrantedAuthority(role.getName()));
-        }
-        return new ArrayList<>(roles);
+        return userRoles.stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getName())).distinct()
+                        .collect(toList());
     }
 
     private UserDetails buildUserForAuthentication(final User user, final List<GrantedAuthority> authorities) {

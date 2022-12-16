@@ -4,11 +4,11 @@ import com.trebol.travelstats.datatransferobjects.PlaceDTO;
 import com.trebol.travelstats.domainobjects.Place;
 import com.trebol.travelstats.mappers.PlaceMapper;
 import com.trebol.travelstats.repositories.PlaceRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
@@ -16,14 +16,14 @@ import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutId;
 import static com.trebol.travelstats.utils.TestUtils.createNYPlaceWithoutIdDTO;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceDTOList;
 import static com.trebol.travelstats.utils.TestUtils.createPlaceList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class PlaceServiceImplTest {
+@ExtendWith(SpringExtension.class)
+class PlaceServiceImplTest {
 
     private static final List<Place> PLACES_FROM_DB = createPlaceList();
     private static final List<PlaceDTO> PLACES_EXPECTED = createPlaceDTOList();
@@ -33,13 +33,13 @@ public class PlaceServiceImplTest {
 
     private PlaceService placeService;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         placeService = new PlaceServiceImpl(placeRepository, new PlaceMapper());
     }
 
     @Test
-    public void getAllPlaces() {
+    void getAllPlaces() {
         // given
         when(placeRepository.findAll()).thenReturn(PLACES_FROM_DB);
 
@@ -51,7 +51,7 @@ public class PlaceServiceImplTest {
     }
 
     @Test
-    public void getAllCountries_WithEmptyList() {
+    void getAllCountries_WithEmptyList() {
         // given
         when(placeRepository.findAll()).thenReturn(List.of());
 
@@ -63,7 +63,7 @@ public class PlaceServiceImplTest {
     }
 
     @Test
-    public void deletePlace() {
+    void deletePlace() {
         // when
         placeService.deleteById(1L);
 
@@ -72,7 +72,7 @@ public class PlaceServiceImplTest {
     }
 
     @Test
-    public void addPlace() {
+    void addPlace() {
         // given
         final var placeDTO = createNYPlaceWithoutIdDTO();
 

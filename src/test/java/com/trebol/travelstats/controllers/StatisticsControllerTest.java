@@ -4,20 +4,20 @@ import com.trebol.travelstats.controllers.rest.StatisticsController;
 import com.trebol.travelstats.datatransferobjects.StatsByCarrierDTO;
 import com.trebol.travelstats.datatransferobjects.StatsByYearDTO;
 import com.trebol.travelstats.services.StatisticsService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class StatisticsControllerTest {
+@ExtendWith(SpringExtension.class)
+class StatisticsControllerTest {
 
     @Mock
     private StatisticsService statisticsService;
@@ -25,14 +25,14 @@ public class StatisticsControllerTest {
     private StatisticsController statisticsController;
 
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         statisticsController = new StatisticsController(statisticsService);
     }
 
 
     @Test
-    public void flightsByCarrier() {
+    void flightsByCarrier() {
         // given
         when(statisticsService.getFlightsByCarrier()).thenReturn(createStatsByCarrierDTOList());
 
@@ -41,19 +41,19 @@ public class StatisticsControllerTest {
 
         // then
         assertEquals("Qantas Airways", statsByCarrierDTOList.get(0).getCarrier());
-        assertEquals(Integer.valueOf(10000), statsByCarrierDTOList.get(0).getDistance());
-        assertEquals(Integer.valueOf(4), statsByCarrierDTOList.get(0).getFlights());
-        assertEquals(Integer.valueOf(2500), statsByCarrierDTOList.get(0).getAverage());
+        assertEquals(10000, statsByCarrierDTOList.get(0).getDistance());
+        assertEquals(4, statsByCarrierDTOList.get(0).getFlights());
+        assertEquals(2500, statsByCarrierDTOList.get(0).getAverage());
 
         assertEquals("American Airlines", statsByCarrierDTOList.get(1).getCarrier());
-        assertEquals(Integer.valueOf(64000), statsByCarrierDTOList.get(1).getDistance());
-        assertEquals(Integer.valueOf(8), statsByCarrierDTOList.get(1).getFlights());
-        assertEquals(Integer.valueOf(8000), statsByCarrierDTOList.get(1).getAverage());
+        assertEquals(64000, statsByCarrierDTOList.get(1).getDistance());
+        assertEquals(8, statsByCarrierDTOList.get(1).getFlights());
+        assertEquals(8000, statsByCarrierDTOList.get(1).getAverage());
     }
 
 
     @Test
-    public void flightsByYear() {
+    void flightsByYear() {
         // given
         when(statisticsService.getFlightsByYear()).thenReturn(createStatsByYearDTOList());
 
@@ -62,13 +62,13 @@ public class StatisticsControllerTest {
 
         // then
         // then
-        assertEquals(Integer.valueOf(1996), statsByYearDTOList.get(0).getYear());
-        assertEquals(Integer.valueOf(10000), statsByYearDTOList.get(0).getDistance());
-        assertEquals(Integer.valueOf(4), statsByYearDTOList.get(0).getFlights());
+        assertEquals(1996, statsByYearDTOList.get(0).getYear());
+        assertEquals(10000, statsByYearDTOList.get(0).getDistance());
+        assertEquals(4, statsByYearDTOList.get(0).getFlights());
 
-        assertEquals(Integer.valueOf(1997), statsByYearDTOList.get(1).getYear());
-        assertEquals(Integer.valueOf(64000), statsByYearDTOList.get(1).getDistance());
-        assertEquals(Integer.valueOf(8), statsByYearDTOList.get(1).getFlights());
+        assertEquals(1997, statsByYearDTOList.get(1).getYear());
+        assertEquals(64000, statsByYearDTOList.get(1).getDistance());
+        assertEquals(8, statsByYearDTOList.get(1).getFlights());
     }
 
 

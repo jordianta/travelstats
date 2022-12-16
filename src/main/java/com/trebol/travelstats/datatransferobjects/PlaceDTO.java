@@ -1,12 +1,9 @@
 package com.trebol.travelstats.datatransferobjects;
 
-import lombok.Value;
+public record PlaceDTO(
+        Long id,
+        String name,
+        Float latitude,
+        Float longitude) {
 
-@Value
-public class PlaceDTO {
-
-    Long id;
-    String name;
-    Float latitude;
-    Float longitude;
 }

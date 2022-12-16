@@ -4,22 +4,21 @@ import com.trebol.travelstats.controllers.rest.FlightController;
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.services.FlightService;
 import com.trebol.travelstats.utils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createFlightDTOList;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class FlightControllerTest {
+@ExtendWith(SpringExtension.class)
+class FlightControllerTest {
 
     private static final List<FlightDTO> FLIGHTS_EXPECTED = createFlightDTOList();
 
@@ -28,13 +27,13 @@ public class FlightControllerTest {
 
     private FlightController flightController;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         flightController = new FlightController(flightService);
     }
 
     @Test
-    public void getAllFlights() {
+    void getAllFlights() {
         // given
         when(flightService.getAllFlights()).thenReturn(FLIGHTS_EXPECTED);
 
@@ -43,7 +42,7 @@ public class FlightControllerTest {
     }
 
     @Test
-    public void addFlight() {
+    void addFlight() {
         // given
         final var flightDTO = TestUtils.createBCNToJFKFlightDTO();
 
@@ -51,11 +50,11 @@ public class FlightControllerTest {
         flightController.addFlight(flightDTO);
 
         // then
-        verify(flightService, times(1)).createFlight(flightDTO);
+        verify(flightService).createFlight(flightDTO);
     }
 
     @Test
-    public void removeFlight() {
+    void removeFlight() {
         // given
         final Long flightId = 1L;
 
@@ -63,7 +62,7 @@ public class FlightControllerTest {
         flightController.deleteFlight(flightId);
 
         // then
-        verify(flightService, times(1)).deleteFlight(flightId);
+        verify(flightService).deleteFlight(flightId);
     }
 
 }

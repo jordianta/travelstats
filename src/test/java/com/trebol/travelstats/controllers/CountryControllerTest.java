@@ -3,22 +3,21 @@ package com.trebol.travelstats.controllers;
 import com.trebol.travelstats.controllers.rest.CountryController;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.services.CountryService;
-import com.trebol.travelstats.utils.TestUtils;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static com.trebol.travelstats.utils.TestUtils.createCountryDTOList;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-public class CountryControllerTest {
+@ExtendWith(SpringExtension.class)
+class CountryControllerTest {
 
     private static final List<CountryDTO> ALL_COUNTRIES = createCountryDTOList();
 
@@ -27,13 +26,13 @@ public class CountryControllerTest {
 
     private CountryController countryController;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         countryController = new CountryController(countryService);
     }
 
     @Test
-    public void getAllCountries() {
+    void getAllCountries() {
         // given
         when(countryService.getAllCountries()).thenReturn(ALL_COUNTRIES);
 
