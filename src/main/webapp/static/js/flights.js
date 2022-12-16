@@ -250,3 +250,15 @@ function addFlight() {
         contentType: "application/json"
     });
 }
+
+function swapBySelectedIndex( selector1, selector2 ) {
+  // get both elements and save the selectedIndex of the first element
+  var elem1 = document.querySelector(selector1),
+      elem2 = document.querySelector(selector2),
+      selectedOption1 = elem1.selectedIndex;
+
+  // set the first element to the second elements selectedIndex
+  elem1.selectedIndex = elem2.selectedIndex;
+  // set the second elements' selectedIndex to the saved index
+  elem2.selectedIndex = selectedOption1;
+}

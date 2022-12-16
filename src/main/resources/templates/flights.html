@@ -37,7 +37,7 @@
             <h1>Add a new Flight </h1>
                 <form id="addFlightForm">
                     <p><label>Origin:</label><select id="origin" name="origin[id]"></select></p>
-                    <p><label>Destination:</label><select id="destination" name="destination[id]"></select></p>
+                    <p><label>Destination:</label><select id="destination" name="destination[id]"></select>&nbsp;<button type="button" onClick="swapBySelectedIndex('select[name=\'origin\']', 'select[name=\'destination\']')">Swap</button></p>
                     <p><label>Carrier:</label> <select id="carrier" name="carrier[id]"></select></p>
                     <p><label>Distance:</label> <input type="text" id="distance" name="distance" class="custom-combobox-input"/></p>
                     <p><label>Duration&nbsp;(03:02:00):</label> <input type="text" id="duration" name="duration" class="custom-combobox-input"/></p>
