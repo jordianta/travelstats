@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @AllArgsConstructor
 @Service
 public class AirportServiceImpl implements AirportService {
@@ -24,6 +22,6 @@ public class AirportServiceImpl implements AirportService {
         return airportRepository.findAll()
                                 .stream()
                                 .map(airport -> airportMapper.map(airport, AirportDTO.class))
-                                .collect(toList());
+                                .toList();
     }
 }

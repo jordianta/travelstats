@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @AllArgsConstructor
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -24,6 +22,6 @@ public class CountryServiceImpl implements CountryService {
         return countryRepository.findAll()
                                 .stream()
                                 .map(airport -> countryMapper.map(airport, CountryDTO.class))
-                                .collect(toList());
+                                .toList();
     }
 }

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @AllArgsConstructor
 @Service
 public class FlightServiceImpl implements FlightService {
@@ -23,7 +21,7 @@ public class FlightServiceImpl implements FlightService {
         return flightRepository.findAllByOrderByDateAsc()
                                .stream()
                                .map(airport -> flightMapper.map(airport, FlightDTO.class))
-                               .collect(toList());
+                               .toList();
     }
 
     @Override

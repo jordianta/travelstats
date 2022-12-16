@@ -17,7 +17,6 @@ import java.util.function.Function;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 
 @AllArgsConstructor
 @Service
@@ -35,8 +34,8 @@ public class StatisticsServiceImpl implements StatisticsService {
                         .forEach((carrier, flights) -> statsByCarrierDTOList.add(createStatsByCarrierDTO(carrier, flights)));
 
         return statsByCarrierDTOList.stream()
-                                    .sorted(comparing(StatsByCarrierDTO::getCarrier))
-                                    .collect(toList());
+                                    .sorted(comparing(StatsByCarrierDTO::carrier))
+                                    .toList();
     }
 
 
@@ -51,8 +50,8 @@ public class StatisticsServiceImpl implements StatisticsService {
                         .forEach((year, flights) -> statsByYearDTOList.add(createStatsByYearDTO(year, flights)));
 
         return statsByYearDTOList.stream()
-                                 .sorted(comparing(StatsByYearDTO::getYear))
-                                 .collect(toList());
+                                 .sorted(comparing(StatsByYearDTO::year))
+                                 .toList();
     }
 
     @Override
@@ -67,7 +66,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
         return airports.values().stream()
                        .sorted(comparing(StatsByAirportDTO::getName))
-                       .collect(toList());
+                       .toList();
     }
 
 

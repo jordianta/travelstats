@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @AllArgsConstructor
 @Service
 public class CarrierServiceImpl implements CarrierService {
@@ -24,6 +22,6 @@ public class CarrierServiceImpl implements CarrierService {
         return carrierRepository.findAll()
                                 .stream()
                                 .map(airport -> carrierMapper.map(airport, CarrierDTO.class))
-                                .collect(toList());
+                                .toList();
     }
 }

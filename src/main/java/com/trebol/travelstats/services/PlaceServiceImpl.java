@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @AllArgsConstructor
 @Service
 public class PlaceServiceImpl implements PlaceService {
@@ -23,7 +21,7 @@ public class PlaceServiceImpl implements PlaceService {
         return placeRepository.findAll()
                               .stream()
                               .map(place -> placeMapper.map(place, PlaceDTO.class))
-                              .collect(toList());
+                              .toList();
     }
 
     @Override

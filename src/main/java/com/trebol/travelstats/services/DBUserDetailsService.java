@@ -32,7 +32,8 @@ public class DBUserDetailsService implements UserDetailsService {
 
     private List<GrantedAuthority> getUserAuthority(final Set<Role> userRoles) {
         return userRoles.stream()
-                        .map(role -> new SimpleGrantedAuthority(role.getName())).distinct()
+                        .map(role -> new SimpleGrantedAuthority(role.getName()))
+                        .distinct()
                         .collect(toList());
     }
 
