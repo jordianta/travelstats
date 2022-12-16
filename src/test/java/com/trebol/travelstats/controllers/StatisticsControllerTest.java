@@ -40,15 +40,15 @@ class StatisticsControllerTest {
         final var statsByCarrierDTOList = statisticsController.getFlightsByCarrier();
 
         // then
-        assertEquals("Qantas Airways", statsByCarrierDTOList.get(0).getCarrier());
-        assertEquals(10000, statsByCarrierDTOList.get(0).getDistance());
-        assertEquals(4, statsByCarrierDTOList.get(0).getFlights());
-        assertEquals(2500, statsByCarrierDTOList.get(0).getAverage());
+        assertEquals("Qantas Airways", statsByCarrierDTOList.get(0).carrier());
+        assertEquals(10000, statsByCarrierDTOList.get(0).distance());
+        assertEquals(4, statsByCarrierDTOList.get(0).flights());
+        assertEquals(2500, statsByCarrierDTOList.get(0).average());
 
-        assertEquals("American Airlines", statsByCarrierDTOList.get(1).getCarrier());
-        assertEquals(64000, statsByCarrierDTOList.get(1).getDistance());
-        assertEquals(8, statsByCarrierDTOList.get(1).getFlights());
-        assertEquals(8000, statsByCarrierDTOList.get(1).getAverage());
+        assertEquals("American Airlines", statsByCarrierDTOList.get(1).carrier());
+        assertEquals(64000, statsByCarrierDTOList.get(1).distance());
+        assertEquals(8, statsByCarrierDTOList.get(1).flights());
+        assertEquals(8000, statsByCarrierDTOList.get(1).average());
     }
 
 
@@ -62,13 +62,13 @@ class StatisticsControllerTest {
 
         // then
         // then
-        assertEquals(1996, statsByYearDTOList.get(0).getYear());
-        assertEquals(10000, statsByYearDTOList.get(0).getDistance());
-        assertEquals(4, statsByYearDTOList.get(0).getFlights());
+        assertEquals(1996, statsByYearDTOList.get(0).year());
+        assertEquals(10000, statsByYearDTOList.get(0).distance());
+        assertEquals(4, statsByYearDTOList.get(0).flights());
 
-        assertEquals(1997, statsByYearDTOList.get(1).getYear());
-        assertEquals(64000, statsByYearDTOList.get(1).getDistance());
-        assertEquals(8, statsByYearDTOList.get(1).getFlights());
+        assertEquals(1997, statsByYearDTOList.get(1).year());
+        assertEquals(64000, statsByYearDTOList.get(1).distance());
+        assertEquals(8, statsByYearDTOList.get(1).flights());
     }
 
 

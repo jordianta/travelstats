@@ -77,11 +77,11 @@ class FlightServiceImplTest {
         // then
         verify(flightRepository, times(1)).save(createArgumentCaptor.capture());
         final var flightStored = createArgumentCaptor.getValue();
-        assertEquals(flightDTO.getNumber(), flightStored.getNumber());
-        assertEquals(flightDTO.getDistance(), flightStored.getDistance());
-        assertEquals(flightDTO.getCarrier().getIataCode(), flightStored.getCarrier().getIataCode());
-        assertEquals(flightDTO.getOrigin().getIataCode(), flightStored.getOrigin().getIataCode());
-        assertEquals(flightDTO.getDestination().getIataCode(), flightStored.getDestination().getIataCode());
+        assertEquals(flightDTO.number(), flightStored.getNumber());
+        assertEquals(flightDTO.distance(), flightStored.getDistance());
+        assertEquals(flightDTO.carrier().iataCode(), flightStored.getCarrier().getIataCode());
+        assertEquals(flightDTO.origin().iataCode(), flightStored.getOrigin().getIataCode());
+        assertEquals(flightDTO.destination().iataCode(), flightStored.getDestination().getIataCode());
     }
 
     @Test
