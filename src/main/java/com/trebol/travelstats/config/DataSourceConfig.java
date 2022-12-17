@@ -8,27 +8,27 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 @Configuration
 @Slf4j
 public class DataSourceConfig {
 
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
     @Bean
     @Primary
-    public DataSource getDataSource() throws URISyntaxException {
+    public DataSource getDataSource() {
 
-        final var dbUri = new URI(System.getenv("JAWSDB_URL"));
-        log.info("dbUri: {}", dbUri);
-
-        final var username = dbUri.getUserInfo().split(":")[0];
-        final var password = dbUri.getUserInfo().split(":")[1];
-        final var dbUrl = "jdbc:mysql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath() + "?enabledTLSProtocols=TLSv1.2";
+        final var port = System.getenv("DATABASE_PORT");
+        final var host = System.getenv("DATABASE_HOST");
+        final var databaseName = System.getenv("DATABASE_NAME");
+        final var username = System.getenv("DATABASE_USERNAME");
+        final var password = System.getenv("DATABASE_PASSWORD");
+        final var dbUrl = "jdbc:mysql://" + host + ":" + port + "/" + databaseName + "?enabledTLSProtocols=TLSv1.2";
+        log.info("port: {}", port);
+        log.info("host: {}", host);
+        log.info("databaseName: {}", databaseName);
         log.info("username: {}", username);
-        log.info("password: {}", password);
         log.info("dbUrl: {}", dbUrl);
 
         return DataSourceBuilder
