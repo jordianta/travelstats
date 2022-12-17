@@ -1,45 +1,32 @@
 package com.trebol.travelstats.integration;
 
-import com.trebol.travelstats.TravelStatsApplication;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.jdbc.Sql;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-@SpringBootTest(classes = TravelStatsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:sql/clean_database.sql", "classpath:sql/insert_countries.sql", "classpath:sql/insert_airports.sql", "classpath:sql/insert_carriers.sql", "classpath:sql/insert_flights.sql"})
-class StatisticsIntegrationTest {
+
+class StatisticsIntegrationTest extends AbstractIntegrationTest {
 
     private static final String STATS_BY_CARRIER_EXPECTED = "[" +
-            "{\"carrier\":\"Qantas Airways\",\"flights\":1,\"distance\":7100,\"average\":7100}" +
-            "]";
+                                                            "{\"carrier\":\"American Airlines\",\"flights\":1,\"distance\":7000,\"average\":7000,\"time\":8.0,\"averageTime\":8.0}," +
+                                                            "{\"carrier\":\"Qantas Airways\",\"flights\":1,\"distance\":7100,\"average\":7100,\"time\":8.0,\"averageTime\":8.0}" +
+                                                            "]";
 
-    private static final String STATS_BY_YEAR_EXPECTED = "[{\"year\":1996,\"flights\":2,\"distance\":14100}]";
+    private static final String STATS_BY_YEAR_EXPECTED = "[{\"year\":1996,\"flights\":2,\"distance\":14100,\"time\":16.0,\"averageTime\":8.0}]";
 
-    private RequestSpecification requestSpecification;
 
-    @BeforeEach
-    void setUp() {
-        requestSpecification = new RequestSpecBuilder()
-                .setBasePath("api/stats")
-                .build();
+    @Override
+    protected String getBasePath() {
+        return "api/stats";
     }
 
     @Test
     void flightsByCarrier() {
-        given()
-                .accept(ContentType.JSON)
-                .spec(requestSpecification)
+        createGiven()
 
                 .when()
-                .get("/flights/carrier/")
+                .get("/flights/carrier")
 
                 .then()
                 .statusCode(HttpStatus.OK.value())
@@ -48,12 +35,10 @@ class StatisticsIntegrationTest {
 
     @Test
     void flightsByYear() {
-        given()
-                .accept(ContentType.JSON)
-                .spec(requestSpecification)
+        createGiven()
 
                 .when()
-                .get("/flights/year/")
+                .get("/flights/year")
 
                 .then()
                 .statusCode(HttpStatus.OK.value())
