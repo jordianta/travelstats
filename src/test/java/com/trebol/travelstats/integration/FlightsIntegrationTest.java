@@ -7,7 +7,6 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -28,9 +27,6 @@ class FlightsIntegrationTest {
     private static final String FLIGHT_TO_INSERT = "{\"origin\":{\"id\":578}, \"destination\":{\"id\":3408}, \"carrier\":{\"id\":209},\"date\":\"23-10-2006\",\"distance\":7000,\"duration\":\"08:00:00\",\"number\":\"AA25\"}";
 
     private RequestSpecification requestSpecification;
-
-    @LocalServerPort
-    private int port;
 
     @BeforeEach
     void setUp() {

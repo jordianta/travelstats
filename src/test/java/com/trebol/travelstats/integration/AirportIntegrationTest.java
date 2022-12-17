@@ -7,7 +7,6 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -26,13 +25,9 @@ class AirportIntegrationTest {
 
     private RequestSpecification requestSpecification;
 
-    @LocalServerPort
-    private int port;
-
     @BeforeEach
     void setUp() {
         requestSpecification = new RequestSpecBuilder()
-                .setPort(port)
                 .addHeader("Content-Type", ContentType.JSON.getAcceptHeader())
                 .setBasePath("api/airports")
                 .build();
