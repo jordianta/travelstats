@@ -3,12 +3,15 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.domainobjects.Carrier;
 import com.trebol.travelstats.mappers.CarrierMapper;
+import com.trebol.travelstats.mappers.CarrierMapperImpl;
 import com.trebol.travelstats.repositories.CarrierRepository;
 import com.trebol.travelstats.utils.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -20,6 +23,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = CarrierMapperImpl.class)
 class CarrierServiceImplTest {
 
     private static final List<Carrier> CARRIERS_FROM_DB = TestUtils.createCarrierList();
@@ -28,11 +32,14 @@ class CarrierServiceImplTest {
     @Mock
     private CarrierRepository carrierRepository;
 
+    @Autowired
+    private CarrierMapper carrierMapper;
+
     private CarrierService carrierService;
 
     @BeforeEach
     void setUp() {
-        carrierService = new CarrierServiceImpl(carrierRepository, new CarrierMapper());
+        carrierService = new CarrierServiceImpl(carrierRepository, carrierMapper);
     }
 
     @Test

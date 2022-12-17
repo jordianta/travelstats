@@ -2,17 +2,15 @@ package com.trebol.travelstats.mappers;
 
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.domainobjects.Airport;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class AirportMapper extends ConfigurableMapper {
+import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
+import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-    protected void configure(final MapperFactory factory) {
+@Mapper(componentModel = SPRING, injectionStrategy = CONSTRUCTOR, uses = CountryMapper.class)
+public interface AirportMapper {
 
-        factory.classMap(Airport.class, AirportDTO.class)
-               .byDefault()
-               .register();
-    }
+    Airport map(AirportDTO airportDTO);
+
+    AirportDTO map(Airport airport);
 }

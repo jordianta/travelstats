@@ -1,7 +1,6 @@
 package com.trebol.travelstats.services;
 
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
-import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.mappers.FlightMapper;
 import com.trebol.travelstats.repositories.FlightRepository;
 import lombok.AllArgsConstructor;
@@ -20,13 +19,13 @@ public class FlightServiceImpl implements FlightService {
     public List<FlightDTO> getAllFlights() {
         return flightRepository.findAllByOrderByDateAsc()
                                .stream()
-                               .map(airport -> flightMapper.map(airport, FlightDTO.class))
+                               .map(flightMapper::map)
                                .toList();
     }
 
     @Override
     public void createFlight(final FlightDTO flightDTO) {
-        final var flight = flightMapper.map(flightDTO, Flight.class);
+        final var flight = flightMapper.map(flightDTO);
         flightRepository.save(flight);
     }
 

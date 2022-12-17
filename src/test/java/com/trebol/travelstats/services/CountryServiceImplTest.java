@@ -3,12 +3,15 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.domainobjects.Country;
 import com.trebol.travelstats.mappers.CountryMapper;
+import com.trebol.travelstats.mappers.CountryMapperImpl;
 import com.trebol.travelstats.repositories.CountryRepository;
 import com.trebol.travelstats.utils.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -20,6 +23,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = CountryMapperImpl.class)
 class CountryServiceImplTest {
 
     private static final List<Country> COUNTRIES_FROM_DB = TestUtils.createCountryList();
@@ -28,11 +32,14 @@ class CountryServiceImplTest {
     @Mock
     private CountryRepository countryRepository;
 
+    @Autowired
+    private CountryMapper countryMapper;
+
     private CountryService countryService;
 
     @BeforeEach
     void setUp() {
-        countryService = new CountryServiceImpl(countryRepository, new CountryMapper());
+        countryService = new CountryServiceImpl(countryRepository, countryMapper);
     }
 
     @Test

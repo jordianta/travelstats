@@ -2,17 +2,15 @@ package com.trebol.travelstats.mappers;
 
 import com.trebol.travelstats.datatransferobjects.CountryDTO;
 import com.trebol.travelstats.domainobjects.Country;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class CountryMapper extends ConfigurableMapper {
+import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
+import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-    protected void configure(final MapperFactory factory) {
+@Mapper(componentModel = SPRING, injectionStrategy = CONSTRUCTOR)
+public interface CountryMapper {
 
-        factory.classMap(Country.class, CountryDTO.class)
-               .byDefault()
-               .register();
-    }
+    Country map(CountryDTO countryDTO);
+
+    CountryDTO map(Country country);
 }

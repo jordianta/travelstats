@@ -2,7 +2,11 @@ package com.trebol.travelstats.services;
 
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.domainobjects.Flight;
+import com.trebol.travelstats.mappers.AirportMapperImpl;
+import com.trebol.travelstats.mappers.CarrierMapperImpl;
+import com.trebol.travelstats.mappers.CountryMapperImpl;
 import com.trebol.travelstats.mappers.FlightMapper;
+import com.trebol.travelstats.mappers.FlightMapperImpl;
 import com.trebol.travelstats.repositories.FlightRepository;
 import com.trebol.travelstats.utils.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -24,6 +30,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {FlightMapperImpl.class, AirportMapperImpl.class, CarrierMapperImpl.class, CountryMapperImpl.class})
 class FlightServiceImplTest {
 
     private static final List<Flight> FLIGHTS_FROM_DB = TestUtils.createFlightList();
@@ -35,11 +42,14 @@ class FlightServiceImplTest {
     @Mock
     private FlightRepository flightRepository;
 
+    @Autowired
+    private FlightMapper flightMapper;
+
     private FlightService flightService;
 
     @BeforeEach
     void setUp() {
-        flightService = new FlightServiceImpl(flightRepository, new FlightMapper());
+        flightService = new FlightServiceImpl(flightRepository, flightMapper);
     }
 
     @Test

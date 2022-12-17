@@ -3,11 +3,14 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.PlaceDTO;
 import com.trebol.travelstats.domainobjects.Place;
 import com.trebol.travelstats.mappers.PlaceMapper;
+import com.trebol.travelstats.mappers.PlaceMapperImpl;
 import com.trebol.travelstats.repositories.PlaceRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -23,6 +26,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = PlaceMapperImpl.class)
 class PlaceServiceImplTest {
 
     private static final List<Place> PLACES_FROM_DB = createPlaceList();
@@ -31,11 +35,14 @@ class PlaceServiceImplTest {
     @Mock
     private PlaceRepository placeRepository;
 
+    @Autowired
+    private PlaceMapper placeMapper;
+
     private PlaceService placeService;
 
     @BeforeEach
     void setUp() {
-        placeService = new PlaceServiceImpl(placeRepository, new PlaceMapper());
+        placeService = new PlaceServiceImpl(placeRepository, placeMapper);
     }
 
     @Test

@@ -21,7 +21,7 @@ public class AirportServiceImpl implements AirportService {
     public List<AirportDTO> getAllAirports() {
         return airportRepository.findAll()
                                 .stream()
-                                .map(airport -> airportMapper.map(airport, AirportDTO.class))
+                                .map(airportMapper::map)
                                 .toList();
     }
 }

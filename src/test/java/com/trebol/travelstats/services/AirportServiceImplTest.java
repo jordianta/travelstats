@@ -3,12 +3,16 @@ package com.trebol.travelstats.services;
 import com.trebol.travelstats.datatransferobjects.AirportDTO;
 import com.trebol.travelstats.domainobjects.Airport;
 import com.trebol.travelstats.mappers.AirportMapper;
+import com.trebol.travelstats.mappers.AirportMapperImpl;
+import com.trebol.travelstats.mappers.CountryMapperImpl;
 import com.trebol.travelstats.repositories.AirportRepository;
 import com.trebol.travelstats.utils.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -20,6 +24,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {AirportMapperImpl.class, CountryMapperImpl.class})
 class AirportServiceImplTest {
 
     private static final List<Airport> AIRPORTS_FROM_DB = TestUtils.createAirportList();
@@ -28,11 +33,14 @@ class AirportServiceImplTest {
     @Mock
     private AirportRepository airportRepository;
 
+    @Autowired
+    private AirportMapper airportMapper;
+
     private AirportService airportService;
 
     @BeforeEach
     void setUp() {
-        airportService = new AirportServiceImpl(airportRepository, new AirportMapper());
+        airportService = new AirportServiceImpl(airportRepository, airportMapper);
     }
 
     @Test

@@ -2,24 +2,18 @@ package com.trebol.travelstats.mappers;
 
 import com.trebol.travelstats.datatransferobjects.FlightDTO;
 import com.trebol.travelstats.domainobjects.Flight;
-import com.trebol.travelstats.mappers.converters.DateConverter;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Component
-public class FlightMapper extends ConfigurableMapper {
+import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
+import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-    private static final String DATE_CONVERTER_ID = "dateConverter";
+@Mapper(componentModel = SPRING, injectionStrategy = CONSTRUCTOR, uses = {AirportMapper.class, CarrierMapper.class})
+public interface FlightMapper {
 
-    protected void configure(final MapperFactory mapperFactory) {
+    @Mapping(target = "date", source = "date", dateFormat = "dd-MM-yyyy")
+    Flight map(FlightDTO flightDTO);
 
-        final var converterFactory = mapperFactory.getConverterFactory();
-        converterFactory.registerConverter(DATE_CONVERTER_ID, new DateConverter());
-
-        mapperFactory.classMap(Flight.class, FlightDTO.class)
-                     .fieldMap("date").converter(DATE_CONVERTER_ID).add()
-                     .byDefault()
-                     .register();
-    }
+    @Mapping(target = "date", source = "date", dateFormat = "dd-MM-yyyy")
+    FlightDTO map(Flight flight);
 }

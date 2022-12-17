@@ -2,17 +2,15 @@ package com.trebol.travelstats.mappers;
 
 import com.trebol.travelstats.datatransferobjects.CarrierDTO;
 import com.trebol.travelstats.domainobjects.Carrier;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.impl.ConfigurableMapper;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 
-@Component
-public class CarrierMapper extends ConfigurableMapper {
+import static org.mapstruct.InjectionStrategy.CONSTRUCTOR;
+import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-    protected void configure(final MapperFactory factory) {
+@Mapper(componentModel = SPRING, injectionStrategy = CONSTRUCTOR)
+public interface CarrierMapper {
 
-        factory.classMap(Carrier.class, CarrierDTO.class)
-               .byDefault()
-               .register();
-    }
+    Carrier map(CarrierDTO carrierDTO);
+
+    CarrierDTO map(Carrier carrier);
 }

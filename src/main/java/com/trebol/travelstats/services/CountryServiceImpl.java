@@ -21,7 +21,7 @@ public class CountryServiceImpl implements CountryService {
     public List<CountryDTO> getAllCountries() {
         return countryRepository.findAll()
                                 .stream()
-                                .map(airport -> countryMapper.map(airport, CountryDTO.class))
+                                .map(countryMapper::map)
                                 .toList();
     }
 }

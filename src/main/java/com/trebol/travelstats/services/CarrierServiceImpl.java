@@ -21,7 +21,7 @@ public class CarrierServiceImpl implements CarrierService {
     public List<CarrierDTO> getAllCarriers() {
         return carrierRepository.findAll()
                                 .stream()
-                                .map(airport -> carrierMapper.map(airport, CarrierDTO.class))
+                                .map(carrierMapper::map)
                                 .toList();
     }
 }
