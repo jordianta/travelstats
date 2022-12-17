@@ -7,7 +7,6 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -25,9 +24,6 @@ class StatisticsIntegrationTest {
     private static final String STATS_BY_YEAR_EXPECTED = "[{\"year\":1996,\"flights\":2,\"distance\":14100}]";
 
     private RequestSpecification requestSpecification;
-
-    @LocalServerPort
-    private int port;
 
     @BeforeEach
     void setUp() {
