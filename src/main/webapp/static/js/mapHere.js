@@ -51,7 +51,7 @@ function loadPlaces() {
 	
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/places/",
+						url: "/api/places",
 						async: false
 					}).responseText;
 	
@@ -118,7 +118,7 @@ function createCandidatePlaceContent(latitude, longitude, description) {
 function addPlace(latitude, longitude, name) {
     $.ajax({
         type: "POST",
-        url: "/api/places/",
+        url: "/api/places",
         data: JSON.stringify({ "latitude": latitude, "longitude": longitude, "name": name }),
 	    contentType: "application/json; charset=utf-8",
         success: function(msg){

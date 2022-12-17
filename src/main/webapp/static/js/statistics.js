@@ -7,7 +7,7 @@ function loadFlightsStatsByYear() {
 	
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/stats/flights/year/",
+						url: "/api/stats/flights/year",
 						async: false
 					}).responseText;
 	
@@ -18,7 +18,7 @@ function loadFlightsStatsByCarrier() {
 	
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/stats/flights/carrier/",
+						url: "/api/stats/flights/carrier",
 						async: false
 					}).responseText;
 	
@@ -29,7 +29,7 @@ function loadAllFlights() {
 
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/flights/",
+						url: "/api/flights",
 						async: false
 					}).responseText;
 
@@ -40,7 +40,7 @@ function loadAirportsStats() {
 
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/stats/airports/",
+						url: "/api/stats/airports",
 						async: false
 					}).responseText;
 

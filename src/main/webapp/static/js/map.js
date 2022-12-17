@@ -357,7 +357,7 @@ function loadFlights() {
 	
 	var serverResponse = $.ajax({
 						dataType: "json",
-						url: "/api/flights/",
+						url: "/api/flights",
 						async: false
 					}).responseText;
 	

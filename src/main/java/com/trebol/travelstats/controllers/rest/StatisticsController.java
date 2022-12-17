@@ -19,17 +19,17 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
-    @GetMapping("/flights/carrier/")
+    @GetMapping("/flights/carrier")
     public List<StatsByCarrierDTO> getFlightsByCarrier() {
         return statisticsService.getFlightsByCarrier();
     }
 
-    @GetMapping("/flights/year/")
+    @GetMapping("/flights/year")
     public List<StatsByYearDTO> getFlightsByYear() {
         return statisticsService.getFlightsByYear();
     }
 
-    @GetMapping("/airports/")
+    @GetMapping("/airports")
     public List<StatsByAirportDTO> getAirports() {
         return statisticsService.getAirports();
     }
