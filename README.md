@@ -1,4 +1,6 @@
 # travelstats
 
 ## Run locally
-Create an environment variable `JAWSDB_URL=mysql://root@12345localhost:3306/travelstats`
+Create the following environment variables in the Spring Boot run 
+
+`DATABASE_PORT=3306;DATABASE_HOST=127.0.0.1;DATABASE_NAME=travelstats;DATABASE_USERNAME=admin;DATABASE_PASSWORD=password`

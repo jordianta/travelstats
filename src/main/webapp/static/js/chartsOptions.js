@@ -78,7 +78,7 @@ Chart.defaults.global = {
     tooltipEvents: ["mousemove", "touchstart", "touchmove"],//["mousemove"],
 
     // String - Tooltip background colour
-    tooltipFillColor: "rgba(0,0,0,0.8)",
+    tooltipFillColor: "#00246B",
 
     // String - Tooltip label font declaration for the scale label
     tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
@@ -87,10 +87,10 @@ Chart.defaults.global = {
     tooltipFontSize: 14,
 
     // String - Tooltip font weight style
-    tooltipFontStyle: "normal",
+    tooltipFontStyle: "bold",
 
     // String - Tooltip label font colour
-    tooltipFontColor: "#fff",
+    tooltipFontColor: "#CADCFC",
 
     // String - Tooltip title font declaration for the scale label
     tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
@@ -117,7 +117,7 @@ Chart.defaults.global = {
     tooltipCornerRadius: 6,
 
     // Number - Pixel offset from point x to tooltip edge
-    tooltipXOffset: 10,
+    tooltipXOffset: 0,
 
     // String - Template string for single tooltips
     tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
@@ -135,7 +135,7 @@ Chart.defaults.global = {
 var lineOptions = {
 
     ///Boolean - Whether grid lines are shown across the chart
-    scaleShowGridLines : false, // true
+    scaleShowGridLines : true, // true
 
     //String - Colour of the grid lines
     scaleGridLineColor : "rgba(0,0,0,.05)",
@@ -249,10 +249,10 @@ var barOptions = {
     barShowStroke : true,
 
     //Number - Pixel width of the bar stroke
-    barStrokeWidth : 2,
+    barStrokeWidth : 1,
 
     //Number - Spacing between each of the X value sets
-    barValueSpacing : 5,
+    barValueSpacing : 1,
 
     //Number - Spacing between data sets within X values
     barDatasetSpacing : 1,

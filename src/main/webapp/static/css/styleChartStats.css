@@ -1,3 +1,6 @@
+.tabs {
+    width: 50%;
+}
 .flightsSummaryColumn {
 	text-align: right;	
 }
@@ -41,7 +44,7 @@
 }
 
 #flightsSummary th{
-	color: #0073EA;
+	color: #00246B;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -49,8 +52,9 @@
 #yearFlightsChart, #yearDistanceChart, #yearAverageChart, #carrierFlightsChart, #carrierDistanceChart, #carrierAverageChart, #yearTimeChart, #yearTimeAverageChart, #timeCarrierChart, #timeCarrierAverageChart {
     width: 75%;
 	height:100%;
-	padding-right: 5%;
-	padding-left: 5%;
+	padding-right: 2%;
+	padding-left: 2%;
+	border-color: black;
 }
 
 #tabs {
@@ -81,7 +85,7 @@
 }
 
 #allFlights th{
-	color: #0073EA;
+	color: #00246B;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -115,7 +119,7 @@
 }
 
 #airportsSummary th{
-	color: #0073EA;
+	color: #00246B;
 	font-size: 13px;
 	font-weight: bold;
 }
@@ -126,4 +130,30 @@
 
 .airportsSummaryColumnRight {
 	text-align: right;
+}
+
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited {
+    background: #CADCFC;
+	color: #00246B !important;
+}
+.ui-widget-header {
+    background: white !important;
+    border: 0px !important;
+}
+
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+	background-color: white;
+    color: #00246B !important;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited, .ui-state-active a:hover{
+    background-color: #00246B !important;
+    color: #CADCFC !important;
 }

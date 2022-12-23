@@ -2,9 +2,9 @@ var DEFAULT_ANIMATION_SPEED = 3000;
 var MAP_CONTAINER = "map-canvas";
 var DATA_MAP_CONTAINER ="datamaps-container";
 var BUBBLE_RADIUS = 10;
-var BUBBLE_COLOR_ORIGIN = "#F845A2";//"rgba(184,33,58, 0.75)";
-var BUBBLE_COLOR_DESTINATION = "#F845A2";//"rgba(184,33,58, 0.75)";//"rgba(255, 0, 0, 0.75)";
-var BUBBLE_COLOR_POINT = "#F845A2";
+var BUBBLE_COLOR_ORIGIN = "#CADCFC";//"rgba(184,33,58, 0.75)";
+var BUBBLE_COLOR_DESTINATION = "#CADCFC";//"rgba(184,33,58, 0.75)";//"rgba(255, 0, 0, 0.75)";
+var BUBBLE_COLOR_POINT = "#00246B";
 var MAXIMUM_NUMBER_OF_ARCHES = 0; // if 0 --> no maximum number of arches
 var FILL_COLOR = "rgb(211, 216, 222)";
 
@@ -90,7 +90,8 @@ var YEARS_COLORS = [
 	{"year":2019, "color": "#" + colorArray[index++]},
 	{"year":2020, "color": "#" + colorArray[index++]},
 	{"year":2021, "color": "#" + colorArray[index++]},
-	{"year":2022, "color": "#" + colorArray[index++]}
+	{"year":2022, "color": "#" + colorArray[index++]},
+    {"year":2023, "color": "#" + colorArray[index++]}
 ];
 
 var mapFills = {};

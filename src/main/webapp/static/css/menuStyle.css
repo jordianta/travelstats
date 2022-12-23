@@ -10,7 +10,7 @@ body {
 
 
 .menu {
-  background: #1F84ED repeat left top;
+  background: #00246B repeat left top;
   left: -200px;
   /* start off behind the scenes */
 
@@ -38,7 +38,7 @@ body {
 }
 
 .menu a {
-  color: #afdefa;
+  color: #CADCFC;
   font-size: 15px;
   text-decoration: none;
   text-transform: uppercase;
@@ -48,13 +48,13 @@ body {
   cursor: pointer;
   padding-left: 10px;
   padding-top: 10px;
-  color: #afdefa;
+  color: #CADCFC;
   font-weight:bold;
 }
 
 .icon-close a {
   cursor : pointer;
-  color: #afdefa;
+  color: #CADCFC;
   font-family: 'Open Sans', sans-serif;
   line-height: 45px;
   padding-bottom: 3px;
@@ -63,7 +63,7 @@ body {
 }
 
 .icon-menu {
-  color: #F845A2;
+  color: #00246B;
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;

@@ -16,7 +16,7 @@
     /*margin: 0px auto 0 auto;*/
 	position:absolute;
     display: table;
-    color: #1F84ED;/*#333;*/
+    color: #00246B;/*#333;*/
 	padding-left:35%;
 /* 	padding-right:5%; */
     vertical-align: middle;
@@ -24,7 +24,7 @@
 
 .flightInfoPanel .panel {
     display: table-row;
-	border-color:#F845A2;
+	border-color:#CADCFC;
 	border: 5px;
 }
 
@@ -89,7 +89,7 @@
 
 .flightInfoPanel .separator > div{
     width: 1px;
-    background: #F845A2;/*white;*/
+    background: #CADCFC;/*white;*/
     position: relative;
     height: 30px;
     display: block;

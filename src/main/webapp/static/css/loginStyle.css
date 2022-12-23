@@ -29,7 +29,7 @@ img{max-width:100%;}
 /*end reset*/
 /****-----start-body----****/
 body{
-	background-color:#1F84ED;
+	background-color:#00246B;
 }
 .main{
 	margin:7em auto 0;
@@ -107,7 +107,7 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	margin-right: 11px;
 }
 .submit input[type="submit"] {
-	background: #F845A2;
+	background: #CADCFC;
 	border: none;
 	outline: none;
 	padding: 0.55em 1.3em 0.6em;
@@ -126,7 +126,7 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	font-weight: 600;
 }
 .submit input[type="submit"]:hover{
-	background:#62A0C4;
+	background:#8AB6F9;
 }
 .forget{
 	float:right;
@@ -308,7 +308,7 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	font-family: Harabara;
 	font-size: 50px;
 	font-weight: bold;
-	color: white;
+	color: #8AB6F9;
 	text-align:center;
 	padding-top: 5%;
 	/*text-transform: uppercase;*/
@@ -319,7 +319,7 @@ input[type="text"]:hover,input[type="Password"]:hover,#active{
 	font-family: Harabara;
 	font-size: 70px;
 	font-weight: bold;
-	color: #F845A2;
+	color: #CADCFC;
 	/*text-transform: uppercase;*/
 }
 

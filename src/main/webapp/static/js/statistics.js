@@ -116,7 +116,8 @@ function createFlightStatsTable() {
 			{ "data": "averageTime" }
 		],
 		"dom": "rtip",
-		"pageLength": 20,
+		"pageLength": 30,
+       // "scrollY": 800,
 		"orderClasses": true,
 		"columnDefs": [{
 						  "targets": [0,1],
@@ -478,12 +479,12 @@ function createLineChart(dataValues, labelsValues, labelName, canvasID) {
 		datasets: [
 			{
 				label: labelName,
-				fillColor: "rgba(220,220,220,0.2)",
-				strokeColor: "#FF0084",
-				pointColor: "#0073EA",
+				fillColor: "#CADCFC",
+				strokeColor: "#00246B",
+				pointColor: "#8AB6F9",
 				pointStrokeColor: "#0073EA",
-				pointHighlightFill: "#FF0084",
-				pointHighlightStroke: "rgba(220,220,220,1)",
+				pointHighlightFill: "#8AB6F9",
+				pointHighlightStroke: "#00246B",
 				data: dataValues
 			}]
 	};
@@ -507,10 +508,10 @@ function createBarChart(dataValues, labelsValues, labelName, canvasID) {
 		datasets: [
 			{
 				label: labelName,
-				fillColor: "#0073EA",
-				strokeColor: "black",
-				highlightFill: "#FF0084",
-				highlightStroke: "black",
+				fillColor: "#CADCFC",
+				strokeColor: "#00246B",
+				highlightFill: "#8AB6F9",
+				highlightStroke: "00246B",
 				data: dataValues
 			}]
 	};
