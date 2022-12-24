@@ -1,7 +1,6 @@
 package com.trebol.travelstats.integration;
 
 import com.trebol.travelstats.TravelStatsApplication;
-import com.trebol.travelstats.config.DataSourceConfigTest;
 import io.restassured.authentication.FormAuthConfig;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -24,7 +23,7 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER
                 "classpath:sql/insert_flights.sql",
                 "classpath:sql/insert_roles.sql",
                 "classpath:sql/insert_users.sql"})
-@SpringBootTest(classes = {TravelStatsApplication.class, DataSourceConfigTest.class}, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = TravelStatsApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = AFTER_EACH_TEST_METHOD)
 public abstract class AbstractIntegrationTest {
 
