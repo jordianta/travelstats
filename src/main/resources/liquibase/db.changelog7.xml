@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"
         logicalFilePath="src/main/resources/liquibase/db.changelog7.xml">
-    <changeSet author="jordianta" id="add-roles">
+    <changeSet author="jordianta" id="add-roles" failOnError="false">
         <insert tableName="role">
             <column name="name" value="ADMIN"/>
         </insert>

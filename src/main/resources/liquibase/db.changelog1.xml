@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"
         logicalFilePath="src/main/resources/liquibase/db.changelog1.xml">
-    <changeSet author="jordianta" id="add-table-airport">
+    <changeSet author="jordianta" id="add-table-airport" failOnError="false">
         <createTable tableName="airport">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>

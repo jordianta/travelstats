@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"
         logicalFilePath="src/main/resources/liquibase/db.changelog5.xml">
-    <changeSet author="jordianta" id="add-table-role">
+    <changeSet author="jordianta" id="add-table-role" failOnError="false">
         <createTable tableName="role">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
