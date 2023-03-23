@@ -67,7 +67,7 @@ function colorIsTooDarkOrTooLight(r, g, b) {
     return darkness < 90 && darkness < 120;
 }
 
-var colorArray = getColorArray(20);
+var colorArray = getColorArray(21);
 var index = 0;
 
 var YEARS_COLORS = [
