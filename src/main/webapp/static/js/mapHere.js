@@ -112,7 +112,7 @@ function createCandidatePlaceMarker(latitude, longitude, name) {
 }
 
 function createCandidatePlaceContent(latitude, longitude, description) {
-    return "<div>" + description + "<p align='right'><a href='javascript:addPlace(" + latitude + "," + longitude + ",\"" + description.replace(/'/g, "\'") + "\");'><img src='static/images/add.png' width='25%'></a></div>";
+    return "<div>" + description + "<p align='right'><a href='javascript:addPlace(" + latitude + "," + longitude + ",\"" + description.replace(/'/g, "&#39;") + "\");'><img src='static/images/add.png' width='25%'></a></div>";
 }
 
 function addPlace(latitude, longitude, name) {
@@ -146,7 +146,7 @@ function createCandidatePlaceBubble(event) {
               var list = "<ul class='list-unstyled'>"
               // Add a marker for each location found
               result.items.forEach((item) => {
-                list += "<li onclick='createCandidatePlaceMarker(" + item.position.lat + "," +  item.position.lng + ",\"" + item.title.replace(/'/g, "\'") + "\")'>" + item.title + "</li>";
+                list += "<li onclick='createCandidatePlaceMarker(" + item.position.lat + "," +  item.position.lng + ",\"" + item.title.replace(/'/g, "&#39;") + "\")'>" + item.title.replace(/'/g, "&#39;") + "</li>";
               });
               list += "</ul>";
               $('#search-results').fadeIn();
