@@ -23,7 +23,7 @@ function createMap() {
     document.getElementById(MAP_CONTAINER).clientHeight *= 0.95;
 
     // Obtain the default map types from the platform object:
-    var defaultLayers = platform.createDefaultLayers();
+    var defaultLayers = platform.createDefaultLayers({lg: 'en'});
 
     // Instantiate (and display) a map object:
     map = new H.Map(
@@ -42,7 +42,7 @@ function createMap() {
     });
 
     // Create the default UI:
-    ui = H.ui.UI.createDefault(map, defaultLayers);
+    ui = H.ui.UI.createDefault(map, defaultLayers, 'en-US');
     // Create behaviours (mouse control)
     new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 }
@@ -141,7 +141,8 @@ function createCandidatePlaceBubble(event) {
        if(query != '')
        {
             searchService.geocode({
-              q: query
+              q: query,
+              lang: 'en-US'
             }, (result) => {
               var list = "<ul class='list-unstyled'>"
               // Add a marker for each location found
