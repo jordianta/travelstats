@@ -91,7 +91,8 @@ var YEARS_COLORS = [
 	{"year":2020, "color": "#" + colorArray[index++]},
 	{"year":2021, "color": "#" + colorArray[index++]},
 	{"year":2022, "color": "#" + colorArray[index++]},
-    {"year":2023, "color": "#" + colorArray[index++]}
+    {"year":2023, "color": "#" + colorArray[index++]},
+    {"year":2024, "color": "#" + colorArray[index++]}
 ];
 
 var mapFills = {};
