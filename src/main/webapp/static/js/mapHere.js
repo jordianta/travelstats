@@ -107,7 +107,7 @@ function createCandidatePlaceMarker(latitude, longitude, name) {
     marker.setData(createCandidatePlaceContent(latitude, longitude, name));
     marker.addEventListener('tap',  function(e) {createCandidatePlaceBubble(e)});
     map.addObject(marker);
-    map.setZoom(6);
+    map.setZoom(8);
     map.setCenter({lat: latitude, lng: longitude});
 }
 
