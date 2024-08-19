@@ -5,7 +5,7 @@ var mapPinIcon = new H.map.Icon("static/images/mapPinIcon.png", {size: {h: 25, w
 var mapPinIconNew = new H.map.Icon("static/images/mapPinIconNew.png", {size: {h: 25, w: 25}});
 
 var platform = new H.service.Platform({
-  'apikey': 'OtsOoCOa5LPpTe91mpcU0rQSxdMsOVuQuuedel9OZD4'
+  'apikey': 'XhydcAykHAkK1dSyJlYcdqsksTjzcAUUP9EEVWQSIi0'
 });
 
 var searchService = platform.getSearchService();
