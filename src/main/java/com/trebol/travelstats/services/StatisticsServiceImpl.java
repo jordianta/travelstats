@@ -77,16 +77,16 @@ public class StatisticsServiceImpl implements StatisticsService {
     private StatsByCarrierDTO createStatsByCarrierDTO(final Carrier carrier, final List<Flight> flights) {
         final var totalDistance = calculateTotalDistance(flights);
         final var averageDistance = calculateAverageDistance(flights);
-        final var totalTime = calculateTotalTime(flights);
-        final var averageTime = calculateAverageTime(flights);
+        final var totalTime = calculateTotalTimeInHours(flights);
+        final var averageTime = calculateAverageTimeInHours(flights);
         return new StatsByCarrierDTO(carrier.getName(), flights.size(), totalDistance, averageDistance, totalTime, averageTime);
     }
 
 
     private StatsByYearDTO createStatsByYearDTO(final Integer year, final List<Flight> flights) {
         final var totalDistance = calculateTotalDistance(flights);
-        final var totalTime = calculateTotalTime(flights);
-        final var averageTime = calculateAverageTime(flights);
+        final var totalTime = calculateTotalTimeInHours(flights);
+        final var averageTime = calculateAverageTimeInHours(flights);
         return new StatsByYearDTO(year, flights.size(), totalDistance, totalTime, averageTime);
     }
 
@@ -103,22 +103,21 @@ public class StatisticsServiceImpl implements StatisticsService {
                             .orElse(0);
     }
 
-    private double calculateTotalTime(final List<Flight> flights) {
+    private double calculateTotalTimeInHours(final List<Flight> flights) {
         return flights.stream()
-                      .mapToDouble(StatisticsServiceImpl::getFlightDuration)
+                      .mapToDouble(StatisticsServiceImpl::getFlightDurationInHours)
                       .sum();
     }
 
-    private double calculateAverageTime(final List<Flight> flights) {
+    private double calculateAverageTimeInHours(final List<Flight> flights) {
         return flights.stream()
-                      .mapToDouble(StatisticsServiceImpl::getFlightDuration)
+                      .mapToDouble(StatisticsServiceImpl::getFlightDurationInHours)
                       .average()
                       .orElse(0);
     }
 
-    private static double getFlightDuration(final Flight flight) {
-        return (flight.getDuration().getMinutes() + flight.getDuration().getHours() * 60) / 60;
+    private static double getFlightDurationInHours(final Flight flight) {
+        final var localTime = flight.getDuration().toLocalTime();
+        return (double) (localTime.getMinute() + localTime.getHour() * 60) / 60;
     }
-
-
 }
