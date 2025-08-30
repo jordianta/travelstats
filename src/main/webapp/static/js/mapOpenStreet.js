@@ -4,7 +4,7 @@ var ui;
 var markers = new Array();
 var mapPinIcon = L.icon({
                      iconUrl: 'static/images/mapPinIcon.png',
-                     iconSize: [25, 25]
+                     iconSize: [10, 10]
                  });
 var mapPinIconNew = L.icon({
                        iconUrl: 'static/images/mapPinIconNew.png',
