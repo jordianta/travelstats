@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>travelstats</groupId>
     <artifactId>travelstats</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
     <name>travelstats</name>
     <packaging>jar</packaging>
     <properties>
@@ -24,7 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.1</version>
+        <version>3.5.5</version>
     </parent>
     <dependencies>
         <!-- Spring -->

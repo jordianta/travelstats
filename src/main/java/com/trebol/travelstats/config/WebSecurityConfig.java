@@ -8,6 +8,8 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,24 +24,20 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(final HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity.authorizeHttpRequests()
-            .requestMatchers("/login").permitAll()
-            .requestMatchers("/static/**").permitAll()
-            .anyRequest().authenticated()
-
-            .and()
-            .formLogin()
-            .loginPage("/login")
-
-            .and()
-            .logout()
-            .permitAll();
-
-        httpSecurity.csrf().disable().cors();
-        httpSecurity.headers().frameOptions().sameOrigin();
-
-        return httpSecurity.build();
-
+        return httpSecurity.authorizeHttpRequests(auth -> auth
+                                   .requestMatchers("/login").permitAll()
+                                   .requestMatchers("/static/**").permitAll()
+                                   .anyRequest().authenticated()
+                           )
+                           .formLogin(formLogin -> formLogin
+                                   .loginPage("/login")
+                                   .permitAll()
+                           )
+                           .csrf(AbstractHttpConfigurer::disable)
+                           .cors(AbstractHttpConfigurer::disable)
+                           .headers(headers ->
+                                   headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
+                           .build();
     }
 
     @Bean
