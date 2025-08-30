@@ -19,7 +19,7 @@
         <h2.version>2.2.220</h2.version>
         <maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
