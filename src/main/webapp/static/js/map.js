@@ -7,12 +7,36 @@ var BUBBLE_COLOR_DESTINATION = "#CADCFC";//"rgba(184,33,58, 0.75)";//"rgba(255, 
 var BUBBLE_COLOR_POINT = "#00246B";
 var MAXIMUM_NUMBER_OF_ARCHES = 0; // if 0 --> no maximum number of arches
 var FILL_COLOR = "rgb(211, 216, 222)";
+var YEARS = [1996,
+            2000,
+            2005,
+            2006,
+            2007,
+            2008,
+            2009,
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            ]
 
-function getColorArray(size) {
+function getColorArray() {
 
     var colors = new Array();
 
-    for(var i = 0;i < size;i++) {
+    for(var i = 0;i < YEARS.length;i++) {
         if(i == 0) {
             colors[i] = getRandomColor();
         } else {
@@ -67,33 +91,17 @@ function colorIsTooDarkOrTooLight(r, g, b) {
     return darkness < 90 && darkness < 120;
 }
 
-var colorArray = getColorArray(22);
-var index = 0;
+var YEARS_COLORS = getYearsColors();
 
-var YEARS_COLORS = [
-	{"year":1996, "color": "#" + colorArray[index++]},
-	{"year":2000, "color": "#" + colorArray[index++]},
-	{"year":2005, "color": "#" + colorArray[index++]},
-	{"year":2006, "color": "#" + colorArray[index++]},
-	{"year":2007, "color": "#" + colorArray[index++]},
-	{"year":2008, "color": "#" + colorArray[index++]},
-	{"year":2009, "color": "#" + colorArray[index++]},
-	{"year":2010, "color": "#" + colorArray[index++]},
-	{"year":2011, "color": "#" + colorArray[index++]},
-	{"year":2012, "color": "#" + colorArray[index++]},
-	{"year":2013, "color": "#" + colorArray[index++]},
-	{"year":2014, "color": "#" + colorArray[index++]},
-	{"year":2015, "color": "#" + colorArray[index++]},
-	{"year":2016, "color": "#" + colorArray[index++]},
-	{"year":2017, "color": "#" + colorArray[index++]},
-	{"year":2018, "color": "#" + colorArray[index++]},
-	{"year":2019, "color": "#" + colorArray[index++]},
-	{"year":2020, "color": "#" + colorArray[index++]},
-	{"year":2021, "color": "#" + colorArray[index++]},
-	{"year":2022, "color": "#" + colorArray[index++]},
-    {"year":2023, "color": "#" + colorArray[index++]},
-    {"year":2024, "color": "#" + colorArray[index++]}
-];
+function getYearsColors() {
+    var colorArray = getColorArray();
+    var yearsColors = new Array();
+
+    $.each(YEARS, function (i, year) {
+        yearsColors.push({"year":YEARS[i], "color": "#" + colorArray[i]})
+    });
+    return yearsColors;
+}
 
 var mapFills = {};
 var countries = {};
