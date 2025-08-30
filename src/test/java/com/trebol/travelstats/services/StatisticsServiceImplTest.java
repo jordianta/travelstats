@@ -67,8 +67,7 @@ class StatisticsServiceImplTest {
         // given
         final var flightList1 = TestUtils.createFlightList();
         final var flightList2 = TestUtils.createFlightList();
-        flightList2.forEach(flight -> flight.getDate().setYear(97));
-//        flightList2.forEach(flight -> flight.setDate(new Calendar.Builder().setInstant(flight.getDate()).set(Calendar.YEAR, 97).build().getTime()));
+        flightList2.forEach(flight -> flight.setDate(flight.getDate().withYear(1997)));
 
 
         final List<Flight> flightList = new ArrayList<>(flightList1);

@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
@@ -71,12 +70,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
 
     private Function<Flight, Integer> getYearFromFlight() {
-        return flight -> {
-            final var date = flight.getDate();
-            final var calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            return calendar.get(Calendar.YEAR);
-        };
+        return flight -> flight.getDate().getYear();
     }
 
 

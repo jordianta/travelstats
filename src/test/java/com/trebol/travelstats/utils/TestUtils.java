@@ -12,7 +12,7 @@ import com.trebol.travelstats.domainobjects.Flight;
 import com.trebol.travelstats.domainobjects.Place;
 
 import java.sql.Time;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -28,10 +28,7 @@ public class TestUtils {
         flight.setId(1L);
         flight.setCarrier(createAACarrier());
         flight.setOrigin(createBCNAirport());
-        final var date1 = Calendar.getInstance();
-        date1.clear();
-        date1.set(1996, Calendar.AUGUST, 15);
-        flight.setDate(date1.getTime());
+        flight.setDate(LocalDate.of(1996, 8, 15));
         flight.setDestination(createJFKAirport());
         flight.setDistance(7000);
         flight.setDuration(Time.valueOf("08:00:00"));
@@ -44,10 +41,7 @@ public class TestUtils {
         flight.setId(2L);
         flight.setCarrier(createQantasCarrier());
         flight.setOrigin(createJFKAirport());
-        final var date2 = Calendar.getInstance();
-        date2.clear();
-        date2.set(1996, Calendar.AUGUST, 23);
-        flight.setDate(date2.getTime());
+        flight.setDate(LocalDate.of(1996, 8, 23));
         flight.setDestination(createBCNAirport());
         flight.setDistance(7100);
         flight.setDuration(Time.valueOf("08:30:00"));
